@@ -711,4 +711,14 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'مقدار اور قیمت کی تبدیلیاں اس مہینے سے لاگو ہوتی ہیں۔ ترسیل کے دن بدلنے سے غیر نشان زدہ دنوں کا حساب بھی بدلتا ہے۔';
+
+  @override
+  String get allVendors => 'تمام دکاندار';
+
+  @override
+  String get monthlyTotal => 'ماہانہ کل رقم';
+
+  @override
+  String get allVendorsBillInfo =>
+      'آپ کے فعال کھاتوں کے ماہانہ بل۔ ادا شدہ بل بھی کل رقم میں شامل ہیں۔';
 }

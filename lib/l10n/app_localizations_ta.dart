@@ -715,4 +715,14 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'அளவு மற்றும் விலை மாற்றங்கள் இந்த மாதம் முதல் பொருந்தும். விநியோக நாட்களை மாற்றினால் பதிவு செய்யாத நாட்களின் கணக்கும் மாறும்.';
+
+  @override
+  String get allVendors => 'அனைத்து விற்பனையாளர்கள்';
+
+  @override
+  String get monthlyTotal => 'மாதாந்திர மொத்தம்';
+
+  @override
+  String get allVendorsBillInfo =>
+      'உங்கள் செயலில் உள்ள கணக்குகளின் மாதாந்திர பில்கள். செலுத்தப்பட்ட பில்களும் மொத்தத்தில் சேர்க்கப்பட்டுள்ளன.';
 }

@@ -715,4 +715,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days.';
+
+  @override
+  String get allVendors => 'All vendors';
+
+  @override
+  String get monthlyTotal => 'Monthly total';
+
+  @override
+  String get allVendorsBillInfo =>
+      'Monthly bills for your active accounts. Paid bills are included in the total.';
 }

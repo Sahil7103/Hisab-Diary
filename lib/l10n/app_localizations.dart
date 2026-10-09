@@ -1398,6 +1398,24 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'मात्रा और कीमत में बदलाव इस महीने से लागू होते हैं। डिलीवरी के दिन बदलने से बिना नोंद वाले दिनों का हिसाब भी बदलता है।'**
   String get editVendorRatesInfo;
+
+  /// No description provided for @allVendors.
+  ///
+  /// In hi, this message translates to:
+  /// **'सभी विक्रेता'**
+  String get allVendors;
+
+  /// No description provided for @monthlyTotal.
+  ///
+  /// In hi, this message translates to:
+  /// **'मासिक कुल'**
+  String get monthlyTotal;
+
+  /// No description provided for @allVendorsBillInfo.
+  ///
+  /// In hi, this message translates to:
+  /// **'आपके सक्रिय खातों के मासिक बिल। भुगतान किए गए बिल भी कुल राशि में शामिल हैं।'**
+  String get allVendorsBillInfo;
 }
 
 class _AppLocalizationsDelegate

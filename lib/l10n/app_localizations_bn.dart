@@ -709,4 +709,14 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'পরিমাণ এবং দামের পরিবর্তন এই মাস থেকে প্রযোজ্য। সরবরাহের দিন বদলালে চিহ্ন না দেওয়া দিনের হিসাবও বদলায়।';
+
+  @override
+  String get allVendors => 'সব বিক্রেতা';
+
+  @override
+  String get monthlyTotal => 'মাসিক মোট';
+
+  @override
+  String get allVendorsBillInfo =>
+      'আপনার সক্রিয় অ্যাকাউন্টগুলির মাসিক বিল। পরিশোধ করা বিলও মোট পরিমাণে অন্তর্ভুক্ত।';
 }
