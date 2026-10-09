@@ -814,4 +814,11 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'బ్యాకప్ ఎంచుకోవడానికి ఇక్కడ నొక్కండి. నిర్ధారణ జాగ్రత్తగా చదవండి: ఈ పరికరంలోని డైరీ మారుతుంది.';
+
+  @override
+  String get assistantHello => 'నమస్కారం! నేను మీ డైరీ సహాయకుడిని.';
+
+  @override
+  String get assistantWelcome =>
+      'సహాయం కావాలంటే తేలియాడే పెన్సిల్‌ను నొక్కండి. పని ఎంచుకోండి లేదా ప్రశ్న అడగండి; ఎక్కడ నొక్కాలో చూపిస్తాను. చిన్న పరిచయంతో మొదలుపెడదాం!';
 }

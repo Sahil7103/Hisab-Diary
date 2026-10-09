@@ -30,7 +30,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _busy = false;
   Future<void> _openAssistant() async {
     final topic = await Navigator.of(context).push<HelpTopic>(MaterialPageRoute(
-      builder: (_) => const HelpScreen()));
+      settings: const RouteSettings(name: '/help'), builder: (_) => const HelpScreen()));
     if (mounted && topic != null) widget.onHelpRequested?.call(topic);
   }
   void _notify(String message) => ScaffoldMessenger.of(context).showSnackBar(

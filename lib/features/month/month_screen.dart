@@ -7,6 +7,7 @@ import '../../app/theme/diary_theme.dart';
 import '../../app/theme/diary_motion.dart';
 import '../../core/widgets/diary_tutorial.dart';
 import '../help/help_spotlight.dart';
+import '../help/help_assistant_overlay.dart';
 import '../settings/settings_repository.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/widgets/diary_button.dart';
@@ -132,6 +133,14 @@ class _VendorCalendarState extends ConsumerState<_VendorCalendar>
       }
       final repository = ref.read(settingsRepositoryProvider);
       final strings = AppLocalizations.of(context)!;
+      if (!replay) {
+        await greetAssistantOnce(context, repository,
+          alreadyIntroduced: settings?['assistantIntroduced'] == 'true');
+        if (!mounted || ModalRoute.of(context)?.isCurrent != true) {
+          _monthTutorialShown = false;
+          return;
+        }
+      }
       await showGeneralDialog<void>(context: context, barrierDismissible: false,
         barrierColor: Colors.transparent,
         pageBuilder: (_, _, _) => DiaryTutorial(initialStep: widget.tutorialStep ?? 0, steps: [

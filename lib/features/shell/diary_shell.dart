@@ -11,6 +11,7 @@ import '../month/month_screen.dart';
 import '../settings/settings_screen.dart';
 import '../today/today_screen.dart';
 import '../help/help_topic.dart';
+import '../help/help_assistant_overlay.dart';
 
 class DiaryShell extends StatefulWidget {
   const DiaryShell({super.key, this.storageLoading = false,
@@ -26,7 +27,12 @@ class _DiaryShellState extends State<DiaryShell> {
   void initState() {
     super.initState();
     todayRequests.addListener(_openToday);
+    assistantRequests.addListener(_requestedHelp);
     AppTelemetry.screen('today');
+  }
+  void _requestedHelp() {
+    final topic = assistantRequests.value;
+    if (mounted && topic != null) _openHelp(topic);
   }
   void _openToday() {
     if (mounted) _selectTab(0);
@@ -34,6 +40,7 @@ class _DiaryShellState extends State<DiaryShell> {
   @override
   void dispose() {
     todayRequests.removeListener(_openToday);
+    assistantRequests.removeListener(_requestedHelp);
     super.dispose();
   }
   final _navigationKey = GlobalKey();

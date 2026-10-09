@@ -812,4 +812,11 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'बैकअप फ़ाइल चुनने के लिए यहाँ टैप करें। पुष्टि ध्यान से पढ़ें: इससे इस डिवाइस की डायरी बदल जाएगी।';
+
+  @override
+  String get assistantHello => 'नमस्ते! मैं आपका डायरी सहायक हूँ।';
+
+  @override
+  String get assistantWelcome =>
+      'जब भी मदद चाहिए, तैरती पेंसिल पर टैप करें। काम चुनें या सवाल पूछें, मैं सही जगह दिखाऊँगा। चलिए छोटा परिचय शुरू करें!';
 }

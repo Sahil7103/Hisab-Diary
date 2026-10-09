@@ -1590,6 +1590,18 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'बैकअप फ़ाइल चुनने के लिए यहाँ टैप करें। पुष्टि ध्यान से पढ़ें: इससे इस डिवाइस की डायरी बदल जाएगी।'**
   String get helpRestoreBody;
+
+  /// No description provided for @assistantHello.
+  ///
+  /// In hi, this message translates to:
+  /// **'नमस्ते! मैं आपका डायरी सहायक हूँ।'**
+  String get assistantHello;
+
+  /// No description provided for @assistantWelcome.
+  ///
+  /// In hi, this message translates to:
+  /// **'जब भी मदद चाहिए, तैरती पेंसिल पर टैप करें। काम चुनें या सवाल पूछें, मैं सही जगह दिखाऊँगा। चलिए छोटा परिचय शुरू करें!'**
+  String get assistantWelcome;
 }
 
 class _AppLocalizationsDelegate

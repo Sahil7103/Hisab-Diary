@@ -820,4 +820,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'Tap here to choose a saved backup. Review the confirmation carefully: restoring replaces the diary on this device.';
+
+  @override
+  String get assistantHello => 'Hi! I’m your diary helper.';
+
+  @override
+  String get assistantWelcome =>
+      'Tap my floating pencil anytime you need help. Choose a task or ask a question, and I’ll show you where to tap. Let’s start with a quick tour!';
 }

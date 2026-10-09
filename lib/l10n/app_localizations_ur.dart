@@ -813,4 +813,11 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'بیک اپ منتخب کرنے کے لیے یہاں ٹیپ کریں۔ تصدیق غور سے پڑھیں: اس آلے کی ڈائری بدل جائے گی۔';
+
+  @override
+  String get assistantHello => 'سلام! میں آپ کا ڈائری مددگار ہوں۔';
+
+  @override
+  String get assistantWelcome =>
+      'مدد چاہیے تو تیرتی پنسل پر ٹیپ کریں۔ کام منتخب کریں یا سوال پوچھیں، میں بتاؤں گا کہاں ٹیپ کرنا ہے۔ آئیے مختصر رہنمائی شروع کریں!';
 }

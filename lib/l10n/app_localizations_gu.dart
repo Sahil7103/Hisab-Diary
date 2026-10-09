@@ -809,4 +809,11 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'બેકઅપ પસંદ કરવા અહીં ટૅપ કરો. પુષ્ટિ ધ્યાનથી વાંચો: આ ઉપકરણની ડાયરી બદલાઈ જશે.';
+
+  @override
+  String get assistantHello => 'નમસ્તે! હું તમારો ડાયરી સહાયક છું.';
+
+  @override
+  String get assistantWelcome =>
+      'મદદ જોઈએ ત્યારે તરતી પેન્સિલ પર ટૅપ કરો. કામ પસંદ કરો અથવા પ્રશ્ન પૂછો, હું ક્યાં ટૅપ કરવું તે બતાવીશ. ચાલો ટૂંકું માર્ગદર્શન શરૂ કરીએ!';
 }

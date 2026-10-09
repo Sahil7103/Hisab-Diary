@@ -9,6 +9,8 @@ final settingsRepositoryProvider = Provider<SettingsRepository>((ref) =>
 class SettingsRepository {
   SettingsRepository(this.database);
   final AppDatabase database;
+  Future<void> markAssistantIntroduced() =>
+    database.saveSetting('assistantIntroduced', 'true');
   Future<void> markTutorialSeen(String screen) {
     if (!['home', 'month', 'bill'].contains(screen)) {
       throw ArgumentError('Unsupported tutorial');

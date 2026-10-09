@@ -811,4 +811,11 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'ব্যাকআপ বাছতে এখানে ট্যাপ করুন। নিশ্চিতকরণ মন দিয়ে পড়ুন: এই ডিভাইসের ডায়েরি বদলে যাবে।';
+
+  @override
+  String get assistantHello => 'নমস্কার! আমি আপনার ডায়েরি সহকারী।';
+
+  @override
+  String get assistantWelcome =>
+      'সাহায্য চাইলে ভাসমান পেন্সিলে ট্যাপ করুন। কাজ বাছুন বা প্রশ্ন করুন, কোথায় ট্যাপ করবেন তা দেখাব। চলুন ছোট পরিচয় শুরু করি!';
 }

@@ -813,4 +813,11 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get helpRestoreBody =>
       'ಬ್ಯಾಕಪ್ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ದೃಢೀಕರಣ ಗಮನದಿಂದ ಓದಿ: ಈ ಸಾಧನದ ಡೈರಿ ಬದಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get assistantHello => 'ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಡೈರಿ ಸಹಾಯಕ.';
+
+  @override
+  String get assistantWelcome =>
+      'ಸಹಾಯ ಬೇಕಾದಾಗ ತೇಲುವ ಪೆನ್ಸಿಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ. ಕೆಲಸ ಆಯ್ಕೆ ಮಾಡಿ ಅಥವಾ ಪ್ರಶ್ನೆ ಕೇಳಿ; ಎಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಬೇಕೆಂದು ತೋರಿಸುತ್ತೇನೆ. ಸಣ್ಣ ಪರಿಚಯದಿಂದ ಆರಂಭಿಸೋಣ!';
 }

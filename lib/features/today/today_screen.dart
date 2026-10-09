@@ -12,6 +12,7 @@ import 'today_repository.dart';
 import 'vendor_card.dart';
 import '../../core/widgets/diary_tutorial.dart';
 import '../settings/settings_repository.dart';
+import '../help/help_assistant_overlay.dart';
 import '../vendors/vendor_type_screen.dart';
 import '../month/month_repository.dart' show activeVendorsProvider;
 
@@ -81,6 +82,14 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
       }
       final repository = ref.read(settingsRepositoryProvider);
       final strings = AppLocalizations.of(context)!;
+      if (!replay) {
+        await greetAssistantOnce(context, repository,
+          alreadyIntroduced: settings?['assistantIntroduced'] == 'true');
+        if (!mounted || ModalRoute.of(context)?.isCurrent != true) {
+          _homeTutorialShown = false;
+          return;
+        }
+      }
       await showGeneralDialog<void>(context: context, barrierDismissible: false,
         barrierColor: Colors.transparent,
         pageBuilder: (context, _, _) => DiaryTutorial(initialStep: hasDeliveries ? (widget.tutorialStep ?? 0) : 0, steps: [

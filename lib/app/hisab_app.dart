@@ -8,6 +8,7 @@ import 'app_providers.dart';
 import 'diary_navigation.dart';
 import '../features/splash/splash_screen.dart';
 import 'theme/diary_theme.dart';
+import '../features/help/help_assistant_overlay.dart';
 
 class HisabApp extends ConsumerStatefulWidget {
   const HisabApp({super.key});
@@ -16,6 +17,9 @@ class HisabApp extends ConsumerStatefulWidget {
 }
 class _HisabAppState extends ConsumerState<HisabApp> {
   bool _introFinished = false;
+  final _helpObserver = HelpRouteObserver();
+  @override
+  void dispose() { _helpObserver.dispose(); super.dispose(); }
   @override
   Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
@@ -27,6 +31,7 @@ class _HisabAppState extends ConsumerState<HisabApp> {
     final scale = [0.9, 1.0, 1.2].contains(requestedScale) ? requestedScale : 1.0;
     return MaterialApp(
       navigatorKey: diaryNavigatorKey,
+      navigatorObservers: [_helpObserver],
       debugShowCheckedModeBanner: false,
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appName,
       locale: Locale(language),
@@ -36,7 +41,9 @@ class _HisabAppState extends ConsumerState<HisabApp> {
       builder: (context, child) {
         final media = MediaQuery.of(context);
         return MediaQuery(data: media.copyWith(textScaler:
-          _DiaryTextScaler(media.textScaler, scale)), child: child!);
+          _DiaryTextScaler(media.textScaler, scale)), child: HelpAssistantOverlay(
+            enabled: _introFinished && settings.hasValue && !settings.hasError && values.containsKey('language'),
+            observer: _helpObserver, child: child!));
       },
       home: !settings.hasError && (!_introFinished || (settings.isLoading && !settings.hasValue))
           ? SplashScreen(onComplete: () {

@@ -265,5 +265,7 @@
   "helpChoices": "Which task would you like help with?",
   "helpReminderBody": "Turn on the reminder switch, allow notifications when asked, then choose your reminder time.",
   "helpBackupBody": "Tap here to export your diary backup. Save the file somewhere you can find it later.",
-  "helpRestoreBody": "Tap here to choose a saved backup. Review the confirmation carefully: restoring replaces the diary on this device."
+  "helpRestoreBody": "Tap here to choose a saved backup. Review the confirmation carefully: restoring replaces the diary on this device.",
+  "assistantHello": "Hi! I’m your diary helper.",
+  "assistantWelcome": "Tap my floating pencil anytime you need help. Choose a task or ask a question, and I’ll show you where to tap. Let’s start with a quick tour!"
 }
