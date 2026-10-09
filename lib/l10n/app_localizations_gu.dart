@@ -693,4 +693,89 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'ગોપનીયતા નીતિ ખોલી શકાઈ નહીં. બ્રાઉઝર અને ઇન્ટરનેટ કનેક્શન તપાસો.';
+
+  @override
+  String get accountTitle => 'તમારું ખાતું';
+
+  @override
+  String get accountIntro =>
+      'સાઇન ઇન વૈકલ્પિક છે. તમારી ડાયરી આ ઉપકરણ પર રહે છે. ક્લાઉડ બેકઅપ પછી ઉમેરાશે.';
+
+  @override
+  String get signIn => 'સાઇન ઇન કરો';
+
+  @override
+  String get createAccount => 'ખાતું બનાવો';
+
+  @override
+  String get googleSignIn => 'Google સાથે ચાલુ રાખો';
+
+  @override
+  String get emailLabel => 'ઈમેલ';
+
+  @override
+  String get passwordLabel => 'પાસવર્ડ';
+
+  @override
+  String get confirmPasswordLabel => 'પાસવર્ડની પુષ્ટિ કરો';
+
+  @override
+  String get forgotPassword => 'પાસવર્ડ ભૂલી ગયા?';
+
+  @override
+  String get resetSent =>
+      'આ ઈમેલનું ખાતું હશે તો પાસવર્ડ રીસેટ લિંક મોકલાશે. ઇનબોક્સ તપાસો.';
+
+  @override
+  String get authEmailInvalid => 'માન્ય ઈમેલ સરનામું દાખલ કરો.';
+
+  @override
+  String get authPasswordRequired => 'તમારો પાસવર્ડ દાખલ કરો.';
+
+  @override
+  String get authPasswordWeak => 'પાસવર્ડમાં ઓછામાં ઓછા 6 અક્ષર રાખો.';
+
+  @override
+  String get authPasswordMismatch => 'પાસવર્ડ મેળ ખાતા નથી.';
+
+  @override
+  String get authInvalidCredentials => 'ઈમેલ અથવા પાસવર્ડ ખોટો છે.';
+
+  @override
+  String get authEmailUsed => 'આ ઈમેલનું ખાતું પહેલેથી છે. સાઇન ઇન કરો.';
+
+  @override
+  String get authNetworkError => 'ઇન્ટરનેટ તપાસો અને ફરી પ્રયાસ કરો.';
+
+  @override
+  String get authUnavailable => 'સાઇન ઇન ઉપલબ્ધ નથી. Firebase સેટઅપ તપાસો.';
+
+  @override
+  String get authTryAgain => 'આ કામ પૂર્ણ થયું નથી. પછી ફરી પ્રયાસ કરો.';
+
+  @override
+  String get authRecentLogin =>
+      'ખાતું કાઢતા પહેલાં સાઇન આઉટ કરીને ફરી સાઇન ઇન કરો.';
+
+  @override
+  String get signOut => 'સાઇન આઉટ કરો';
+
+  @override
+  String get deleteAccount => 'ખાતું કાઢો';
+
+  @override
+  String get deleteAccountConfirm =>
+      'સાઇન ઇન ખાતું કાઢવું છે? આ ઉપકરણના ડાયરી રેકોર્ડ રહેશે.';
+
+  @override
+  String get signedInAs => 'આ ખાતાથી સાઇન ઇન છે';
+
+  @override
+  String get continueOffline => 'ઑફલાઇન ચાલુ રાખો';
+
+  @override
+  String get showPassword => 'પાસવર્ડ બતાવો';
+
+  @override
+  String get hidePassword => 'પાસવર્ડ છુપાવો';
 }

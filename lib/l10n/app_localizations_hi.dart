@@ -695,4 +695,90 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'गोपनीयता नीति नहीं खुल सकी। अपना ब्राउज़र और इंटरनेट कनेक्शन जाँचें।';
+
+  @override
+  String get accountTitle => 'आपका खाता';
+
+  @override
+  String get accountIntro =>
+      'साइन इन वैकल्पिक है। आपकी डायरी इसी डिवाइस पर रहती है। क्लाउड बैकअप बाद में जोड़ा जाएगा।';
+
+  @override
+  String get signIn => 'साइन इन करें';
+
+  @override
+  String get createAccount => 'खाता बनाएँ';
+
+  @override
+  String get googleSignIn => 'Google से जारी रखें';
+
+  @override
+  String get emailLabel => 'ईमेल';
+
+  @override
+  String get passwordLabel => 'पासवर्ड';
+
+  @override
+  String get confirmPasswordLabel => 'पासवर्ड की पुष्टि करें';
+
+  @override
+  String get forgotPassword => 'पासवर्ड भूल गए?';
+
+  @override
+  String get resetSent =>
+      'इस ईमेल का खाता होने पर पासवर्ड रीसेट लिंक भेजा जाएगा। अपना इनबॉक्स देखें।';
+
+  @override
+  String get authEmailInvalid => 'सही ईमेल पता दर्ज करें।';
+
+  @override
+  String get authPasswordRequired => 'अपना पासवर्ड दर्ज करें।';
+
+  @override
+  String get authPasswordWeak => 'पासवर्ड में कम से कम 6 अक्षर रखें।';
+
+  @override
+  String get authPasswordMismatch => 'पासवर्ड मेल नहीं खाते।';
+
+  @override
+  String get authInvalidCredentials => 'ईमेल या पासवर्ड गलत है।';
+
+  @override
+  String get authEmailUsed => 'इस ईमेल का खाता पहले से है। साइन इन करें।';
+
+  @override
+  String get authNetworkError => 'इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String get authUnavailable =>
+      'साइन इन उपलब्ध नहीं है। Firebase सेटअप जाँचें।';
+
+  @override
+  String get authTryAgain => 'यह काम पूरा नहीं हुआ। बाद में फिर कोशिश करें।';
+
+  @override
+  String get authRecentLogin =>
+      'खाता मिटाने से पहले साइन आउट करके फिर साइन इन करें।';
+
+  @override
+  String get signOut => 'साइन आउट करें';
+
+  @override
+  String get deleteAccount => 'खाता मिटाएँ';
+
+  @override
+  String get deleteAccountConfirm =>
+      'अपना साइन इन खाता मिटाएँ? इस डिवाइस के डायरी रिकॉर्ड बने रहेंगे।';
+
+  @override
+  String get signedInAs => 'इस खाते से साइन इन हैं';
+
+  @override
+  String get continueOffline => 'ऑफ़लाइन जारी रखें';
+
+  @override
+  String get showPassword => 'पासवर्ड दिखाएँ';
+
+  @override
+  String get hidePassword => 'पासवर्ड छिपाएँ';
 }

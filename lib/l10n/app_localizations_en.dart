@@ -700,4 +700,93 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'Could not open the privacy policy. Please check your browser and internet connection.';
+
+  @override
+  String get accountTitle => 'Your account';
+
+  @override
+  String get accountIntro =>
+      'Sign-in is optional. Your diary stays on this device. Cloud backup will be added later.';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get googleSignIn => 'Continue with Google';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get passwordLabel => 'Password';
+
+  @override
+  String get confirmPasswordLabel => 'Confirm password';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get resetSent =>
+      'If an account exists for this email, a password reset link will be sent. Check your inbox.';
+
+  @override
+  String get authEmailInvalid => 'Enter a valid email address.';
+
+  @override
+  String get authPasswordRequired => 'Enter your password.';
+
+  @override
+  String get authPasswordWeak => 'Use at least 6 characters for your password.';
+
+  @override
+  String get authPasswordMismatch => 'Passwords do not match.';
+
+  @override
+  String get authInvalidCredentials => 'The email or password is incorrect.';
+
+  @override
+  String get authEmailUsed =>
+      'This email already has an account. Sign in instead.';
+
+  @override
+  String get authNetworkError =>
+      'Check your internet connection and try again.';
+
+  @override
+  String get authUnavailable =>
+      'Sign-in is unavailable. Please check the Firebase setup.';
+
+  @override
+  String get authTryAgain =>
+      'Could not complete this action. Please try again later.';
+
+  @override
+  String get authRecentLogin =>
+      'Sign out and sign in again before deleting your account.';
+
+  @override
+  String get signOut => 'Sign out';
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountConfirm =>
+      'Delete your sign-in account? Your diary records on this device will remain.';
+
+  @override
+  String get signedInAs => 'Signed in as';
+
+  @override
+  String get continueOffline => 'Continue offline';
+
+  @override
+  String get showPassword => 'Show password';
+
+  @override
+  String get hidePassword => 'Hide password';
 }

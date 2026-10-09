@@ -694,4 +694,90 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'গোপনীয়তা নীতি খোলা যায়নি। ব্রাউজার ও ইন্টারনেট সংযোগ দেখুন।';
+
+  @override
+  String get accountTitle => 'আপনার অ্যাকাউন্ট';
+
+  @override
+  String get accountIntro =>
+      'সাইন ইন ঐচ্ছিক। ডায়েরি এই ডিভাইসেই থাকে। ক্লাউড ব্যাকআপ পরে যোগ হবে।';
+
+  @override
+  String get signIn => 'সাইন ইন করুন';
+
+  @override
+  String get createAccount => 'অ্যাকাউন্ট তৈরি করুন';
+
+  @override
+  String get googleSignIn => 'Google দিয়ে চালিয়ে যান';
+
+  @override
+  String get emailLabel => 'ইমেল';
+
+  @override
+  String get passwordLabel => 'পাসওয়ার্ড';
+
+  @override
+  String get confirmPasswordLabel => 'পাসওয়ার্ড নিশ্চিত করুন';
+
+  @override
+  String get forgotPassword => 'পাসওয়ার্ড ভুলে গেছেন?';
+
+  @override
+  String get resetSent =>
+      'এই ইমেলের অ্যাকাউন্ট থাকলে পাসওয়ার্ড রিসেট লিংক পাঠানো হবে। ইনবক্স দেখুন।';
+
+  @override
+  String get authEmailInvalid => 'সঠিক ইমেল ঠিকানা দিন।';
+
+  @override
+  String get authPasswordRequired => 'আপনার পাসওয়ার্ড দিন।';
+
+  @override
+  String get authPasswordWeak => 'পাসওয়ার্ডে অন্তত 6টি অক্ষর রাখুন।';
+
+  @override
+  String get authPasswordMismatch => 'পাসওয়ার্ড মিলছে না।';
+
+  @override
+  String get authInvalidCredentials => 'ইমেল বা পাসওয়ার্ড ভুল।';
+
+  @override
+  String get authEmailUsed => 'এই ইমেলের অ্যাকাউন্ট আছে। সাইন ইন করুন।';
+
+  @override
+  String get authNetworkError => 'ইন্টারনেট পরীক্ষা করে আবার চেষ্টা করুন।';
+
+  @override
+  String get authUnavailable =>
+      'সাইন ইন উপলব্ধ নয়। Firebase সেটআপ পরীক্ষা করুন।';
+
+  @override
+  String get authTryAgain => 'কাজটি সম্পূর্ণ হয়নি। পরে চেষ্টা করুন।';
+
+  @override
+  String get authRecentLogin =>
+      'অ্যাকাউন্ট মুছতে আগে সাইন আউট করে আবার সাইন ইন করুন।';
+
+  @override
+  String get signOut => 'সাইন আউট করুন';
+
+  @override
+  String get deleteAccount => 'অ্যাকাউন্ট মুছুন';
+
+  @override
+  String get deleteAccountConfirm =>
+      'সাইন ইন অ্যাকাউন্ট মুছবেন? এই ডিভাইসের ডায়েরি রেকর্ড থাকবে।';
+
+  @override
+  String get signedInAs => 'সাইন ইন করা অ্যাকাউন্ট';
+
+  @override
+  String get continueOffline => 'অফলাইনে চালিয়ে যান';
+
+  @override
+  String get showPassword => 'পাসওয়ার্ড দেখান';
+
+  @override
+  String get hidePassword => 'পাসওয়ার্ড লুকান';
 }

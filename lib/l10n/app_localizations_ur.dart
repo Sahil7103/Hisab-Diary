@@ -696,4 +696,90 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'رازداری کی پالیسی نہیں کھل سکی۔ اپنا براؤزر اور انٹرنیٹ کنکشن دیکھیں۔';
+
+  @override
+  String get accountTitle => 'آپ کا اکاؤنٹ';
+
+  @override
+  String get accountIntro =>
+      'سائن ان اختیاری ہے۔ ڈائری اسی آلے پر رہتی ہے۔ کلاؤڈ بیک اپ بعد میں شامل ہوگا۔';
+
+  @override
+  String get signIn => 'سائن ان کریں';
+
+  @override
+  String get createAccount => 'اکاؤنٹ بنائیں';
+
+  @override
+  String get googleSignIn => 'Google کے ساتھ جاری رکھیں';
+
+  @override
+  String get emailLabel => 'ای میل';
+
+  @override
+  String get passwordLabel => 'پاس ورڈ';
+
+  @override
+  String get confirmPasswordLabel => 'پاس ورڈ کی تصدیق';
+
+  @override
+  String get forgotPassword => 'پاس ورڈ بھول گئے؟';
+
+  @override
+  String get resetSent =>
+      'اس ای میل کا اکاؤنٹ ہونے پر پاس ورڈ ری سیٹ لنک بھیجا جائے گا۔ ان باکس دیکھیں۔';
+
+  @override
+  String get authEmailInvalid => 'درست ای میل پتہ درج کریں۔';
+
+  @override
+  String get authPasswordRequired => 'اپنا پاس ورڈ درج کریں۔';
+
+  @override
+  String get authPasswordWeak => 'پاس ورڈ میں کم از کم 6 حروف رکھیں۔';
+
+  @override
+  String get authPasswordMismatch => 'پاس ورڈ یکساں نہیں ہیں۔';
+
+  @override
+  String get authInvalidCredentials => 'ای میل یا پاس ورڈ غلط ہے۔';
+
+  @override
+  String get authEmailUsed => 'اس ای میل کا اکاؤنٹ پہلے سے ہے۔ سائن ان کریں۔';
+
+  @override
+  String get authNetworkError => 'انٹرنیٹ چیک کریں اور دوبارہ کوشش کریں۔';
+
+  @override
+  String get authUnavailable =>
+      'سائن ان دستیاب نہیں۔ Firebase سیٹ اپ چیک کریں۔';
+
+  @override
+  String get authTryAgain => 'یہ کام مکمل نہیں ہوا۔ بعد میں دوبارہ کوشش کریں۔';
+
+  @override
+  String get authRecentLogin =>
+      'اکاؤنٹ حذف کرنے سے پہلے سائن آؤٹ کرکے دوبارہ سائن ان کریں۔';
+
+  @override
+  String get signOut => 'سائن آؤٹ کریں';
+
+  @override
+  String get deleteAccount => 'اکاؤنٹ حذف کریں';
+
+  @override
+  String get deleteAccountConfirm =>
+      'سائن ان اکاؤنٹ حذف کریں؟ اس آلے کے ڈائری ریکارڈ باقی رہیں گے۔';
+
+  @override
+  String get signedInAs => 'سائن ان اکاؤنٹ';
+
+  @override
+  String get continueOffline => 'آف لائن جاری رکھیں';
+
+  @override
+  String get showPassword => 'پاس ورڈ دکھائیں';
+
+  @override
+  String get hidePassword => 'پاس ورڈ چھپائیں';
 }

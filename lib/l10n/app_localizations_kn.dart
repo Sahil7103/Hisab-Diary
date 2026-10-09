@@ -697,4 +697,89 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'ಗೌಪ್ಯತಾ ನೀತಿ ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಬ್ರೌಸರ್ ಮತ್ತು ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.';
+
+  @override
+  String get accountTitle => 'ನಿಮ್ಮ ಖಾತೆ';
+
+  @override
+  String get accountIntro =>
+      'ಸೈನ್ ಇನ್ ಐಚ್ಛಿಕವಾಗಿದೆ. ಡೈರಿ ಈ ಸಾಧನದಲ್ಲೇ ಉಳಿಯುತ್ತದೆ. ಕ್ಲೌಡ್ ಬ್ಯಾಕಪ್ ನಂತರ ಸೇರಿಸಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get signIn => 'ಸೈನ್ ಇನ್ ಮಾಡಿ';
+
+  @override
+  String get createAccount => 'ಖಾತೆ ರಚಿಸಿ';
+
+  @override
+  String get googleSignIn => 'Google ಮೂಲಕ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get emailLabel => 'ಇಮೇಲ್';
+
+  @override
+  String get passwordLabel => 'ಪಾಸ್‌ವರ್ಡ್';
+
+  @override
+  String get confirmPasswordLabel => 'ಪಾಸ್‌ವರ್ಡ್ ದೃಢಪಡಿಸಿ';
+
+  @override
+  String get forgotPassword => 'ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿರಾ?';
+
+  @override
+  String get resetSent =>
+      'ಈ ಇಮೇಲ್‌ಗೆ ಖಾತೆ ಇದ್ದರೆ ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸುವ ಲಿಂಕ್ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ಇನ್‌ಬಾಕ್ಸ್ ನೋಡಿ.';
+
+  @override
+  String get authEmailInvalid => 'ಸರಿಯಾದ ಇಮೇಲ್ ವಿಳಾಸ ನೀಡಿ.';
+
+  @override
+  String get authPasswordRequired => 'ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ನೀಡಿ.';
+
+  @override
+  String get authPasswordWeak => 'ಪಾಸ್‌ವರ್ಡ್‌ನಲ್ಲಿ ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳಿರಲಿ.';
+
+  @override
+  String get authPasswordMismatch => 'ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.';
+
+  @override
+  String get authInvalidCredentials => 'ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್ ತಪ್ಪಾಗಿದೆ.';
+
+  @override
+  String get authEmailUsed => 'ಈ ಇಮೇಲ್‌ಗೆ ಖಾತೆ ಇದೆ. ಸೈನ್ ಇನ್ ಮಾಡಿ.';
+
+  @override
+  String get authNetworkError => 'ಇಂಟರ್ನೆಟ್ ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get authUnavailable => 'ಸೈನ್ ಇನ್ ಲಭ್ಯವಿಲ್ಲ. Firebase ಸೆಟಪ್ ಪರಿಶೀಲಿಸಿ.';
+
+  @override
+  String get authTryAgain => 'ಈ ಕೆಲಸ ಪೂರ್ಣವಾಗಲಿಲ್ಲ. ನಂತರ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get authRecentLogin =>
+      'ಖಾತೆ ಅಳಿಸುವ ಮೊದಲು ಸೈನ್ ಔಟ್ ಮಾಡಿ ಮತ್ತೆ ಸೈನ್ ಇನ್ ಮಾಡಿ.';
+
+  @override
+  String get signOut => 'ಸೈನ್ ಔಟ್ ಮಾಡಿ';
+
+  @override
+  String get deleteAccount => 'ಖಾತೆ ಅಳಿಸಿ';
+
+  @override
+  String get deleteAccountConfirm =>
+      'ಸೈನ್ ಇನ್ ಖಾತೆ ಅಳಿಸಬೇಕೇ? ಈ ಸಾಧನದ ಡೈರಿ ದಾಖಲೆಗಳು ಉಳಿಯುತ್ತವೆ.';
+
+  @override
+  String get signedInAs => 'ಸೈನ್ ಇನ್ ಮಾಡಿದ ಖಾತೆ';
+
+  @override
+  String get continueOffline => 'ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಮುಂದುವರಿಸಿ';
+
+  @override
+  String get showPassword => 'ಪಾಸ್‌ವರ್ಡ್ ತೋರಿಸಿ';
+
+  @override
+  String get hidePassword => 'ಪಾಸ್‌ವರ್ಡ್ ಮರೆಮಾಡಿ';
 }

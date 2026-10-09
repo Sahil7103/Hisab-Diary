@@ -1374,6 +1374,168 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'गोपनीयता नीति नहीं खुल सकी। अपना ब्राउज़र और इंटरनेट कनेक्शन जाँचें।'**
   String get privacyPolicyOpenError;
+
+  /// No description provided for @accountTitle.
+  ///
+  /// In hi, this message translates to:
+  /// **'आपका खाता'**
+  String get accountTitle;
+
+  /// No description provided for @accountIntro.
+  ///
+  /// In hi, this message translates to:
+  /// **'साइन इन वैकल्पिक है। आपकी डायरी इसी डिवाइस पर रहती है। क्लाउड बैकअप बाद में जोड़ा जाएगा।'**
+  String get accountIntro;
+
+  /// No description provided for @signIn.
+  ///
+  /// In hi, this message translates to:
+  /// **'साइन इन करें'**
+  String get signIn;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In hi, this message translates to:
+  /// **'खाता बनाएँ'**
+  String get createAccount;
+
+  /// No description provided for @googleSignIn.
+  ///
+  /// In hi, this message translates to:
+  /// **'Google से जारी रखें'**
+  String get googleSignIn;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In hi, this message translates to:
+  /// **'ईमेल'**
+  String get emailLabel;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड'**
+  String get passwordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड की पुष्टि करें'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड भूल गए?'**
+  String get forgotPassword;
+
+  /// No description provided for @resetSent.
+  ///
+  /// In hi, this message translates to:
+  /// **'इस ईमेल का खाता होने पर पासवर्ड रीसेट लिंक भेजा जाएगा। अपना इनबॉक्स देखें।'**
+  String get resetSent;
+
+  /// No description provided for @authEmailInvalid.
+  ///
+  /// In hi, this message translates to:
+  /// **'सही ईमेल पता दर्ज करें।'**
+  String get authEmailInvalid;
+
+  /// No description provided for @authPasswordRequired.
+  ///
+  /// In hi, this message translates to:
+  /// **'अपना पासवर्ड दर्ज करें।'**
+  String get authPasswordRequired;
+
+  /// No description provided for @authPasswordWeak.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड में कम से कम 6 अक्षर रखें।'**
+  String get authPasswordWeak;
+
+  /// No description provided for @authPasswordMismatch.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड मेल नहीं खाते।'**
+  String get authPasswordMismatch;
+
+  /// No description provided for @authInvalidCredentials.
+  ///
+  /// In hi, this message translates to:
+  /// **'ईमेल या पासवर्ड गलत है।'**
+  String get authInvalidCredentials;
+
+  /// No description provided for @authEmailUsed.
+  ///
+  /// In hi, this message translates to:
+  /// **'इस ईमेल का खाता पहले से है। साइन इन करें।'**
+  String get authEmailUsed;
+
+  /// No description provided for @authNetworkError.
+  ///
+  /// In hi, this message translates to:
+  /// **'इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।'**
+  String get authNetworkError;
+
+  /// No description provided for @authUnavailable.
+  ///
+  /// In hi, this message translates to:
+  /// **'साइन इन उपलब्ध नहीं है। Firebase सेटअप जाँचें।'**
+  String get authUnavailable;
+
+  /// No description provided for @authTryAgain.
+  ///
+  /// In hi, this message translates to:
+  /// **'यह काम पूरा नहीं हुआ। बाद में फिर कोशिश करें।'**
+  String get authTryAgain;
+
+  /// No description provided for @authRecentLogin.
+  ///
+  /// In hi, this message translates to:
+  /// **'खाता मिटाने से पहले साइन आउट करके फिर साइन इन करें।'**
+  String get authRecentLogin;
+
+  /// No description provided for @signOut.
+  ///
+  /// In hi, this message translates to:
+  /// **'साइन आउट करें'**
+  String get signOut;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In hi, this message translates to:
+  /// **'खाता मिटाएँ'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountConfirm.
+  ///
+  /// In hi, this message translates to:
+  /// **'अपना साइन इन खाता मिटाएँ? इस डिवाइस के डायरी रिकॉर्ड बने रहेंगे।'**
+  String get deleteAccountConfirm;
+
+  /// No description provided for @signedInAs.
+  ///
+  /// In hi, this message translates to:
+  /// **'इस खाते से साइन इन हैं'**
+  String get signedInAs;
+
+  /// No description provided for @continueOffline.
+  ///
+  /// In hi, this message translates to:
+  /// **'ऑफ़लाइन जारी रखें'**
+  String get continueOffline;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड दिखाएँ'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In hi, this message translates to:
+  /// **'पासवर्ड छिपाएँ'**
+  String get hidePassword;
 }
 
 class _AppLocalizationsDelegate

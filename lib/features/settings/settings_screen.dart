@@ -7,6 +7,7 @@ import '../../core/widgets/diary_button.dart';
 import '../../core/widgets/diary_screen_header.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/language_screen.dart';
+import '../auth/account_screen.dart';
 import 'backup_service.dart';
 import 'settings_repository.dart';
 import 'privacy_policy.dart';
@@ -82,6 +83,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final automatic = values['countUnmarkedAsCame'] != 'false';
     return ListView(padding: const EdgeInsets.fromLTRB(18, 6, 18, 16), children: [
       DiaryScreenHeader(title: strings.settings),
+      _SettingsRow(label: strings.accountTitle,
+        trailing: const Icon(Icons.person_outline_rounded, color: DiaryColors.pen),
+        onTap: _busy ? null : () => Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => const AccountScreen()))),
       _SettingsRow(label: strings.languageLabel, trailing: Text(languageLabel,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w700)),
         onTap: _busy ? null : () => Navigator.of(context).push<void>(MaterialPageRoute(

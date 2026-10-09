@@ -697,4 +697,90 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'గోప్యతా విధానం తెరవలేకపోయాం. బ్రౌజర్, ఇంటర్నెట్ కనెక్షన్ చూడండి.';
+
+  @override
+  String get accountTitle => 'మీ ఖాతా';
+
+  @override
+  String get accountIntro =>
+      'సైన్ ఇన్ ఐచ్ఛికం. డైరీ ఈ పరికరంలోనే ఉంటుంది. క్లౌడ్ బ్యాకప్ తరువాత చేర్చబడుతుంది.';
+
+  @override
+  String get signIn => 'సైన్ ఇన్ చేయండి';
+
+  @override
+  String get createAccount => 'ఖాతా సృష్టించండి';
+
+  @override
+  String get googleSignIn => 'Googleతో కొనసాగండి';
+
+  @override
+  String get emailLabel => 'ఇమెయిల్';
+
+  @override
+  String get passwordLabel => 'పాస్‌వర్డ్';
+
+  @override
+  String get confirmPasswordLabel => 'పాస్‌వర్డ్ నిర్ధారించండి';
+
+  @override
+  String get forgotPassword => 'పాస్‌వర్డ్ మర్చిపోయారా?';
+
+  @override
+  String get resetSent =>
+      'ఈ ఇమెయిల్‌కు ఖాతా ఉంటే పాస్‌వర్డ్ రీసెట్ లింక్ పంపబడుతుంది. ఇన్‌బాక్స్ చూడండి.';
+
+  @override
+  String get authEmailInvalid => 'సరైన ఇమెయిల్ చిరునామా ఇవ్వండి.';
+
+  @override
+  String get authPasswordRequired => 'మీ పాస్‌వర్డ్ ఇవ్వండి.';
+
+  @override
+  String get authPasswordWeak => 'పాస్‌వర్డ్‌లో కనీసం 6 అక్షరాలు ఉండాలి.';
+
+  @override
+  String get authPasswordMismatch => 'పాస్‌వర్డ్‌లు సరిపోలలేదు.';
+
+  @override
+  String get authInvalidCredentials => 'ఇమెయిల్ లేదా పాస్‌వర్డ్ తప్పు.';
+
+  @override
+  String get authEmailUsed => 'ఈ ఇమెయిల్‌కు ఖాతా ఉంది. సైన్ ఇన్ చేయండి.';
+
+  @override
+  String get authNetworkError => 'ఇంటర్నెట్ తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get authUnavailable =>
+      'సైన్ ఇన్ అందుబాటులో లేదు. Firebase సెటప్ తనిఖీ చేయండి.';
+
+  @override
+  String get authTryAgain => 'ఈ పని పూర్తికాలేదు. తరువాత ప్రయత్నించండి.';
+
+  @override
+  String get authRecentLogin =>
+      'ఖాతా తొలగించే ముందు సైన్ అవుట్ చేసి మళ్లీ సైన్ ఇన్ చేయండి.';
+
+  @override
+  String get signOut => 'సైన్ అవుట్ చేయండి';
+
+  @override
+  String get deleteAccount => 'ఖాతా తొలగించండి';
+
+  @override
+  String get deleteAccountConfirm =>
+      'సైన్ ఇన్ ఖాతా తొలగించాలా? ఈ పరికరంలోని డైరీ రికార్డులు ఉంటాయి.';
+
+  @override
+  String get signedInAs => 'సైన్ ఇన్ చేసిన ఖాతా';
+
+  @override
+  String get continueOffline => 'ఆఫ్‌లైన్‌లో కొనసాగండి';
+
+  @override
+  String get showPassword => 'పాస్‌వర్డ్ చూపించండి';
+
+  @override
+  String get hidePassword => 'పాస్‌వర్డ్ దాచండి';
 }

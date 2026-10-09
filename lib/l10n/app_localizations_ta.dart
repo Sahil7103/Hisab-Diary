@@ -700,4 +700,93 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'தனியுரிமைக் கொள்கையைத் திறக்க முடியவில்லை. உலாவி மற்றும் இணைய இணைப்பைச் சரிபார்க்கவும்.';
+
+  @override
+  String get accountTitle => 'உங்கள் கணக்கு';
+
+  @override
+  String get accountIntro =>
+      'உள்நுழைவு விருப்பத்திற்குரியது. நாட்குறிப்பு இந்தச் சாதனத்தில் இருக்கும். மேகக் காப்புப்பிரதி பின்னர் சேர்க்கப்படும்.';
+
+  @override
+  String get signIn => 'உள்நுழைக';
+
+  @override
+  String get createAccount => 'கணக்கை உருவாக்கு';
+
+  @override
+  String get googleSignIn => 'Google மூலம் தொடர்க';
+
+  @override
+  String get emailLabel => 'மின்னஞ்சல்';
+
+  @override
+  String get passwordLabel => 'கடவுச்சொல்';
+
+  @override
+  String get confirmPasswordLabel => 'கடவுச்சொல்லை உறுதிப்படுத்து';
+
+  @override
+  String get forgotPassword => 'கடவுச்சொல் மறந்துவிட்டதா?';
+
+  @override
+  String get resetSent =>
+      'இந்த மின்னஞ்சலுக்குக் கணக்கு இருந்தால் கடவுச்சொல் மீட்டமைப்பு இணைப்பு அனுப்பப்படும். அஞ்சலைப் பார்க்கவும்.';
+
+  @override
+  String get authEmailInvalid => 'சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.';
+
+  @override
+  String get authPasswordRequired => 'கடவுச்சொல்லை உள்ளிடவும்.';
+
+  @override
+  String get authPasswordWeak =>
+      'குறைந்தது 6 எழுத்துகள் கொண்ட கடவுச்சொல்லைப் பயன்படுத்தவும்.';
+
+  @override
+  String get authPasswordMismatch => 'கடவுச்சொற்கள் பொருந்தவில்லை.';
+
+  @override
+  String get authInvalidCredentials => 'மின்னஞ்சல் அல்லது கடவுச்சொல் தவறு.';
+
+  @override
+  String get authEmailUsed =>
+      'இந்த மின்னஞ்சலுக்குக் கணக்கு உள்ளது. உள்நுழையவும்.';
+
+  @override
+  String get authNetworkError =>
+      'இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.';
+
+  @override
+  String get authUnavailable =>
+      'உள்நுழைவு கிடைக்கவில்லை. Firebase அமைப்பைச் சரிபார்க்கவும்.';
+
+  @override
+  String get authTryAgain => 'செயலை முடிக்க முடியவில்லை. பின்னர் முயலவும்.';
+
+  @override
+  String get authRecentLogin =>
+      'கணக்கை நீக்கும் முன் வெளியேறி மீண்டும் உள்நுழையவும்.';
+
+  @override
+  String get signOut => 'வெளியேறு';
+
+  @override
+  String get deleteAccount => 'கணக்கை நீக்கு';
+
+  @override
+  String get deleteAccountConfirm =>
+      'உள்நுழைவுக் கணக்கை நீக்கவா? இந்தச் சாதனத்தின் நாட்குறிப்பு பதிவுகள் இருக்கும்.';
+
+  @override
+  String get signedInAs => 'உள்நுழைந்த கணக்கு';
+
+  @override
+  String get continueOffline => 'ஆஃப்லைனில் தொடர்க';
+
+  @override
+  String get showPassword => 'கடவுச்சொல்லைக் காட்டு';
+
+  @override
+  String get hidePassword => 'கடவுச்சொல்லை மறை';
 }
