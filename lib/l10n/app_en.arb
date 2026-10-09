@@ -33,7 +33,7 @@
   "loading": "Opening your diary",
   "settings": "Settings",
   "retry": "Try again",
-  "privacy": "Everything stays on your phone. No login or internet.",
+  "privacy": "Your diary works offline without login. Diary records stay on this phone unless you share or export them. Release builds use Google Firebase to collect app usage and technical diagnostics for analytics, crash reports and performance monitoring.",
   "notCame": "Not came",
   "saveError": "Could not save your change. Please try again.",
   "piece": "piece",
@@ -227,5 +227,7 @@
   "urdu": "Urdu",
   "bengali": "Bengali",
   "telugu": "Telugu",
-  "kannada": "Kannada"
+  "kannada": "Kannada",
+  "privacyPolicy": "Privacy policy",
+  "privacyPolicyOpenError": "Could not open the privacy policy. Please check your browser and internet connection."
 }

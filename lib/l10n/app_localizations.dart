@@ -313,7 +313,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacy.
   ///
   /// In hi, this message translates to:
-  /// **'सब कुछ आपके फ़ोन पर। न लॉगिन, न इंटरनेट।'**
+  /// **'आपकी डायरी बिना लॉगिन के ऑफलाइन चलती है। रिकॉर्ड इसी फोन पर रहते हैं, जब तक आप उन्हें साझा या निर्यात न करें। रिलीज़ संस्करण उपयोग के आँकड़े, क्रैश रिपोर्ट और प्रदर्शन की निगरानी के लिए Google Firebase से ऐप उपयोग और तकनीकी जानकारी एकत्र करते हैं।'**
   String get privacy;
 
   /// No description provided for @notCame.
@@ -1362,6 +1362,18 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'कन्नड़'**
   String get kannada;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In hi, this message translates to:
+  /// **'गोपनीयता नीति'**
+  String get privacyPolicy;
+
+  /// No description provided for @privacyPolicyOpenError.
+  ///
+  /// In hi, this message translates to:
+  /// **'गोपनीयता नीति नहीं खुल सकी। अपना ब्राउज़र और इंटरनेट कनेक्शन जाँचें।'**
+  String get privacyPolicyOpenError;
 }
 
 class _AppLocalizationsDelegate

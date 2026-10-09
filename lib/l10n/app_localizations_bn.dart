@@ -118,7 +118,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get retry => 'আবার চেষ্টা করুন';
 
   @override
-  String get privacy => 'সবকিছু আপনার ফোনেই থাকে। লগইন বা ইন্টারনেট লাগে না।';
+  String get privacy =>
+      'আপনার ডায়েরি লগইন ছাড়াই অফলাইনে চলে। শেয়ার বা রপ্তানি না করলে রেকর্ড এই ফোনেই থাকে। রিলিজ সংস্করণে ব্যবহার বিশ্লেষণ, ক্র্যাশ রিপোর্ট ও কর্মক্ষমতা পর্যবেক্ষণের জন্য Google Firebase দিয়ে অ্যাপ ব্যবহার ও প্রযুক্তিগত তথ্য সংগ্রহ করা হয়।';
 
   @override
   String get notCame => 'আসেনি';
@@ -686,4 +687,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get kannada => 'কন্নড়';
+
+  @override
+  String get privacyPolicy => 'গোপনীয়তা নীতি';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'গোপনীয়তা নীতি খোলা যায়নি। ব্রাউজার ও ইন্টারনেট সংযোগ দেখুন।';
 }

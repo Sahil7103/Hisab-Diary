@@ -120,7 +120,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get privacy =>
-      'அனைத்தும் உங்கள் போனிலேயே இருக்கும். உள்நுழைவு அல்லது இணையம் தேவையில்லை.';
+      'உங்கள் டைரி உள்நுழைவின்றி ஆஃப்லைனில் இயங்கும். பகிரும் அல்லது ஏற்றுமதி செய்யும் வரை பதிவுகள் இந்த போனிலேயே இருக்கும். வெளியீட்டுப் பதிப்புகள் பயன்பாட்டு பகுப்பாய்வு, செயலிழப்பு அறிக்கைகள் மற்றும் செயல்திறன் கண்காணிப்புக்கு Google Firebase மூலம் செயலி பயன்பாடு மற்றும் தொழில்நுட்பத் தகவல்களைச் சேகரிக்கின்றன.';
 
   @override
   String get notCame => 'வரவில்லை';
@@ -693,4 +693,11 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get kannada => 'கன்னடம்';
+
+  @override
+  String get privacyPolicy => 'தனியுரிமைக் கொள்கை';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'தனியுரிமைக் கொள்கையைத் திறக்க முடியவில்லை. உலாவி மற்றும் இணைய இணைப்பைச் சரிபார்க்கவும்.';
 }

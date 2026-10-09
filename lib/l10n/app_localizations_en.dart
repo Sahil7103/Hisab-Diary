@@ -119,7 +119,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retry => 'Try again';
 
   @override
-  String get privacy => 'Everything stays on your phone. No login or internet.';
+  String get privacy =>
+      'Your diary works offline without login. Diary records stay on this phone unless you share or export them. Release builds use Google Firebase to collect app usage and technical diagnostics for analytics, crash reports and performance monitoring.';
 
   @override
   String get notCame => 'Not came';
@@ -692,4 +693,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kannada => 'Kannada';
+
+  @override
+  String get privacyPolicy => 'Privacy policy';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'Could not open the privacy policy. Please check your browser and internet connection.';
 }

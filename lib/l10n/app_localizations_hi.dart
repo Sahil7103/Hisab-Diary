@@ -118,7 +118,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get retry => 'फिर कोशिश करें';
 
   @override
-  String get privacy => 'सब कुछ आपके फ़ोन पर। न लॉगिन, न इंटरनेट।';
+  String get privacy =>
+      'आपकी डायरी बिना लॉगिन के ऑफलाइन चलती है। रिकॉर्ड इसी फोन पर रहते हैं, जब तक आप उन्हें साझा या निर्यात न करें। रिलीज़ संस्करण उपयोग के आँकड़े, क्रैश रिपोर्ट और प्रदर्शन की निगरानी के लिए Google Firebase से ऐप उपयोग और तकनीकी जानकारी एकत्र करते हैं।';
 
   @override
   String get notCame => 'नहीं';
@@ -687,4 +688,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get kannada => 'कन्नड़';
+
+  @override
+  String get privacyPolicy => 'गोपनीयता नीति';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'गोपनीयता नीति नहीं खुल सकी। अपना ब्राउज़र और इंटरनेट कनेक्शन जाँचें।';
 }

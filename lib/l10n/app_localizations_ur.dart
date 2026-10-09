@@ -120,7 +120,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get privacy =>
-      'سب کچھ آپ کے فون پر رہتا ہے۔ لاگ اِن یا انٹرنیٹ کی ضرورت نہیں۔';
+      'آپ کی ڈائری لاگ اِن کے بغیر آف لائن چلتی ہے۔ جب تک آپ شیئر یا برآمد نہ کریں، ریکارڈ اسی فون پر رہتے ہیں۔ ریلیز ورژن استعمال کے تجزیے، کریش رپورٹوں اور کارکردگی کی نگرانی کے لیے Google Firebase سے ایپ کے استعمال اور تکنیکی معلومات جمع کرتے ہیں۔';
 
   @override
   String get notCame => 'نہیں آیا';
@@ -689,4 +689,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get kannada => 'کنڑ';
+
+  @override
+  String get privacyPolicy => 'رازداری کی پالیسی';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'رازداری کی پالیسی نہیں کھل سکی۔ اپنا براؤزر اور انٹرنیٹ کنکشن دیکھیں۔';
 }

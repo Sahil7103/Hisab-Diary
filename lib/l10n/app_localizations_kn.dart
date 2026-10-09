@@ -119,7 +119,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get privacy =>
-      'ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಲಾಗಿನ್ ಅಥವಾ ಇಂಟರ್ನೆಟ್ ಅಗತ್ಯವಿಲ್ಲ.';
+      'ನಿಮ್ಮ ಡೈರಿ ಲಾಗಿನ್ ಇಲ್ಲದೆ ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಕೆಲಸಮಾಡುತ್ತದೆ. ಹಂಚುವ ಅಥವಾ ರಫ್ತು ಮಾಡುವವರೆಗೆ ದಾಖಲೆಗಳು ಈ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತವೆ. ಬಿಡುಗಡೆ ಆವೃತ್ತಿಗಳು ಬಳಕೆ ವಿಶ್ಲೇಷಣೆ, ಕ್ರ್ಯಾಶ್ ವರದಿಗಳು ಮತ್ತು ಕಾರ್ಯಕ್ಷಮತೆಯ ಮೇಲ್ವಿಚಾರಣೆಗಾಗಿ Google Firebase ಮೂಲಕ ಆಪ್ ಬಳಕೆ ಮತ್ತು ತಾಂತ್ರಿಕ ಮಾಹಿತಿ ಸಂಗ್ರಹಿಸುತ್ತವೆ.';
 
   @override
   String get notCame => 'ಬಂದಿಲ್ಲ';
@@ -690,4 +690,11 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get kannada => 'ಕನ್ನಡ';
+
+  @override
+  String get privacyPolicy => 'ಗೌಪ್ಯತಾ ನೀತಿ';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'ಗೌಪ್ಯತಾ ನೀತಿ ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಬ್ರೌಸರ್ ಮತ್ತು ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ.';
 }

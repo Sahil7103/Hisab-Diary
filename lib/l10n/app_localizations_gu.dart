@@ -118,7 +118,8 @@ class AppLocalizationsGu extends AppLocalizations {
   String get retry => 'ફરી પ્રયત્ન કરો';
 
   @override
-  String get privacy => 'બધું તમારા ફોનમાં. લોગિન કે ઇન્ટરનેટ નહીં.';
+  String get privacy =>
+      'તમારી ડાયરી લોગિન વગર ઑફલાઇન ચાલે છે. તમે શેર કે નિકાસ ન કરો ત્યાં સુધી નોંધો આ ફોન પર રહે છે. રિલીઝ આવૃત્તિઓ ઉપયોગના આંકડા, ક્રેશ અહેવાલ અને કામગીરીની દેખરેખ માટે Google Firebase દ્વારા ઍપ ઉપયોગ અને તકનીકી માહિતી એકત્ર કરે છે.';
 
   @override
   String get notCame => 'નહીં';
@@ -685,4 +686,11 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get kannada => 'કન્નડ';
+
+  @override
+  String get privacyPolicy => 'ગોપનીયતા નીતિ';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'ગોપનીયતા નીતિ ખોલી શકાઈ નહીં. બ્રાઉઝર અને ઇન્ટરનેટ કનેક્શન તપાસો.';
 }

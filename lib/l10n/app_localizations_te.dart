@@ -119,7 +119,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get privacy =>
-      'అన్నీ మీ ఫోన్‌లోనే ఉంటాయి. లాగిన్ లేదా ఇంటర్నెట్ అవసరం లేదు.';
+      'మీ డైరీ లాగిన్ లేకుండా ఆఫ్‌లైన్‌లో పనిచేస్తుంది. పంచుకోవడం లేదా ఎగుమతి చేసే వరకు రికార్డులు ఈ ఫోన్‌లోనే ఉంటాయి. విడుదల వెర్షన్‌లు వినియోగ విశ్లేషణ, క్రాష్ నివేదికలు, పనితీరు పర్యవేక్షణ కోసం Google Firebase ద్వారా యాప్ వినియోగం, సాంకేతిక సమాచారం సేకరిస్తాయి.';
 
   @override
   String get notCame => 'రాలేదు';
@@ -690,4 +690,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get kannada => 'కన్నడ';
+
+  @override
+  String get privacyPolicy => 'గోప్యతా విధానం';
+
+  @override
+  String get privacyPolicyOpenError =>
+      'గోప్యతా విధానం తెరవలేకపోయాం. బ్రౌజర్, ఇంటర్నెట్ కనెక్షన్ చూడండి.';
 }

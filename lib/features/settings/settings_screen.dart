@@ -9,6 +9,7 @@ import '../../l10n/app_localizations.dart';
 import '../auth/language_screen.dart';
 import 'backup_service.dart';
 import 'settings_repository.dart';
+import 'privacy_policy.dart';
 import '../reminders/reminder_settings.dart';
 import '../pro/pro_screen.dart';
 import '../pro/vendor_limits.dart';
@@ -130,6 +131,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       if (_busy) Padding(padding: const EdgeInsets.only(top: 12),
         child: Semantics(label: strings.saving, liveRegion: true,
           child: const Center(child: CircularProgressIndicator()))),
+      const SizedBox(height: 12),
+      _SettingsRow(label: strings.privacyPolicy,
+        trailing: const Icon(Icons.open_in_new_rounded, color: DiaryColors.pen),
+        onTap: _busy ? null : () => _perform(
+          openPrivacyPolicy, strings.privacyPolicyOpenError)),
       const SizedBox(height: 12),
       Text(strings.privacy, textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium),
