@@ -697,4 +697,19 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'గోప్యతా విధానం తెరవలేకపోయాం. బ్రౌజర్, ఇంటర్నెట్ కనెక్షన్ చూడండి.';
+
+  @override
+  String get editVendor => 'ఖాతాను సవరించండి';
+
+  @override
+  String get deleteVendor => 'ఖాతాను తొలగించండి';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name తొలగించాలా? దాని రోజువారీ గుర్తులు, సేవ్ చేసిన ధరలు మరియు చెల్లింపు చరిత్ర కూడా తొలగించబడతాయి. దీన్ని తిరిగి పొందలేరు.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'పరిమాణం మరియు ధర మార్పులు ఈ నెల నుండి వర్తిస్తాయి. డెలివరీ రోజులను మార్చితే గుర్తించని రోజుల లెక్క కూడా మారుతుంది.';
 }

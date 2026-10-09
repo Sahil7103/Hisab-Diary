@@ -694,4 +694,19 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'গোপনীয়তা নীতি খোলা যায়নি। ব্রাউজার ও ইন্টারনেট সংযোগ দেখুন।';
+
+  @override
+  String get editVendor => 'হিসাব সম্পাদনা করুন';
+
+  @override
+  String get deleteVendor => 'হিসাব মুছুন';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name মুছবেন? এর দৈনিক চিহ্ন, সংরক্ষিত দর এবং পেমেন্টের ইতিহাসও মুছে যাবে। এটি ফিরিয়ে আনা যাবে না।';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'পরিমাণ এবং দামের পরিবর্তন এই মাস থেকে প্রযোজ্য। সরবরাহের দিন বদলালে চিহ্ন না দেওয়া দিনের হিসাবও বদলায়।';
 }

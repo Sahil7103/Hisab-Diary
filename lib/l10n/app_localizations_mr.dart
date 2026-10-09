@@ -694,4 +694,19 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'गोपनीयता धोरण उघडता आले नाही. ब्राउझर आणि इंटरनेट जोडणी तपासा.';
+
+  @override
+  String get editVendor => 'हिशोब संपादित करा';
+
+  @override
+  String get deleteVendor => 'हिशोब हटवा';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name हटवायचा आहे? त्याच्या रोजच्या नोंदी, जतन केलेले दर आणि देयकांचा इतिहासही हटवला जाईल. हे पूर्ववत करता येणार नाही.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'प्रमाण आणि किमतीतील बदल या महिन्यापासून लागू होतात. वितरणाचे दिवस बदलल्यास नोंद नसलेल्या दिवसांचा हिशोबही बदलतो.';
 }

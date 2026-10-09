@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../app/theme/diary_theme.dart';
 import '../../core/widgets/diary_button.dart';
+import '../../core/storage/app_database.dart';
 import '../../core/utils/billing_amounts.dart';
 import '../../core/widgets/notebook_background.dart';
 import '../../l10n/app_localizations.dart';
@@ -12,8 +13,9 @@ import '../pro/vendor_limits.dart';
 import '../pro/pro_screen.dart';
 
 class VendorDetailsScreen extends ConsumerStatefulWidget {
-  const VendorDetailsScreen({super.key, required this.type});
+  const VendorDetailsScreen({super.key, required this.type, this.vendor});
   final VendorType type;
+  final Vendor? vendor;
   @override
   ConsumerState<VendorDetailsScreen> createState() => _VendorDetailsScreenState();
 }
@@ -28,8 +30,12 @@ class _VendorDetailsScreenState extends ConsumerState<VendorDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    _quantity = widget.type.defaultQuantity;
-    _rate = widget.type.defaultRate;
+    final vendor = widget.vendor;
+    _name.text = vendor?.name ?? '';
+    _quantity = vendor?.defaultQty ?? widget.type.defaultQuantity;
+    _rate = vendor?.rate ?? widget.type.defaultRate;
+    _weekdays = vendor?.scheduleDays ?? 127;
+    _daily = _weekdays == 127;
   }
   @override
   void dispose() {
@@ -111,8 +117,15 @@ class _VendorDetailsScreenState extends ConsumerState<VendorDetailsScreen> {
     FocusScope.of(context).unfocus();
     setState(() => _saving = true);
     try {
-      await ref.read(vendorRepositoryProvider).create(type: widget.type,
-        name: _name.text, quantity: _quantity, rate: _rate, scheduleDays: days);
+      final repository = ref.read(vendorRepositoryProvider);
+      final vendor = widget.vendor;
+      if (vendor == null) {
+        await repository.create(type: widget.type, name: _name.text,
+          quantity: _quantity, rate: _rate, scheduleDays: days);
+      } else {
+        await repository.updateDetails(vendor.id, name: _name.text,
+          quantity: _quantity, rate: _rate, scheduleDays: days);
+      }
       if (mounted) Navigator.of(context).pop(true);
     } on VendorLimitException catch (error) {
       if (mounted) {
@@ -161,7 +174,8 @@ class _VendorDetailsScreenState extends ConsumerState<VendorDetailsScreen> {
             foregroundColor: DiaryColors.ink,
             textStyle: Theme.of(context).textTheme.labelLarge),
           icon: const Icon(Icons.arrow_back),
-          label: Text(vendorTypeLabel(strings, widget.type.name)))),
+          label: Text(widget.vendor == null
+            ? vendorTypeLabel(strings, widget.type.name) : strings.editVendor))),
         fieldLabel(strings.optionalName),
         TextField(controller: _name, enabled: !_saving,
           textCapitalization: TextCapitalization.words,
@@ -189,6 +203,8 @@ class _VendorDetailsScreenState extends ConsumerState<VendorDetailsScreen> {
           decreaseLabel: strings.decreaseRate, increaseLabel: strings.increaseRate,
           onDecrease: !_saving && _rate > 0 ? () => setState(() => _rate = (_rate - 1).clamp(0, double.infinity)) : null,
           onIncrease: _saving ? null : () => setState(() => _rate += 1)),
+        if (widget.vendor != null) Padding(padding: const EdgeInsets.only(top: 8),
+          child: Text(strings.editVendorRatesInfo, style: Theme.of(context).textTheme.bodyMedium)),
         fieldLabel(strings.deliverySchedule),
         LayoutBuilder(builder: (context, constraints) {
           final large = MediaQuery.textScalerOf(context).scale(24) > 30;

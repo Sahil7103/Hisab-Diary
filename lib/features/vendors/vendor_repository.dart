@@ -48,17 +48,45 @@ class VendorRepository {
     if (!validBillAmounts(quantity, rate)) {
       throw ArgumentError('Invalid vendor rate');
     }
-    final month = diaryDate(DateTime.now()).substring(0, 7);
     return AppTelemetry.measure('vendor_save', () => database.transaction(() async {
       await (database.select(database.vendors)
         ..where((row) => row.id.equals(vendorId))).getSingle();
-      await database.into(database.monthRates).insertOnConflictUpdate(
-        MonthRatesCompanion.insert(vendorId: vendorId, month: month,
-          rate: rate, qty: quantity));
-      await (database.update(database.vendors)..where((row) => row.id.equals(vendorId)))
-        .write(VendorsCompanion(rate: Value(rate), defaultQty: Value(quantity)));
+      await _writeRate(vendorId, quantity: quantity, rate: rate);
     }));
   }
+
+  Future<void> updateDetails(int vendorId, {required String name,
+    required double quantity, required double rate, required int scheduleDays}) {
+    if (!validBillAmounts(quantity, rate) || scheduleDays < 1 || scheduleDays > 127) {
+      throw ArgumentError('Invalid vendor details');
+    }
+    return AppTelemetry.measure('vendor_save', () => database.transaction(() async {
+      final vendor = await (database.select(database.vendors)
+        ..where((row) => row.id.equals(vendorId))).getSingle();
+      if (vendor.defaultQty != quantity || vendor.rate != rate) {
+        await _writeRate(vendorId, quantity: quantity, rate: rate);
+      }
+      await (database.update(database.vendors)..where((row) => row.id.equals(vendorId)))
+        .write(VendorsCompanion(name: Value(name.trim()), scheduleDays: Value(scheduleDays)));
+    }));
+  }
+
+  Future<void> _writeRate(int vendorId, {required double quantity,
+    required double rate}) async {
+    final month = diaryDate(DateTime.now()).substring(0, 7);
+    await database.into(database.monthRates).insertOnConflictUpdate(
+      MonthRatesCompanion.insert(vendorId: vendorId, month: month, rate: rate, qty: quantity));
+    await (database.update(database.vendors)..where((row) => row.id.equals(vendorId)))
+      .write(VendorsCompanion(rate: Value(rate), defaultQty: Value(quantity)));
+  }
+
+  Future<void> deleteVendor(int vendorId) => AppTelemetry.measure('vendor_delete',
+    () => database.transaction(() async {
+      await (database.delete(database.entries)..where((row) => row.vendorId.equals(vendorId))).go();
+      await (database.delete(database.payments)..where((row) => row.vendorId.equals(vendorId))).go();
+      await (database.delete(database.monthRates)..where((row) => row.vendorId.equals(vendorId))).go();
+      await (database.delete(database.vendors)..where((row) => row.id.equals(vendorId))).go();
+    }));
 
   Stream<List<Vendor>> watchAll() => (database.select(database.vendors)
     ..orderBy([(row) => OrderingTerm.asc(row.id)])).watch();

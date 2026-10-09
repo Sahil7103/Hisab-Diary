@@ -700,4 +700,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'Could not open the privacy policy. Please check your browser and internet connection.';
+
+  @override
+  String get editVendor => 'Edit account';
+
+  @override
+  String get deleteVendor => 'Delete account';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return 'Delete $name? Its daily marks, saved rates and payment history will also be deleted. This cannot be undone.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days.';
 }

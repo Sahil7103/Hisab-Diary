@@ -696,4 +696,19 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'رازداری کی پالیسی نہیں کھل سکی۔ اپنا براؤزر اور انٹرنیٹ کنکشن دیکھیں۔';
+
+  @override
+  String get editVendor => 'کھاتے میں ترمیم کریں';
+
+  @override
+  String get deleteVendor => 'کھاتہ حذف کریں';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name حذف کریں؟ اس کے روزانہ نشان، محفوظ قیمتیں اور ادائیگی کی تاریخ بھی حذف ہو جائے گی۔ اسے واپس نہیں لایا جا سکتا۔';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'مقدار اور قیمت کی تبدیلیاں اس مہینے سے لاگو ہوتی ہیں۔ ترسیل کے دن بدلنے سے غیر نشان زدہ دنوں کا حساب بھی بدلتا ہے۔';
 }

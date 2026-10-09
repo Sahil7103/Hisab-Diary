@@ -229,5 +229,9 @@
   "telugu": "Telugu",
   "kannada": "Kannada",
   "privacyPolicy": "Privacy policy",
-  "privacyPolicyOpenError": "Could not open the privacy policy. Please check your browser and internet connection."
+  "privacyPolicyOpenError": "Could not open the privacy policy. Please check your browser and internet connection.",
+  "editVendor": "Edit account",
+  "deleteVendor": "Delete account",
+  "deleteVendorConfirm": "Delete {name}? Its daily marks, saved rates and payment history will also be deleted. This cannot be undone.",
+  "editVendorRatesInfo": "Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days."
 }

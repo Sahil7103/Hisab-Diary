@@ -700,4 +700,19 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'தனியுரிமைக் கொள்கையைத் திறக்க முடியவில்லை. உலாவி மற்றும் இணைய இணைப்பைச் சரிபார்க்கவும்.';
+
+  @override
+  String get editVendor => 'கணக்கைத் திருத்தவும்';
+
+  @override
+  String get deleteVendor => 'கணக்கை நீக்கவும்';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name கணக்கை நீக்கவா? அதன் தினசரி பதிவுகள், சேமித்த விலைகள் மற்றும் பணம் செலுத்திய வரலாறும் நீக்கப்படும். இதை மீட்டெடுக்க முடியாது.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'அளவு மற்றும் விலை மாற்றங்கள் இந்த மாதம் முதல் பொருந்தும். விநியோக நாட்களை மாற்றினால் பதிவு செய்யாத நாட்களின் கணக்கும் மாறும்.';
 }

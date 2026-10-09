@@ -693,4 +693,19 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get privacyPolicyOpenError =>
       'ગોપનીયતા નીતિ ખોલી શકાઈ નહીં. બ્રાઉઝર અને ઇન્ટરનેટ કનેક્શન તપાસો.';
+
+  @override
+  String get editVendor => 'ખાતું સુધારો';
+
+  @override
+  String get deleteVendor => 'ખાતું કાઢી નાખો';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name કાઢી નાખવું છે? તેની રોજની નોંધો, સાચવેલા દર અને ચુકવણીનો ઇતિહાસ પણ કાઢી નાખવામાં આવશે. આ પાછું લાવી શકાશે નહીં.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'જથ્થા અને કિંમતના ફેરફાર આ મહિનાથી લાગુ થાય છે. ડિલિવરીના દિવસો બદલવાથી નોંધ વગરના દિવસોનો હિસાબ પણ બદલાય છે.';
 }
