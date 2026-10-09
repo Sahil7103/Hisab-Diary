@@ -52,6 +52,17 @@ ThemeData diaryTheme(String language) {
       bodyMedium: TextStyle(fontFamily: bodyFont, fontSize: 16,
         fontWeight: FontWeight.w500, color: DiaryColors.muted),
     ),
+    snackBarTheme: SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: DiaryColors.paper,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: DiaryColors.ink, width: 2)),
+      contentTextStyle: TextStyle(fontFamily: bodyFont, fontSize: 16,
+        fontWeight: FontWeight.w600, color: DiaryColors.ink),
+      actionTextColor: DiaryColors.pen,
+      closeIconColor: DiaryColors.muted,
+    ),
     timePickerTheme: TimePickerThemeData(
       backgroundColor: DiaryColors.paper,
       elevation: 0,

@@ -17,11 +17,15 @@ class ReminderSettings extends ConsumerStatefulWidget {
 }
 class _ReminderSettingsState extends ConsumerState<ReminderSettings> {
   bool _busy = false;
-  Future<void> _perform(Future<void> Function() action) async {
+  Future<void> _perform(Future<void> Function() action, {String? success}) async {
     if (_busy) return;
     setState(() => _busy = true);
     try {
       await action();
+      if (mounted && success != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(success)));
+      }
     } catch (error) {
       if (error is PlatformException) {
         debugPrint('Reminder settings failed: ${error.code}: ${error.message}');
@@ -50,9 +54,11 @@ class _ReminderSettingsState extends ConsumerState<ReminderSettings> {
         Semantics(label: strings.eveningReminder, toggled: enabled,
           enabled: !_busy && service.supported, excludeSemantics: true,
           onTap: _busy || !service.supported ? null
-            : () => _perform(() => service.setEnabled(!enabled)),
+            : () => _perform(() => service.setEnabled(!enabled),
+              success: enabled ? null : strings.reminderAt(time.format(context))),
           child: InkWell(onTap: _busy || !service.supported ? null
-            : () => _perform(() => service.setEnabled(!enabled)),
+            : () => _perform(() => service.setEnabled(!enabled),
+                success: enabled ? null : strings.reminderAt(time.format(context))),
             child: ConstrainedBox(constraints: const BoxConstraints(minHeight: 72),
               child: Row(children: [
                 Expanded(child: Text(strings.eveningReminder,
@@ -60,7 +66,8 @@ class _ReminderSettingsState extends ConsumerState<ReminderSettings> {
                 ExcludeSemantics(child: Switch(value: enabled,
                   activeTrackColor: DiaryColors.cameEdge,
                   onChanged: _busy || !service.supported ? null
-                    : (value) => _perform(() => service.setEnabled(value)))),
+                    : (value) => _perform(() => service.setEnabled(value),
+                      success: value ? strings.reminderAt(time.format(context)) : null))),
               ])))),
         if (enabled) ...[
           DiaryButton(label: strings.reminderAt(time.format(context)), color: Colors.white,
@@ -69,7 +76,10 @@ class _ReminderSettingsState extends ConsumerState<ReminderSettings> {
               final selected = await showTimePicker(context: context, initialTime: time,
                 initialEntryMode: TimePickerEntryMode.dialOnly,
                 cancelText: strings.cancel, confirmText: strings.saveVendor);
-              if (mounted && selected != null) await _perform(() => service.setTime(selected));
+              if (mounted && context.mounted && selected != null) {
+                await _perform(() => service.setTime(selected),
+                  success: strings.reminderAt(selected.format(context)));
+              }
             }),
           if (service.approximate) Text(strings.reminderApproximate,
             style: Theme.of(context).textTheme.bodyMedium),
@@ -78,7 +88,7 @@ class _ReminderSettingsState extends ConsumerState<ReminderSettings> {
             DiaryButton(label: strings.retry, onPressed: _busy ? null : () => _perform(() async {
               await service.setEnabled(true);
               await ref.read(databaseProvider).saveSetting('reminderActionError', 'false');
-            })),
+            }, success: strings.reminderAt(time.format(context)))),
           ],
         ],
         const SizedBox(height: 12),
