@@ -271,5 +271,8 @@
   "editVendor": "Edit account",
   "deleteVendor": "Delete account",
   "deleteVendorConfirm": "Delete {name}? Its daily marks, saved rates and payment history will also be deleted. This cannot be undone.",
-  "editVendorRatesInfo": "Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days."
+  "editVendorRatesInfo": "Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days.",
+  "allVendors": "All vendors",
+  "monthlyTotal": "Monthly total",
+  "allVendorsBillInfo": "Monthly bills for your active accounts. Paid bills are included in the total."
 }

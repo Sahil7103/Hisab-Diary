@@ -5,13 +5,18 @@ import '../../core/widgets/diary_button.dart';
 import '../../l10n/app_localizations.dart';
 import 'vendor_type.dart';
 
+const _allVendorsChoice = 0;
+
 class VendorSelector extends StatelessWidget {
   const VendorSelector({super.key, required this.vendor, required this.vendors,
-    required this.onSelectVendor, this.enabled = true});
+    required this.onSelectVendor, this.enabled = true,
+    this.allSelected = false, this.onSelectAll});
   final Vendor vendor;
   final List<Vendor> vendors;
   final ValueChanged<int> onSelectVendor;
   final bool enabled;
+  final bool allSelected;
+  final VoidCallback? onSelectAll;
   Future<void> _chooseVendor(BuildContext context) async {
     final strings = AppLocalizations.of(context)!;
     final selected = await showModalBottomSheet<int>(
@@ -25,19 +30,30 @@ class VendorSelector extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge))),
           Flexible(child: ListView(shrinkWrap: true,
             padding: const EdgeInsets.only(bottom: 12), children: [
+              if (onSelectAll != null) ListTile(
+                minVerticalPadding: 16,
+                selected: allSelected,
+                selectedTileColor: DiaryColors.haldiSoft,
+                textColor: DiaryColors.ink, selectedColor: DiaryColors.pen,
+                title: Text(strings.allVendors),
+                trailing: allSelected ? const Icon(Icons.check_circle) : null,
+                onTap: () => Navigator.of(context).pop(_allVendorsChoice)),
               for (final vendor in vendors) ListTile(
                 minVerticalPadding: 16,
-                selected: vendor.id == this.vendor.id,
+                selected: !allSelected && vendor.id == this.vendor.id,
                 selectedTileColor: DiaryColors.haldiSoft,
                 textColor: DiaryColors.ink, selectedColor: DiaryColors.pen,
                 title: Text(vendorTypeLabel(strings, vendor.type)),
                 subtitle: vendor.name.trim().isEmpty ? null : Text(vendor.name),
-                trailing: vendor.id == this.vendor.id ? const Icon(Icons.check_circle) : null,
+                trailing: !allSelected && vendor.id == this.vendor.id ? const Icon(Icons.check_circle) : null,
                 onTap: () => Navigator.of(context).pop(vendor.id)),
             ])),
         ])),
     );
-    if (context.mounted && selected != null && selected != vendor.id) {
+    if (!context.mounted || selected == null) return;
+    if (selected == _allVendorsChoice) {
+      if (!allSelected) onSelectAll?.call();
+    } else if (allSelected || selected != vendor.id) {
       onSelectVendor(selected);
     }
   }
@@ -48,16 +64,17 @@ class VendorSelector extends StatelessWidget {
       Text(strings.chooseVendor, style: Theme.of(context).textTheme.bodyMedium!
         .copyWith(fontWeight: FontWeight.w700)),
       const SizedBox(height: 8),
-      DiaryButton(label: [strings.chooseVendor, vendorTypeLabel(strings, vendor.type),
-        if (vendor.name.trim().isNotEmpty) vendor.name].join(', '),
+      DiaryButton(label: [strings.chooseVendor,
+        if (allSelected) strings.allVendors else vendorTypeLabel(strings, vendor.type),
+        if (!allSelected && vendor.name.trim().isNotEmpty) vendor.name].join(', '),
         color: DiaryColors.haldiSoft, edge: DiaryColors.pen,
         foreground: DiaryColors.ink,
         onPressed: enabled ? () => _chooseVendor(context) : null,
         child: Row(children: [
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(vendorTypeLabel(strings, vendor.type),
+            Text(allSelected ? strings.allVendors : vendorTypeLabel(strings, vendor.type),
               style: Theme.of(context).textTheme.titleLarge),
-            if (vendor.name.trim().isNotEmpty) Text(vendor.name,
+            if (!allSelected && vendor.name.trim().isNotEmpty) Text(vendor.name,
               style: Theme.of(context).textTheme.bodyMedium),
           ])),
           const SizedBox(width: 8),

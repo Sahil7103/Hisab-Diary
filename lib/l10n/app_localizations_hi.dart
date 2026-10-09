@@ -834,4 +834,14 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'मात्रा और कीमत में बदलाव इस महीने से लागू होते हैं। डिलीवरी के दिन बदलने से बिना नोंद वाले दिनों का हिसाब भी बदलता है।';
+
+  @override
+  String get allVendors => 'सभी विक्रेता';
+
+  @override
+  String get monthlyTotal => 'मासिक कुल';
+
+  @override
+  String get allVendorsBillInfo =>
+      'आपके सक्रिय खातों के मासिक बिल। भुगतान किए गए बिल भी कुल राशि में शामिल हैं।';
 }

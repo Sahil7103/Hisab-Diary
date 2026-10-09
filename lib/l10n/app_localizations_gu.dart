@@ -831,4 +831,14 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'જથ્થા અને કિંમતના ફેરફાર આ મહિનાથી લાગુ થાય છે. ડિલિવરીના દિવસો બદલવાથી નોંધ વગરના દિવસોનો હિસાબ પણ બદલાય છે.';
+
+  @override
+  String get allVendors => 'બધા વિક્રેતાઓ';
+
+  @override
+  String get monthlyTotal => 'માસિક કુલ';
+
+  @override
+  String get allVendorsBillInfo =>
+      'તમારા સક્રિય ખાતાઓનાં માસિક બિલ. ચૂકવેલા બિલ પણ કુલ રકમમાં સામેલ છે.';
 }

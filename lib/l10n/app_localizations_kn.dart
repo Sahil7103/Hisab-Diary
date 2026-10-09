@@ -835,4 +835,14 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'ಪ್ರಮಾಣ ಮತ್ತು ಬೆಲೆಯ ಬದಲಾವಣೆಗಳು ಈ ತಿಂಗಳಿನಿಂದ ಅನ್ವಯಿಸುತ್ತವೆ. ವಿತರಣೆಯ ದಿನಗಳನ್ನು ಬದಲಿಸಿದರೆ ಗುರುತಿಸದ ದಿನಗಳ ಲೆಕ್ಕವೂ ಬದಲಾಗುತ್ತದೆ.';
+
+  @override
+  String get allVendors => 'ಎಲ್ಲಾ ಮಾರಾಟಗಾರರು';
+
+  @override
+  String get monthlyTotal => 'ಮಾಸಿಕ ಒಟ್ಟು';
+
+  @override
+  String get allVendorsBillInfo =>
+      'ನಿಮ್ಮ ಸಕ್ರಿಯ ಖಾತೆಗಳ ಮಾಸಿಕ ಬಿಲ್‌ಗಳು. ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳೂ ಒಟ್ಟು ಮೊತ್ತದಲ್ಲಿ ಸೇರಿವೆ.';
 }

@@ -836,4 +836,14 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'పరిమాణం మరియు ధర మార్పులు ఈ నెల నుండి వర్తిస్తాయి. డెలివరీ రోజులను మార్చితే గుర్తించని రోజుల లెక్క కూడా మారుతుంది.';
+
+  @override
+  String get allVendors => 'అందరు విక్రేతలు';
+
+  @override
+  String get monthlyTotal => 'నెలవారీ మొత్తం';
+
+  @override
+  String get allVendorsBillInfo =>
+      'మీ క్రియాశీల ఖాతాల నెలవారీ బిల్లులు. చెల్లించిన బిల్లులు కూడా మొత్తం లో చేర్చబడ్డాయి.';
 }

@@ -6,6 +6,8 @@ import '../../app/app_providers.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/utils/date_keys.dart';
 import '../month/month_bill.dart';
+import '../month/month_repository.dart';
+import 'all_vendors_bill.dart';
 import 'bill_review_service.dart';
 
 final billReviewServiceProvider = Provider<BillReviewService>((ref) {
@@ -23,10 +25,36 @@ final paidMonthProvider = StreamProvider.autoDispose.family<bool,
     row.month.equals(diaryMonth(request.month)))).watchSingleOrNull().map((row) => row != null);
 });
 
+final allVendorsBillProvider = StreamProvider.autoDispose.family<AllVendorsBill,
+    ({DateTime month, DateTime today})>((ref, request) {
+  return ref.watch(billRepositoryProvider).watchAllBills(request.month, request.today);
+});
+
 class BillRepository {
   BillRepository(this.database, {this.reviewService});
   final AppDatabase database;
   final BillReviewService? reviewService;
+
+  Stream<AllVendorsBill> watchAllBills(DateTime month, DateTime today) {
+    return database.customSelect(
+      'SELECT 1', readsFrom: {database.vendors, database.entries,
+        database.monthRates, database.settings},
+    ).watch().asyncMap((_) => loadAllBills(month, today));
+  }
+
+  Future<AllVendorsBill> loadAllBills(DateTime month, DateTime today) =>
+      database.transaction(() async {
+    final first = DateTime(month.year, month.month);
+    final vendors = await (database.select(database.vendors)
+      ..where((row) => row.archived.equals(false))
+      ..orderBy([(row) => OrderingTerm.asc(row.id)])).get();
+    final repository = MonthRepository(database);
+    final bills = <MonthBill>[];
+    for (final vendor in vendors) {
+      bills.add(await repository.loadMonth(vendor.id, first, today));
+    }
+    return AllVendorsBill(month: first, bills: bills);
+  });
 
   Future<void> markPaid(int vendorId, DateTime month) => AppTelemetry.measure('bill_mark_paid', () => database.transaction(() async {
     if (diaryMonth(month).compareTo(diaryMonth(DateTime.now())) > 0) {

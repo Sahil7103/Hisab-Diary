@@ -37,6 +37,7 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
   Timer? _midnight;
   bool _busy = false;
   bool _replayShown = false;
+  bool _allVendors = false;
   final _scrollController = ScrollController();
   final _vendorKey = GlobalKey();
   final _monthKey = GlobalKey();
@@ -106,10 +107,11 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
           DiaryTutorialStep(target: _monthKey, title: strings.tutorialMonthTitle,
             body: strings.tutorialMonthBody, onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _totalKey, title: strings.tutorialBillTotalTitle,
-            body: strings.tutorialBillTotalBody, onReveal: () => _revealTutorialTarget(bottom: false)),
+            body: _allVendors ? strings.allVendorsBillInfo : strings.tutorialBillTotalBody,
+            onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _shareKey, title: strings.tutorialShareTitle,
             body: strings.tutorialShareBody, onReveal: () => _revealTutorialTarget(bottom: true)),
-          DiaryTutorialStep(target: _paidKey, title: strings.tutorialPaidTitle,
+          if (!_allVendors) DiaryTutorialStep(target: _paidKey, title: strings.tutorialPaidTitle,
             body: strings.tutorialPaidBody, onReveal: () => _revealTutorialTarget(bottom: true)),
         ]));
       if (replay) return;
@@ -169,16 +171,16 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
   }
   Widget _billView(BuildContext context, Vendor vendor, List<Vendor> vendors) {
     final strings = AppLocalizations.of(context)!;
-    final request = (vendorId: vendor.id, month: _month, today: _today);
-    final bill = ref.watch(monthBillProvider(request));
-    final paid = ref.watch(paidMonthProvider((vendorId: vendor.id, month: _month)));
-    final numbers = NumberFormat.decimalPattern(strings.localeName);
-    if (bill.hasValue && !bill.hasError && paid.hasValue && !paid.hasError) _startTutorial();
     return ListView(controller: _scrollController, padding: const EdgeInsets.fromLTRB(18, 6, 18, 16), children: [
       DiaryScreenHeader(title: strings.bill),
       const SizedBox(height: 16),
       VendorSelector(key: _vendorKey, vendor: vendor, vendors: vendors, enabled: !_busy,
-        onSelectVendor: widget.onSelectVendor),
+        allSelected: _allVendors,
+        onSelectAll: () => setState(() => _allVendors = true),
+        onSelectVendor: (id) {
+          setState(() => _allVendors = false);
+          widget.onSelectVendor(id);
+        }),
       const SizedBox(height: 12),
       Row(key: _monthKey, children: [
         IconButton(onPressed: _busy ? null : () => setState(() =>
@@ -193,7 +195,17 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
           constraints: const BoxConstraints(minWidth: 64, minHeight: 64),
           icon: const Icon(Icons.chevron_right)),
       ]),
-      ...bill.when(
+      ...(_allVendors ? _allBillsContent(context) : _vendorBillContent(context, vendor)),
+    ]);
+  }
+  List<Widget> _vendorBillContent(BuildContext context, Vendor vendor) {
+    final strings = AppLocalizations.of(context)!;
+    final request = (vendorId: vendor.id, month: _month, today: _today);
+    final bill = ref.watch(monthBillProvider(request));
+    final paid = ref.watch(paidMonthProvider((vendorId: vendor.id, month: _month)));
+    final numbers = NumberFormat.decimalPattern(strings.localeName);
+    if (bill.hasValue && !bill.hasError && paid.hasValue && !paid.hasError) _startTutorial();
+    return bill.when(
         loading: () => [Center(child: Semantics(label: strings.loading,
           child: const CircularProgressIndicator()))],
         error: (_, _) => [
@@ -239,9 +251,43 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
                 : () => _perform(() => repository.markPaid(vendor.id, _month), strings.saveError)),
           ];
         },
-      ),
-    ]);
+    );
   }
+
+  List<Widget> _allBillsContent(BuildContext context) {
+    final strings = AppLocalizations.of(context)!;
+    final request = (month: _month, today: _today);
+    final bill = ref.watch(allVendorsBillProvider(request));
+    if (bill.hasValue && !bill.hasError) _startTutorial();
+    return bill.when(
+      loading: () => [Center(child: Semantics(label: strings.loading,
+        child: const CircularProgressIndicator()))],
+      error: (_, _) => [
+        Text(strings.storageError, style: Theme.of(context).textTheme.bodyLarge),
+        DiaryButton(label: strings.retry,
+          onPressed: () => ref.invalidate(allVendorsBillProvider(request))),
+      ],
+      data: (summary) => [
+        Card(key: _totalKey, margin: const EdgeInsets.only(bottom: 8), child: Padding(
+          padding: const EdgeInsets.all(14), child: Column(children: [
+            Text(strings.monthlyTotal, style: Theme.of(context).textTheme.bodyMedium),
+            Text(allVendorsTotalLabel(summary, strings.localeName), textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.displaySmall),
+            const SizedBox(height: 12),
+            for (final vendorBill in summary.bills) _BillRow(
+              label: billVendorLabel(vendorBill, strings),
+              value: billTotalLabel(vendorBill, strings.localeName)),
+          ]))),
+        Text(strings.allVendorsBillInfo, style: Theme.of(context).textTheme.bodyMedium),
+        const SizedBox(height: 16),
+        DiaryButton(key: _shareKey, label: strings.shareWhatsApp,
+          color: DiaryColors.cameEdge, edge: DiaryColors.cameEdge,
+          onPressed: _busy ? null : () => _perform(() => ref.read(billRepositoryProvider)
+            .shareMessage(allVendorsShareMessage(summary, strings)), strings.shareError)),
+      ],
+    );
+  }
+
 }
 class _BillRow extends StatelessWidget {
   const _BillRow({required this.label, required this.value});

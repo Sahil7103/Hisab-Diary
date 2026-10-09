@@ -832,4 +832,14 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get editVendorRatesInfo =>
       'प्रमाण आणि किमतीतील बदल या महिन्यापासून लागू होतात. वितरणाचे दिवस बदलल्यास नोंद नसलेल्या दिवसांचा हिशोबही बदलतो.';
+
+  @override
+  String get allVendors => 'सर्व विक्रेते';
+
+  @override
+  String get monthlyTotal => 'मासिक एकूण';
+
+  @override
+  String get allVendorsBillInfo =>
+      'तुमच्या सक्रिय खात्यांची मासिक बिले. भरलेली बिलेही एकूण रकमेत समाविष्ट आहेत.';
 }
