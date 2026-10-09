@@ -1,0 +1,311 @@
+{
+  "@@locale": "ta",
+  "hindiNative": "हिन्दी",
+  "marathiNative": "मराठी",
+  "gujaratiNative": "ગુજરાતી",
+  "englishNative": "English",
+  "@openMonth": {
+    "placeholders": {
+      "vendor": {
+        "type": "String"
+      }
+    }
+  },
+  "@unitRate": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "@cameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@notCameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@autoCounted": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@dayCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@restoreSummary": {
+    "placeholders": {
+      "vendorCount": {
+        "type": "String"
+      },
+      "entryCount": {
+        "type": "String"
+      }
+    }
+  },
+  "@billMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "vendorType": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "@reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyPro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "@vendorLimitReached": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "இன்று",
+  "month": "மாதம்",
+  "appName": "ஹிசாப் டைரி",
+  "bill": "பில்",
+  "storageError": "டைரியைத் திறக்க முடியவில்லை. மீண்டும் முயலவும்.",
+  "loading": "டைரி திறக்கப்படுகிறது",
+  "settings": "அமைப்புகள்",
+  "retry": "மீண்டும் முயலவும்",
+  "privacy": "அனைத்தும் உங்கள் போனிலேயே இருக்கும். உள்நுழைவு அல்லது இணையம் தேவையில்லை.",
+  "notCame": "வரவில்லை",
+  "saveError": "சேமிக்க முடியவில்லை. மீண்டும் முயலவும்.",
+  "piece": "எண்ணிக்கை",
+  "noDeliveries": "இன்றைக்கு விநியோகம் இல்லை",
+  "chooseLanguage": "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்",
+  "hindi": "இந்தி",
+  "marathi": "மராத்தி",
+  "gujarati": "குஜராத்தி",
+  "english": "ஆங்கிலம்",
+  "tamil": "தமிழ்",
+  "urdu": "உருது",
+  "bengali": "வங்காளம்",
+  "telugu": "தெலுங்கு",
+  "kannada": "கன்னடம்",
+  "addNew": "＋ புதிய கணக்கு",
+  "litre": "லிட்டர்",
+  "milk": "பால்",
+  "openMonth": "{vendor} மாதத்தைத் திறக்கவும்",
+  "saving": "சேமிக்கப்படுகிறது…",
+  "carCleaner": "கார் சுத்தம் செய்பவர்",
+  "continueLabel": "தொடரவும்",
+  "visit": "வருகை",
+  "other": "மற்றவை",
+  "came": "வந்தது",
+  "addFirst": "＋ உங்கள் முதல் கணக்கைச் சேர்க்கவும்",
+  "languageLater": "பிறகு அமைப்புகளில் மொழியை மாற்றலாம்",
+  "tiffin": "டிபன்",
+  "maid": "வீட்டு வேலை உதவியாளர்",
+  "allCame": "அனைத்தும் வந்தது",
+  "newspaper": "செய்தித்தாள்",
+  "friday": "வெள்ளி",
+  "invalidVendorAmount": "சரியான எண்ணை உள்ளிடவும்: அளவு 0-க்கு மேல், விலை 0 அல்லது அதற்கு மேல் இருக்க வேண்டும்.",
+  "dailyQuantity": "தினசரி அளவு",
+  "unitRate": "ஒரு {unit} விலை",
+  "saturday": "சனி",
+  "chooseOne": "ஒன்றைத் தேர்ந்தெடுக்கவும்",
+  "sunday": "ஞாயிறு",
+  "fridayShort": "வெள்",
+  "saveVendor": "சேமிக்கவும்",
+  "decreaseQuantity": "அளவைக் குறைக்கவும்",
+  "tuesdayShort": "செவ்",
+  "back": "பின்செல்லவும்",
+  "tuesday": "செவ்வாய்",
+  "pickVendorType": "எதைச் சேர்க்க விரும்புகிறீர்கள்?",
+  "decreaseRate": "விலையைக் குறைக்கவும்",
+  "thursday": "வியாழன்",
+  "mondayShort": "திங்",
+  "monday": "திங்கள்",
+  "thursdayShort": "வியா",
+  "wednesday": "புதன்",
+  "optionalName": "பெயர் (விருப்பம்)",
+  "increaseQuantity": "அளவை அதிகரிக்கவும்",
+  "wednesdayShort": "புத",
+  "chooseWeekday": "குறைந்தது ஒரு நாளைத் தேர்ந்தெடுக்கவும்",
+  "someDays": "சில நாட்கள்",
+  "everyDay": "தினமும்",
+  "sundayShort": "ஞாயி",
+  "nameHint": "விற்பனையாளர் பெயர்",
+  "increaseRate": "விலையை அதிகரிக்கவும்",
+  "deliverySchedule": "எப்போது வருவார்கள்?",
+  "saturdayShort": "சனி",
+  "unmarked": "குறிக்கப்படவில்லை",
+  "runningTotal": "இதுவரை மொத்தம்",
+  "autoCame": "தானாக வந்ததாகக் கணக்கிடப்பட்டது",
+  "calendarHint": "வந்தது / வரவில்லை மாற்ற நாளைத் தட்டவும்",
+  "nextMonth": "அடுத்த மாதம்",
+  "notCameCount": "வரவில்லை: {count} நாட்கள்",
+  "autoCounted": "குறிக்காத நாட்கள் வந்ததாகக் கணக்கிடப்பட்டது: {count}",
+  "dayUnavailable": "இந்த நாள் கிடைக்கவில்லை",
+  "cameCount": "வந்தது: {count} நாட்கள்",
+  "chooseVendor": "கணக்கைத் தேர்ந்தெடுக்கவும்",
+  "previousMonth": "முந்தைய மாதம்",
+  "noVendorsCalendar": "நாட்காட்டியைக் காண முதல் கணக்கைச் சேர்க்கவும்.",
+  "backupTooLarge": "காப்புப்பிரதி 10 MB-க்கு மேல் உள்ளது. சிறிய கோப்பைத் தேர்ந்தெடுக்கவும்.",
+  "shareError": "பகிர முடியவில்லை. மீண்டும் முயலவும்.",
+  "textSize": "எழுத்து அளவு",
+  "restoreSuccess": "காப்புப்பிரதி மீட்டெடுக்கப்பட்டது",
+  "largeText": "பெரிய எழுத்து",
+  "languageLabel": "மொழி",
+  "paid": "செலுத்தப்பட்டது",
+  "textSizeSample": "அ",
+  "invalidBackup": "இது சரியான ஹிசாப் டைரி காப்புப்பிரதி அல்ல. டைரி மாற்றப்படவில்லை.",
+  "cancel": "ரத்துசெய்யவும்",
+  "normalText": "சாதாரண எழுத்து",
+  "shareWhatsApp": "WhatsApp-இல் பகிரவும்",
+  "restoreBackup": "காப்புப்பிரதியை மீட்டெடுக்கவும்",
+  "markPaid": "செலுத்தியதாகக் குறிக்கவும்",
+  "noVendorsBill": "பில் உருவாக்க முதல் கணக்கைச் சேர்க்கவும்.",
+  "countUnmarkedLabel": "குறிக்காத நாட்கள் வந்ததாகக் கணக்கிடப்படும்",
+  "dayCount": "{count} நாட்கள்",
+  "totalDue": "செலுத்த வேண்டிய மொத்தம்",
+  "smallText": "சிறிய எழுத்து",
+  "shareBackup": "காப்புப்பிரதியைப் பகிரவும்",
+  "eveningReminder": "மாலை நினைவூட்டல்",
+  "restoreError": "மீட்டெடுக்க முடியவில்லை. டைரி மாற்றப்படவில்லை.",
+  "genericVendorName": "நண்பரே",
+  "reminderQuestion": "இன்று அனைத்தும் வந்ததா?",
+  "reminderAllCame": "ஆம், அனைத்தும் வந்தது",
+  "reminderView": "இன்றைய பதிவைப் பார்க்கவும்",
+  "reminderAt": "{time} மணிக்கு நினைவூட்டல்",
+  "reminderPermission": "போன் அமைப்புகளில் அறிவிப்புகளை அனுமதித்து, நினைவூட்டலை மீண்டும் இயக்கவும்.",
+  "reminderError": "நினைவூட்டலைச் சேமிக்க அல்லது அனுப்ப முடியவில்லை. அனுமதிகளைச் சரிபார்த்து இன்றைய பதிவைக் குறிக்கவும்.",
+  "reminderApproximate": "துல்லிய அலாரங்கள் அணைக்கப்பட்டுள்ளன. நினைவூட்டல் சிறிது தாமதமாக வரலாம்.",
+  "reminderHelpTitle": "நினைவூட்டல் உதவி",
+  "openBatterySettings": "போன் அமைப்புகளைத் திறக்கவும்",
+  "testReminder": "நினைவூட்டலைச் சோதிக்கவும்",
+  "enableReminderFirst": "முதலில் மாலை நினைவூட்டலை இயக்கி அறிவிப்புகளை அனுமதிக்கவும்.",
+  "testReminderSent": "சோதனை அறிவிப்பு அனுப்பப்பட்டது. அறிவிப்புப் பட்டியைப் பார்க்கவும்.",
+  "proContinue": "என் டைரிக்குத் திரும்பவும்",
+  "proPremium": "பிரீமியம்",
+  "proFree": "இலவசம்",
+  "proVendorCaption": "செயலில் உள்ள கணக்குகள்",
+  "proOneTime": "ஒருமுறை வாங்கினால் போதும். சந்தா இல்லை.",
+  "proLocalDiary": "உங்கள் டைரி இந்த போனிலேயே இருக்கும்.",
+  "proCapacity": "12 செயலில் உள்ள கணக்குகள் வரை நிர்வகிக்கலாம்.",
+  "proTitle": "ஹிசாப் டைரி Pro",
+  "proActive": "Pro செயலில் உள்ளது — 12 கணக்குகள் வரை",
+  "proDescription": "ஒரு கொள்முதல், அதிக வீட்டுக் கணக்குகள்",
+  "proLimits": "இலவசம்: 3 கணக்குகள். Pro: 12 கணக்குகள். டைரி உங்கள் போனிலேயே இருக்கும்.",
+  "buyPro": "Pro வாங்கவும் · {price}",
+  "restorePurchases": "கொள்முதலை மீட்டெடுக்கவும்",
+  "purchasePending": "கடைக்காகக் காத்திருக்கிறது…",
+  "storeUnavailable": "இப்போது கடையில் Pro கிடைக்கவில்லை. பின்னர் முயலவும்.",
+  "purchaseError": "வாங்க முடியவில்லை. Play Store-ஐச் சரிபார்த்து மீண்டும் முயலவும்.",
+  "purchaseCanceled": "கொள்முதல் ரத்தானது. உங்கள் திட்டம் மாறவில்லை.",
+  "noProPurchase": "இந்த Play Store கணக்கில் Pro கொள்முதல் இல்லை.",
+  "manageVendors": "கணக்குகளை நிர்வகிக்கவும்",
+  "archiveVendor": "கணக்கைக் காப்பகத்தில் வைக்கவும்",
+  "activateVendor": "மீண்டும் செயல்படுத்தவும்",
+  "vendorArchived": "காப்பகத்தில் உள்ளது",
+  "vendorActive": "செயலில் உள்ளது",
+  "splashTagline": "தினசரி கணக்குகள், எளிதாக.",
+  "shareVendorName": "விற்பனையாளர் பெயர்",
+  "shareService": "சேவை",
+  "shareBillingMonth": "பில் மாதம்",
+  "shareDailyQuantity": "தினசரி அளவு",
+  "shareCalculation": "கணக்கீடு (நாட்கள் × தினசரி அளவு × விலை)",
+  "shareTotalAmount": "மொத்தத் தொகை",
+  "shareSource": "இதிலிருந்து பகிரப்பட்டது",
+  "vegetables": "காய்கறிகள்",
+  "fruits": "பழங்கள்",
+  "groceries": "மளிகை",
+  "waterDelivery": "தண்ணீர் விநியோகம்",
+  "eggs": "முட்டைகள்",
+  "bread": "ரொட்டி",
+  "laundry": "சலவை",
+  "ironing": "இஸ்திரி",
+  "cook": "சமையல்காரர்",
+  "gardener": "தோட்டக்காரர்",
+  "houseCleaning": "வீடு சுத்தம்",
+  "cookingGas": "சமையல் எரிவாயு",
+  "kilogram": "கிலோ",
+  "proComingSoon": "Pro விரைவில்",
+  "allFeaturesFree": "இப்போதுள்ள அனைத்து வசதிகளும் இலவசம். கணக்குகள் வரம்பின்றி சேர்க்கலாம்.",
+  "tutorialAddTitle": "முதல் கணக்கைச் சேர்க்கவும்",
+  "tutorialAddBody": "கணக்கு சேர்க்க என்பதைத் தட்டி சேவையைத் தேர்ந்தெடுக்கவும். தினசரி அளவு, விலையை உள்ளிட்டு சேமிக்கவும்.",
+  "tutorialMarkTitle": "இன்றைய விநியோகத்தைக் குறிக்கவும்",
+  "tutorialMarkBody": "வந்தது அல்லது வரவில்லை என்பதைத் தட்டவும். அதையே மீண்டும் தட்டினால் குறி நீங்கும். நாட்காட்டியைத் திறக்க கணக்குப் பெயரைத் தட்டவும்.",
+  "tutorialAllTitle": "அனைத்தும் வந்ததா?",
+  "tutorialAllBody": "இன்றைய திட்டமிட்ட விநியோகங்களை ஒரே நேரத்தில் குறிக்க அனைத்தும் வந்தது என்பதைத் தட்டவும்.",
+  "tutorialTabsTitle": "உங்கள் டைரி ஒரே பார்வையில்",
+  "tutorialTabsBody": "இன்று: தினசரி குறிகள். மாதம்: நாட்காட்டி. பில்: மொத்தம் மற்றும் WhatsApp பகிர்வு. அமைப்புகள்: மொழி, நினைவூட்டல்.",
+  "tutorialNext": "அடுத்து",
+  "tutorialDone": "டைரியைத் தொடங்கவும்",
+  "tutorialSkip": "வழிகாட்டலைத் தவிர்க்கவும்",
+  "tutorialVendorTitle": "கணக்கைத் தேர்ந்தெடுக்கவும்",
+  "tutorialVendorBody": "வீட்டுக் கணக்குகளுக்கு இடையே மாற கணக்கைத் தேர்ந்தெடுக்கவும் என்பதைத் தட்டவும்.",
+  "tutorialMonthTitle": "மாதத்தைத் தேர்ந்தெடுக்கவும்",
+  "tutorialMonthBody": "மாதத்தை மாற்ற இடது, வலது அம்புகளைப் பயன்படுத்தவும்.",
+  "tutorialCalendarTitle": "தினசரி குறியைத் திருத்தவும்",
+  "tutorialCalendarBody": "குறியை மாற்ற கடந்த நாள் அல்லது இன்றைய நாளைத் தட்டவும். எதிர்கால நாட்களைக் குறிக்க முடியாது.",
+  "tutorialTotalTitle": "இதுவரை மொத்தத்தைப் பார்க்கவும்",
+  "tutorialTotalBody": "நாட்காட்டிக்குக் கீழே மொத்தம் விநியோக நாட்கள், தினசரி அளவு மற்றும் விலைக்கு ஏற்ப மாறும்.",
+  "tutorialBillTotalTitle": "பில்லைச் சரிபார்க்கவும்",
+  "tutorialBillTotalBody": "தேர்ந்த கணக்கு, மாதத்தின் விநியோக எண்ணிக்கை, மொத்தத்தைச் சரிபார்க்கவும். பில் இயல்பாக நடப்பு மாதத்தில் திறக்கும்.",
+  "tutorialShareTitle": "WhatsApp-இல் பகிரவும்",
+  "tutorialShareBody": "WhatsApp-இல் பகிரவும் என்பதைத் தட்டவும். அனுப்பும் முன் பில்லைச் சரிபார்த்து பெறுநரைத் தேர்ந்தெடுக்கவும்.",
+  "tutorialPaidTitle": "பணம் செலுத்தியதைப் பதிவு செய்யவும்",
+  "tutorialPaidBody": "பணம் செலுத்திய பின் செலுத்தியதாகக் குறிக்கவும் என்பதைத் தட்டவும். இது நிலையை மட்டுமே பதிவு செய்யும்; பணம் அனுப்பாது.",
+  "billMessage": "வணக்கம் {name} 🙏\n{month} {vendorType} பில்: {days} நாட்கள் × {quantity} {unit} = {total}.\nநன்றி! — {appName}\nPlay Store: [இணைப்பு விரைவில்]",
+  "restoreSummary": "{vendorCount} கணக்குகள், {entryCount} தினசரி குறிகளுடன் டைரியை மாற்றவா? தற்போதைய கணக்குகள், குறிகள், விலைகள், பணப்பதிவுகள், அமைப்புகள் மாற்றப்படும்.",
+  "reminderBatteryIntro": "சில போன்கள் பின்னணி செயலிகளை நிறுத்தும். நினைவூட்டல் வராவிட்டால் டைரியை பின்னணியில் அனுமதிக்கவும். அமைப்புப் பெயர்கள் போனுக்கு ஏற்ப மாறும்.",
+  "reminderXiaomi": "Xiaomi: Autostart அனுமதித்து, பேட்டரி அமைப்பில் No restrictions தேர்ந்தெடுக்கவும்.",
+  "reminderOppo": "Oppo: செயலி அல்லது பேட்டரி அமைப்பில் தானியக்கத் தொடக்கம், பின்னணி இயக்கம் அனுமதிக்கவும்.",
+  "reminderVivo": "Vivo: டைரிக்கு Autostart, பின்னணி மின் பயன்பாடு அனுமதிக்கவும்.",
+  "reminderRealme": "Realme: செயலி பேட்டரி நிர்வாகத்தில் தானியக்கத் தொடக்கம், பின்னணி இயக்கம் அனுமதிக்கவும்.",
+  "proUpgradeTitle": "அதிக கணக்குகள். ஒரு எளிய டைரி.",
+  "proEverydayHeading": "இலவசம், Pro-வில் தினசரி வசதிகள்",
+  "proDailyHook": "வீட்டு விநியோகங்களை ஒரே தட்டலில் குறிக்கவும்.",
+  "proRecordsHook": "தெளிவான பதிவுகள் மாத இறுதி கருத்து வேறுபாடுகளைக் குறைக்கும்.",
+  "proShareHook": "மாத பில்லை WhatsApp-இல் பகிரவும்.",
+  "proOfflineHook": "இணையம், உள்நுழைவு இல்லாமல் கணக்குகளை வைத்திருங்கள்.",
+  "vendorLimitReached": "உங்கள் திட்டத்தில் {limit} கணக்குகள் அனுமதிக்கப்படும். கணக்கைக் காப்பகத்தில் வைக்கவும் அல்லது அமைப்புகளில் Pro வாங்கவும்.",
+  "archiveExplanation": "காப்பகத்தில் வைத்தால் கணக்கு இன்று பகுதியில் நீங்கும். குறிகள், விலைகள், செலுத்திய பில்கள் பாதுகாக்கப்படும். மீண்டும் செயல்படுத்தலாம்."
+}

@@ -1,0 +1,7 @@
+﻿# Copy to android/key.properties, which is ignored by version control.
+# Use your existing upload key. Paths are relative to android/ or absolute.
+# On Windows use forward slashes in paths.
+storeFile=C:/path/to/upload-keystore.jks
+storePassword=YOUR_STORE_PASSWORD
+keyAlias=upload
+keyPassword=YOUR_KEY_PASSWORD

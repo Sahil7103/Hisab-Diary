@@ -1,0 +1,311 @@
+{
+  "@@locale": "ur",
+  "hindiNative": "हिन्दी",
+  "marathiNative": "मराठी",
+  "gujaratiNative": "ગુજરાતી",
+  "englishNative": "English",
+  "@openMonth": {
+    "placeholders": {
+      "vendor": {
+        "type": "String"
+      }
+    }
+  },
+  "@unitRate": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "@cameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@notCameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@autoCounted": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@dayCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@restoreSummary": {
+    "placeholders": {
+      "vendorCount": {
+        "type": "String"
+      },
+      "entryCount": {
+        "type": "String"
+      }
+    }
+  },
+  "@billMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "vendorType": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "@reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyPro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "@vendorLimitReached": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "آج",
+  "month": "مہینہ",
+  "appName": "حساب ڈائری",
+  "bill": "بل",
+  "storageError": "ڈائری نہیں کھل سکی۔ دوبارہ کوشش کریں۔",
+  "loading": "ڈائری کھل رہی ہے",
+  "settings": "ترتیبات",
+  "retry": "دوبارہ کوشش کریں",
+  "privacy": "سب کچھ آپ کے فون پر رہتا ہے۔ لاگ اِن یا انٹرنیٹ کی ضرورت نہیں۔",
+  "notCame": "نہیں آیا",
+  "saveError": "تبدیلی محفوظ نہیں ہو سکی۔ دوبارہ کوشش کریں۔",
+  "piece": "عدد",
+  "noDeliveries": "آج کوئی ترسیل طے نہیں ہے",
+  "chooseLanguage": "اپنی زبان منتخب کریں",
+  "hindi": "ہندی",
+  "marathi": "مراٹھی",
+  "gujarati": "گجراتی",
+  "english": "انگریزی",
+  "tamil": "تمل",
+  "urdu": "اردو",
+  "bengali": "بنگالی",
+  "telugu": "تیلگو",
+  "kannada": "کنڑ",
+  "addNew": "＋ نیا کھاتہ",
+  "litre": "لیٹر",
+  "milk": "دودھ",
+  "openMonth": "{vendor} کا مہینہ کھولیں",
+  "saving": "محفوظ ہو رہا ہے…",
+  "carCleaner": "گاڑی صاف کرنے والا",
+  "continueLabel": "جاری رکھیں",
+  "visit": "آمد",
+  "other": "دیگر",
+  "came": "آیا",
+  "addFirst": "＋ اپنا پہلا کھاتہ شامل کریں",
+  "languageLater": "بعد میں ترتیبات میں زبان بدل سکتے ہیں",
+  "tiffin": "ٹفن",
+  "maid": "گھریلو مددگار",
+  "allCame": "سب آیا",
+  "newspaper": "اخبار",
+  "friday": "جمعہ",
+  "invalidVendorAmount": "درست عدد لکھیں: مقدار 0 سے زیادہ اور قیمت منفی نہ ہو۔",
+  "dailyQuantity": "روزانہ مقدار",
+  "unitRate": "فی {unit} قیمت",
+  "saturday": "ہفتہ",
+  "chooseOne": "ایک منتخب کریں",
+  "sunday": "اتوار",
+  "fridayShort": "جمعہ",
+  "saveVendor": "محفوظ کریں",
+  "decreaseQuantity": "مقدار کم کریں",
+  "tuesdayShort": "منگل",
+  "back": "واپس",
+  "tuesday": "منگل",
+  "pickVendorType": "کیا شامل کرنا چاہتے ہیں؟",
+  "decreaseRate": "قیمت کم کریں",
+  "thursday": "جمعرات",
+  "mondayShort": "پیر",
+  "monday": "پیر",
+  "thursdayShort": "جمعرات",
+  "wednesday": "بدھ",
+  "optionalName": "نام (اختیاری)",
+  "increaseQuantity": "مقدار بڑھائیں",
+  "wednesdayShort": "بدھ",
+  "chooseWeekday": "ہفتے کا کم از کم ایک دن منتخب کریں",
+  "someDays": "کچھ دن",
+  "everyDay": "ہر روز",
+  "sundayShort": "اتوار",
+  "nameHint": "فراہم کنندہ کا نام",
+  "increaseRate": "قیمت بڑھائیں",
+  "deliverySchedule": "کب آتے ہیں؟",
+  "saturdayShort": "ہفتہ",
+  "unmarked": "نشان نہیں لگا",
+  "runningTotal": "اب تک کل",
+  "autoCame": "خودکار طور پر آیا شمار ہوا",
+  "calendarHint": "آیا / نہیں آیا بدلنے کے لیے دن دبائیں",
+  "nextMonth": "اگلا مہینہ",
+  "notCameCount": "نہیں آیا: {count} دن",
+  "autoCounted": "بغیر نشان کے آیا شمار ہوئے: {count} دن",
+  "dayUnavailable": "یہ دن دستیاب نہیں",
+  "cameCount": "آیا: {count} دن",
+  "chooseVendor": "کھاتہ منتخب کریں",
+  "previousMonth": "پچھلا مہینہ",
+  "noVendorsCalendar": "کیلنڈر دیکھنے کے لیے پہلا کھاتہ شامل کریں۔",
+  "backupTooLarge": "بیک اپ 10 MB سے بڑا ہے۔ چھوٹی فائل منتخب کریں۔",
+  "shareError": "شیئر نہیں ہو سکا۔ دوبارہ کوشش کریں۔",
+  "textSize": "متن کا سائز",
+  "restoreSuccess": "بیک اپ بحال ہو گیا",
+  "largeText": "بڑا متن",
+  "languageLabel": "زبان",
+  "paid": "ادا شدہ",
+  "textSizeSample": "ا",
+  "invalidBackup": "یہ درست حساب ڈائری بیک اپ نہیں ہے۔ ڈائری نہیں بدلی۔",
+  "cancel": "منسوخ کریں",
+  "normalText": "عام متن",
+  "shareWhatsApp": "WhatsApp پر شیئر کریں",
+  "restoreBackup": "بیک اپ بحال کریں",
+  "markPaid": "ادا شدہ نشان لگائیں",
+  "noVendorsBill": "بل بنانے کے لیے پہلا کھاتہ شامل کریں۔",
+  "countUnmarkedLabel": "بغیر نشان والے دن آیا شمار ہوں گے",
+  "dayCount": "{count} دن",
+  "totalDue": "کل واجب الادا",
+  "smallText": "چھوٹا متن",
+  "shareBackup": "بیک اپ شیئر کریں",
+  "eveningReminder": "شام کی یاد دہانی",
+  "restoreError": "بیک اپ بحال نہیں ہو سکا۔ ڈائری نہیں بدلی۔",
+  "genericVendorName": "دوست",
+  "reminderQuestion": "کیا آج سب آیا؟",
+  "reminderAllCame": "ہاں، سب آیا",
+  "reminderView": "آج دیکھیں",
+  "reminderAt": "{time} پر یاد دہانی",
+  "reminderPermission": "فون کی ترتیبات میں اطلاعات کی اجازت دیں، پھر یاد دہانی دوبارہ آن کریں۔",
+  "reminderError": "یاد دہانی محفوظ یا ارسال نہیں ہوئی۔ اجازتیں دیکھیں اور ضرورت ہو تو آج کا نشان لگائیں۔",
+  "reminderApproximate": "درست وقت کے الارم بند ہیں۔ یاد دہانی کچھ دیر سے آ سکتی ہے۔",
+  "reminderHelpTitle": "یاد دہانی کی مدد",
+  "openBatterySettings": "فون کی ترتیبات کھولیں",
+  "testReminder": "یاد دہانی آزمائیں",
+  "enableReminderFirst": "پہلے شام کی یاد دہانی آن کریں اور اطلاعات کی اجازت دیں۔",
+  "testReminderSent": "آزمائشی اطلاع بھیج دی گئی۔ اطلاعات کا پینل دیکھیں۔",
+  "proContinue": "میری ڈائری پر واپس",
+  "proPremium": "پریمیم",
+  "proFree": "مفت",
+  "proVendorCaption": "فعال کھاتے",
+  "proOneTime": "ایک بار خریدیں۔ کوئی سبسکرپشن نہیں۔",
+  "proLocalDiary": "آپ کی ڈائری اسی فون پر رہتی ہے۔",
+  "proCapacity": "12 فعال کھاتے تک سنبھالیں۔",
+  "proTitle": "حساب ڈائری Pro",
+  "proActive": "Pro فعال ہے — 12 فعال کھاتے تک",
+  "proDescription": "ایک خریداری، زیادہ گھریلو کھاتے",
+  "proLimits": "مفت: 3 فعال کھاتے۔ Pro: 12 فعال کھاتے۔ ڈائری آپ کے فون پر رہتی ہے۔",
+  "buyPro": "Pro لیں · {price}",
+  "restorePurchases": "خریداریاں بحال کریں",
+  "purchasePending": "اسٹور کا انتظار…",
+  "storeUnavailable": "اسٹور میں Pro ابھی دستیاب نہیں۔ بعد میں کوشش کریں۔",
+  "purchaseError": "خریداری مکمل نہیں ہوئی۔ Play Store دیکھ کر دوبارہ کوشش کریں۔",
+  "purchaseCanceled": "خریداری منسوخ ہوئی۔ آپ کا پلان نہیں بدلا۔",
+  "noProPurchase": "اس Play Store اکاؤنٹ پر Pro خریداری نہیں ملی۔",
+  "manageVendors": "کھاتے سنبھالیں",
+  "archiveVendor": "کھاتہ محفوظات میں رکھیں",
+  "activateVendor": "دوبارہ فعال کریں",
+  "vendorArchived": "محفوظات میں",
+  "vendorActive": "فعال",
+  "splashTagline": "روزمرہ حساب، آسانی سے۔",
+  "shareVendorName": "فراہم کنندہ کا نام",
+  "shareService": "خدمت",
+  "shareBillingMonth": "بل کا مہینہ",
+  "shareDailyQuantity": "روزانہ مقدار",
+  "shareCalculation": "حساب (دن × روزانہ مقدار × قیمت)",
+  "shareTotalAmount": "کل رقم",
+  "shareSource": "یہاں سے شیئر کیا",
+  "vegetables": "سبزیاں",
+  "fruits": "پھل",
+  "groceries": "راشن",
+  "waterDelivery": "پانی کی ترسیل",
+  "eggs": "انڈے",
+  "bread": "ڈبل روٹی",
+  "laundry": "کپڑوں کی دھلائی",
+  "ironing": "استری",
+  "cook": "باورچی",
+  "gardener": "مالی",
+  "houseCleaning": "گھر کی صفائی",
+  "cookingGas": "کھانا پکانے کی گیس",
+  "kilogram": "کلو",
+  "proComingSoon": "Pro جلد آ رہا ہے",
+  "allFeaturesFree": "تمام موجودہ سہولتیں مفت ہیں، کھاتوں کی کوئی حد نہیں۔",
+  "tutorialAddTitle": "پہلا کھاتہ شامل کریں",
+  "tutorialAddBody": "کھاتہ شامل کریں دبائیں اور خدمت چنیں۔ روزانہ مقدار اور قیمت لکھ کر محفوظ کریں۔",
+  "tutorialMarkTitle": "آج کی ترسیل پر نشان لگائیں",
+  "tutorialMarkBody": "آیا یا نہیں آیا دبائیں۔ نشان ہٹانے کے لیے دوبارہ دبائیں۔ کیلنڈر کھولنے کے لیے کھاتے کا نام دبائیں۔",
+  "tutorialAllTitle": "کیا سب آیا؟",
+  "tutorialAllBody": "آج کی طے شدہ ترسیلوں پر ایک ساتھ نشان لگانے کے لیے سب آیا دبائیں۔",
+  "tutorialTabsTitle": "آپ کی ڈائری ایک نظر میں",
+  "tutorialTabsBody": "آج: روزانہ نشان۔ مہینہ: کیلنڈر۔ بل: کل حساب اور WhatsApp۔ ترتیبات: زبان اور یاد دہانی۔",
+  "tutorialNext": "اگلا",
+  "tutorialDone": "میری ڈائری شروع کریں",
+  "tutorialSkip": "رہنمائی چھوڑیں",
+  "tutorialVendorTitle": "کھاتہ منتخب کریں",
+  "tutorialVendorBody": "گھریلو کھاتوں کے درمیان بدلنے کے لیے کھاتہ منتخب کریں دبائیں۔",
+  "tutorialMonthTitle": "مہینہ منتخب کریں",
+  "tutorialMonthBody": "مہینہ بدلنے کے لیے دائیں اور بائیں تیر استعمال کریں۔",
+  "tutorialCalendarTitle": "روزانہ نشان درست کریں",
+  "tutorialCalendarBody": "نشان بدلنے کے لیے آج یا گزرا ہوا دن دبائیں۔ آئندہ دنوں پر نشان نہیں لگا سکتے۔",
+  "tutorialTotalTitle": "اب تک کل دیکھیں",
+  "tutorialTotalBody": "کیلنڈر کے نیچے کل رقم ترسیل کے دنوں، روزانہ مقدار اور قیمت سے بدلتی ہے۔",
+  "tutorialBillTotalTitle": "بل دیکھیں",
+  "tutorialBillTotalBody": "اس کھاتے اور مہینے کی ترسیلیں اور کل رقم دیکھیں۔ بل پہلے موجودہ مہینے پر کھلتا ہے۔",
+  "tutorialShareTitle": "WhatsApp پر شیئر کریں",
+  "tutorialShareBody": "WhatsApp پر شیئر کریں دبائیں۔ ارسال سے پہلے بل دیکھیں اور وصول کنندہ منتخب کریں۔",
+  "tutorialPaidTitle": "ادائیگی درج کریں",
+  "tutorialPaidBody": "رقم دینے کے بعد ادا شدہ نشان لگائیں دبائیں۔ یہ ادائیگی کی حالت درج کرتا ہے، رقم نہیں بھیجتا۔",
+  "billMessage": "سلام {name} 🙏\n{month} {vendorType} بل: {days} دن × {quantity} {unit} = {total}۔\nشکریہ! — {appName}\nPlay Store: [لنک جلد آ رہا ہے]",
+  "restoreSummary": "ڈائری کو {vendorCount} کھاتوں اور {entryCount} نشانوں سے بدلیں؟ موجودہ کھاتے، نشان، قیمتیں، ادائیگیاں اور ترتیبات بدل جائیں گی۔",
+  "reminderBatteryIntro": "کچھ فون پس منظر میں ایپس روک دیتے ہیں۔ یاد دہانی نہ آئے تو ڈائری کو پس منظر میں چلنے دیں۔ نام فون کے مطابق بدلتے ہیں۔",
+  "reminderXiaomi": "Xiaomi: Autostart کی اجازت دیں اور ایپ بیٹری میں No restrictions چنیں۔",
+  "reminderOppo": "Oppo: ایپ یا بیٹری کی ترتیبات میں خودکار آغاز اور پس منظر کی اجازت دیں۔",
+  "reminderVivo": "Vivo: ڈائری کے لیے Autostart اور پس منظر میں بجلی کے استعمال کی اجازت دیں۔",
+  "reminderRealme": "Realme: ایپ بیٹری مینجمنٹ میں خودکار آغاز اور پس منظر کی اجازت دیں۔",
+  "proUpgradeTitle": "زیادہ کھاتے۔ ایک آسان ڈائری۔",
+  "proEverydayHeading": "مفت اور Pro میں روزمرہ سہولتیں",
+  "proDailyHook": "گھریلو ترسیل پر ایک بار دبا کر نشان لگائیں۔",
+  "proRecordsHook": "واضح ریکارڈ سے مہینے کے آخر میں بحث کم ہوتی ہے۔",
+  "proShareHook": "ماہانہ بل WhatsApp پر شیئر کریں۔",
+  "proOfflineHook": "انٹرنیٹ یا لاگ اِن کے بغیر حساب رکھیں۔",
+  "vendorLimitReached": "آپ کا پلان {limit} فعال کھاتے اجازت دیتا ہے۔ ایک کھاتہ محفوظات میں رکھیں یا ترتیبات میں Pro لیں۔",
+  "archiveExplanation": "محفوظات میں رکھنے سے کھاتہ آج سے ہٹتا ہے۔ نشان، قیمتیں اور ادا شدہ بل رہتے ہیں۔ دوبارہ فعال کر سکتے ہیں۔"
+}

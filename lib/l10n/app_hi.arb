@@ -1,0 +1,311 @@
+{
+  "tutorialAddTitle": "अपना खाता जोड़ें",
+  "tutorialAddBody": "खाता जोड़ें पर टैप करके दूध, अख़बार या दूसरी सेवा चुनें। रोज़ की मात्रा और कीमत डालकर सेव करें।",
+  "tutorialMarkTitle": "आज की सेवा दर्ज करें",
+  "tutorialMarkBody": "खाते पर आया या नहीं आया दबाएँ। वही निशान दोबारा दबाकर हटा सकते हैं। खाते के नाम पर टैप करके कैलेंडर खोलें।",
+  "tutorialAllTitle": "सब आया?",
+  "tutorialAllBody": "सब आया दबाकर आज की सभी तय सेवाओं को एक साथ दर्ज करें।",
+  "tutorialTabsTitle": "आपकी डायरी एक नज़र में",
+  "tutorialTabsBody": "आज में रोज़ का हिसाब दर्ज करें। महीना में कैलेंडर देखें। बिल में कुल हिसाब निकालकर WhatsApp पर भेजें। सेटिंग में भाषा और रिमाइंडर हैं।",
+  "tutorialNext": "आगे",
+  "tutorialDone": "डायरी शुरू करें",
+  "tutorialSkip": "ट्यूटोरियल छोड़ें",
+  "tutorialVendorTitle": "खाता चुनें",
+  "tutorialVendorBody": "विक्रेता चुनें पर टैप करके अपने घर के खातों में बदलें।",
+  "tutorialMonthTitle": "महीना चुनें",
+  "tutorialMonthBody": "बाएँ और दाएँ तीर से महीना बदलें।",
+  "tutorialCalendarTitle": "रोज़ का निशान बदलें",
+  "tutorialCalendarBody": "पिछले दिन या आज पर टैप करके आया / नहीं आया बदलें। आने वाले दिन दर्ज नहीं कर सकते।",
+  "tutorialTotalTitle": "कुल हिसाब देखें",
+  "tutorialTotalBody": "कैलेंडर के नीचे कुल रकम सेवा के दिनों, रोज़ की मात्रा और कीमत से बदलती है।",
+  "tutorialBillTotalTitle": "बिल जाँचें",
+  "tutorialBillTotalBody": "इस खाते और महीने के सेवा दिनों और कुल रकम की जाँच करें। बिल पहले पिछले महीने का खुलता है।",
+  "tutorialShareTitle": "WhatsApp पर भेजें",
+  "tutorialShareBody": "बिल भेजने के लिए WhatsApp पर भेजें दबाएँ। भेजने से पहले बिल जाँचें और प्राप्तकर्ता चुनें।",
+  "tutorialPaidTitle": "भुगतान दर्ज करें",
+  "tutorialPaidBody": "विक्रेता को भुगतान करने के बाद भुगतान किया दबाएँ। यह केवल भुगतान की स्थिति दर्ज करता है, पैसे नहीं भेजता।",
+  "today": "आज",
+  "month": "महीना",
+  "appName": "हिसाब डायरी",
+  "bill": "बिल",
+  "storageError": "डायरी नहीं खुल सकी। कृपया फिर कोशिश करें।",
+  "@@locale": "hi",
+  "loading": "डायरी खुल रही है",
+  "settings": "सेटिंग",
+  "retry": "फिर कोशिश करें",
+  "privacy": "सब कुछ आपके फ़ोन पर। न लॉगिन, न इंटरनेट।",
+  "notCame": "नहीं",
+  "saveError": "बदलाव सेव नहीं हुआ। फिर कोशिश करें।",
+  "piece": "नग",
+  "noDeliveries": "आज के लिए कोई हिसाब नहीं है",
+  "chooseLanguage": "अपनी भाषा चुनिए",
+  "hindi": "हिन्दी",
+  "addNew": "＋ नया हिसाब जोड़ें",
+  "litre": "लीटर",
+  "milk": "दूध",
+  "openMonth": "{vendor} का महीना खोलें",
+  "marathi": "मराठी",
+  "saving": "सेव हो रहा है…",
+  "carCleaner": "गाड़ी की सफ़ाई",
+  "gujarati": "गुजराती",
+  "english": "अंग्रेज़ी",
+  "continueLabel": "आगे बढ़िए",
+  "visit": "बार",
+  "other": "अन्य",
+  "came": "आया",
+  "addFirst": "＋ पहला हिसाब जोड़ें",
+  "languageLater": "बाद में सेटिंग में बदल सकते हैं",
+  "tiffin": "टिफ़िन",
+  "maid": "कामवाली",
+  "allCame": "सब आया",
+  "newspaper": "अख़बार",
+  "hindiNative": "हिन्दी",
+  "marathiNative": "मराठी",
+  "gujaratiNative": "ગુજરાતી",
+  "englishNative": "English",
+  "@openMonth": {
+    "placeholders": {
+      "vendor": {
+        "type": "String"
+      }
+    }
+  },
+  "friday": "शुक्रवार",
+  "invalidVendorAmount": "सही संख्या डालें: मात्रा 0 से ज़्यादा और कीमत 0 या उससे ज़्यादा होनी चाहिए।",
+  "dailyQuantity": "रोज़ कितना?",
+  "unitRate": "एक {unit} का रेट",
+  "saturday": "शनिवार",
+  "chooseOne": "एक चुनिए",
+  "sunday": "रविवार",
+  "fridayShort": "शु",
+  "saveVendor": "सेव करें",
+  "decreaseQuantity": "मात्रा घटाएँ",
+  "tuesdayShort": "मं",
+  "back": "वापस",
+  "tuesday": "मंगलवार",
+  "pickVendorType": "क्या जोड़ना है?",
+  "decreaseRate": "रेट घटाएँ",
+  "thursday": "गुरुवार",
+  "mondayShort": "सो",
+  "monday": "सोमवार",
+  "thursdayShort": "गु",
+  "wednesday": "बुधवार",
+  "optionalName": "नाम (चाहें तो)",
+  "increaseQuantity": "मात्रा बढ़ाएँ",
+  "wednesdayShort": "बु",
+  "chooseWeekday": "कम से कम एक दिन चुनिए",
+  "someDays": "कुछ दिन",
+  "everyDay": "रोज़",
+  "sundayShort": "र",
+  "nameHint": "हिसाब वाले का नाम",
+  "increaseRate": "रेट बढ़ाएँ",
+  "deliverySchedule": "कब आता है?",
+  "saturdayShort": "श",
+  "@unitRate": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "unmarked": "अभी नहीं बताया",
+  "runningTotal": "अब तक का कुल",
+  "autoCame": "बिना बताए आया गिना",
+  "calendarHint": "किसी दिन को छूकर हरा / लाल बदलिए",
+  "nextMonth": "अगला महीना",
+  "notCameCount": "नहीं {count} दिन",
+  "autoCounted": "बिना बताए आया गिना: {count} दिन",
+  "dayUnavailable": "यह दिन उपलब्ध नहीं है",
+  "cameCount": "आया {count} दिन",
+  "chooseVendor": "हिसाब चुनिए",
+  "previousMonth": "पिछला महीना",
+  "noVendorsCalendar": "कैलेंडर देखने के लिए पहला हिसाब जोड़िए।",
+  "@cameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@notCameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@autoCounted": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "backupTooLarge": "बैकअप 10 MB से बड़ा है। छोटी फ़ाइल चुनिए।",
+  "shareError": "साझा नहीं हो सका। कृपया फिर कोशिश करें।",
+  "textSize": "अक्षर का आकार",
+  "restoreSuccess": "बैकअप वापस आ गया",
+  "largeText": "बड़े अक्षर",
+  "languageLabel": "भाषा",
+  "paid": "चुका दिया",
+  "textSizeSample": "अ",
+  "invalidBackup": "यह हिसाब डायरी का मान्य बैकअप नहीं है। आपकी डायरी नहीं बदली।",
+  "cancel": "रद्द करें",
+  "normalText": "सामान्य अक्षर",
+  "shareWhatsApp": "WhatsApp पर भेजिए",
+  "restoreBackup": "बैकअप वापस लाएँ",
+  "markPaid": "चुका दिया",
+  "noVendorsBill": "बिल बनाने के लिए पहला हिसाब जोड़िए।",
+  "countUnmarkedLabel": "बिना बताए = आया गिनो",
+  "dayCount": "{count} दिन",
+  "billMessage": "नमस्ते {name} 🙏\n{month} का {vendorType} हिसाब: {days} दिन × {quantity} {unit} = {total}.\nधन्यवाद! — {appName}\nPlay Store: [लिंक जल्द आएगा]",
+  "totalDue": "कुल देना है",
+  "smallText": "छोटे अक्षर",
+  "restoreSummary": "इस फ़ोन की डायरी में {vendorCount} हिसाब और {entryCount} दैनिक निशान वापस आएँगे। मौजूदा हिसाब, निशान, रेट, भुगतान और सेटिंग बदल जाएँगे। जारी रखें?",
+  "shareBackup": "बैकअप भेजिए",
+  "eveningReminder": "शाम का रिमाइंडर",
+  "restoreError": "बैकअप वापस नहीं आ सका। आपकी डायरी नहीं बदली।",
+  "genericVendorName": "जी",
+  "@dayCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@restoreSummary": {
+    "placeholders": {
+      "vendorCount": {
+        "type": "String"
+      },
+      "entryCount": {
+        "type": "String"
+      }
+    }
+  },
+  "@billMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "vendorType": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderQuestion": "आज सब आया?",
+  "reminderAllCame": "हाँ, सब आया",
+  "reminderView": "देखिए",
+  "reminderAt": "याद दिलाएँ: {time}",
+  "reminderPermission": "फोन की सेटिंग में नोटिफ़िकेशन की अनुमति दें, फिर याद दिलाना चालू करें।",
+  "reminderError": "याद दिलाना या हिसाब सेव करना नहीं हो पाया। अनुमति जाँचें और ज़रूरत हो तो आज का हिसाब डायरी में दर्ज करें।",
+  "reminderApproximate": "सटीक अलार्म बंद है। याद दिलाने में थोड़ी देर हो सकती है।",
+  "reminderHelpTitle": "याद दिलाने में मदद",
+  "reminderBatteryIntro": "कुछ फोन बैकग्राउंड में ऐप बंद कर देते हैं। याद न दिलाने पर हिसाब डायरी को बैकग्राउंड में चलने दें। सेटिंग के नाम फोन के अनुसार बदल सकते हैं।",
+  "reminderXiaomi": "Xiaomi: ऑटोस्टार्ट की अनुमति दें और ऐप की बैटरी सेटिंग में कोई पाबंदी नहीं चुनें।",
+  "reminderOppo": "Oppo: ऐप या बैटरी सेटिंग में अपने आप शुरू होने और बैकग्राउंड में चलने की अनुमति दें।",
+  "reminderVivo": "Vivo: हिसाब डायरी के लिए ऑटोस्टार्ट और बैकग्राउंड में बैटरी इस्तेमाल की अनुमति दें।",
+  "reminderRealme": "Realme: ऐप की बैटरी सेटिंग में अपने आप शुरू होने और बैकग्राउंड में चलने की अनुमति दें।",
+  "openBatterySettings": "फोन की सेटिंग खोलें",
+  "testReminder": "याद दिलाकर जाँचें",
+  "enableReminderFirst": "पहले शाम को याद दिलाना चालू करें और नोटिफ़िकेशन की अनुमति दें।",
+  "testReminderSent": "जाँच का नोटिफ़िकेशन भेजा गया। फोन के नोटिफ़िकेशन देखें।",
+  "proUpgradeTitle": "ज़्यादा खाते। एक आसान डायरी।",
+  "proEverydayHeading": "मुफ़्त और प्रो, दोनों में रोज़मर्रा की सुविधाएँ",
+  "proDailyHook": "दूध और घर की सेवाओं का हिसाब, बस एक टैप।",
+  "proRecordsHook": "हर दिन का साफ़ हिसाब, महीने के अंत में कम बहस।",
+  "proShareHook": "महीने का बिल WhatsApp पर भेजें।",
+  "proOfflineHook": "बिना इंटरनेट या लॉगिन के हिसाब रखें।",
+  "proContinue": "अपनी डायरी पर लौटें",
+  "proPremium": "प्रीमियम",
+  "proFree": "मुफ़्त",
+  "proVendorCaption": "सक्रिय खाते",
+  "proOneTime": "एक बार खरीदें। कोई सदस्यता नहीं।",
+  "proLocalDiary": "आपकी डायरी इसी फ़ोन पर रहती है।",
+  "proCapacity": "12 सक्रिय विक्रेता खातों तक का हिसाब रखें।",
+  "proTitle": "हिसाब डायरी प्रो",
+  "proActive": "प्रो चालू है — 12 सक्रिय हिसाब तक",
+  "proDescription": "एक बार खरीदें, अधिक हिसाब जोड़ें",
+  "proLimits": "मुफ़्त: 3 सक्रिय हिसाब। प्रो: 12 सक्रिय हिसाब। आपकी डायरी इसी फोन पर रहती है।",
+  "buyPro": "प्रो लें · {price}",
+  "restorePurchases": "खरीद वापस पाएँ",
+  "purchasePending": "स्टोर का इंतज़ार है…",
+  "storeUnavailable": "प्रो अभी स्टोर में उपलब्ध नहीं है। बाद में फिर कोशिश करें।",
+  "purchaseError": "खरीद पूरी नहीं हो पाई। Play Store जाँचें और फिर कोशिश करें।",
+  "purchaseCanceled": "खरीद रद्द हुई। आपका प्लान नहीं बदला है।",
+  "noProPurchase": "इस Play Store खाते में प्रो की खरीद नहीं मिली।",
+  "vendorLimitReached": "आपके प्लान में {limit} सक्रिय हिसाब हो सकते हैं। कोई हिसाब संग्रह में रखें या सेटिंग में प्रो लें।",
+  "manageVendors": "हिसाब सँभालें",
+  "archiveVendor": "संग्रह में रखें",
+  "activateVendor": "फिर सक्रिय करें",
+  "archiveExplanation": "संग्रह में रखने पर हिसाब आज की सूची से हटता है। पुराने दिन, दरें और चुकाए बिल सुरक्षित रहते हैं। इसे फिर सक्रिय कर सकते हैं।",
+  "vendorArchived": "संग्रह में",
+  "vendorActive": "सक्रिय",
+  "@reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyPro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "@vendorLimitReached": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "splashTagline": "हर दिन का हिसाब, आसानी से।",
+  "shareVendorName": "विक्रेता का नाम",
+  "shareService": "सेवा",
+  "shareBillingMonth": "बिल का महीना",
+  "shareDailyQuantity": "प्रतिदिन मात्रा",
+  "shareCalculation": "गणना (दिन × प्रतिदिन मात्रा × दर)",
+  "shareTotalAmount": "कुल राशि",
+  "shareSource": "साझा किया गया",
+  "vegetables": "सब्ज़ियाँ",
+  "fruits": "फल",
+  "groceries": "किराना",
+  "waterDelivery": "पानी की डिलीवरी",
+  "eggs": "अंडे",
+  "bread": "ब्रेड",
+  "laundry": "कपड़ों की धुलाई",
+  "ironing": "इस्त्री",
+  "cook": "रसोइया",
+  "gardener": "माली",
+  "houseCleaning": "घर की सफ़ाई",
+  "cookingGas": "रसोई गैस",
+  "kilogram": "किलो",
+  "proComingSoon": "प्रो जल्द आ रहा है",
+  "allFeaturesFree": "अभी सभी सुविधाएँ मुफ़्त हैं। आप असीमित हिसाब जोड़ सकते हैं।",
+  "tamil": "तमिल",
+  "urdu": "उर्दू",
+  "bengali": "बंगाली",
+  "telugu": "तेलुगु",
+  "kannada": "कन्नड़"
+}

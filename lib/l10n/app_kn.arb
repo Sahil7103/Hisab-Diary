@@ -1,0 +1,311 @@
+{
+  "@@locale": "kn",
+  "hindiNative": "हिन्दी",
+  "marathiNative": "मराठी",
+  "gujaratiNative": "ગુજરાતી",
+  "englishNative": "English",
+  "@openMonth": {
+    "placeholders": {
+      "vendor": {
+        "type": "String"
+      }
+    }
+  },
+  "@unitRate": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "@cameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@notCameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@autoCounted": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@dayCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@restoreSummary": {
+    "placeholders": {
+      "vendorCount": {
+        "type": "String"
+      },
+      "entryCount": {
+        "type": "String"
+      }
+    }
+  },
+  "@billMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "vendorType": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "@reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyPro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "@vendorLimitReached": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "ಇಂದು",
+  "month": "ತಿಂಗಳು",
+  "appName": "ಹಿಸಾಬ್ ಡೈರಿ",
+  "bill": "ಬಿಲ್",
+  "storageError": "ಡೈರಿ ತೆರೆಯಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "loading": "ಡೈರಿ ತೆರೆಯುತ್ತಿದೆ",
+  "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+  "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+  "privacy": "ಎಲ್ಲವೂ ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ. ಲಾಗಿನ್ ಅಥವಾ ಇಂಟರ್ನೆಟ್ ಅಗತ್ಯವಿಲ್ಲ.",
+  "notCame": "ಬಂದಿಲ್ಲ",
+  "saveError": "ಬದಲಾವಣೆ ಉಳಿಸಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "piece": "ಒಂದು",
+  "noDeliveries": "ಇಂದು ಯಾವುದೇ ವಿತರಣೆ ನಿಗದಿಯಾಗಿಲ್ಲ",
+  "chooseLanguage": "ನಿಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
+  "hindi": "ಹಿಂದಿ",
+  "marathi": "ಮರಾಠಿ",
+  "gujarati": "ಗುಜರಾತಿ",
+  "english": "ಇಂಗ್ಲಿಷ್",
+  "tamil": "ತಮಿಳು",
+  "urdu": "ಉರ್ದು",
+  "bengali": "ಬಂಗಾಳಿ",
+  "telugu": "ತೆಲುಗು",
+  "kannada": "ಕನ್ನಡ",
+  "addNew": "＋ ಹೊಸ ಖಾತೆ",
+  "litre": "ಲೀಟರ್",
+  "milk": "ಹಾಲು",
+  "openMonth": "{vendor} ತಿಂಗಳು ತೆರೆಯಿರಿ",
+  "saving": "ಉಳಿಸಲಾಗುತ್ತಿದೆ…",
+  "carCleaner": "ಕಾರು ಸ್ವಚ್ಛಗೊಳಿಸುವವರು",
+  "continueLabel": "ಮುಂದುವರಿಸಿ",
+  "visit": "ಭೇಟಿ",
+  "other": "ಇತರೆ",
+  "came": "ಬಂದಿದೆ",
+  "addFirst": "＋ ನಿಮ್ಮ ಮೊದಲ ಖಾತೆ ಸೇರಿಸಿ",
+  "languageLater": "ನಂತರ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಭಾಷೆ ಬದಲಿಸಬಹುದು",
+  "tiffin": "ಟಿಫಿನ್",
+  "maid": "ಮನೆ ಕೆಲಸದವರು",
+  "allCame": "ಎಲ್ಲವೂ ಬಂದಿದೆ",
+  "newspaper": "ಪತ್ರಿಕೆ",
+  "friday": "ಶುಕ್ರವಾರ",
+  "invalidVendorAmount": "ಸರಿಯಾದ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ: ಪ್ರಮಾಣ 0 ಕ್ಕಿಂತ ಹೆಚ್ಚು ಮತ್ತು ಬೆಲೆ ಋಣಾತ್ಮಕವಾಗಿರಬಾರದು.",
+  "dailyQuantity": "ದೈನಂದಿನ ಪ್ರಮಾಣ",
+  "unitRate": "ಪ್ರತಿ {unit} ದರ",
+  "saturday": "ಶನಿವಾರ",
+  "chooseOne": "ಒಂದು ಆಯ್ಕೆಮಾಡಿ",
+  "sunday": "ಭಾನುವಾರ",
+  "fridayShort": "ಶುಕ್ರ",
+  "saveVendor": "ಉಳಿಸಿ",
+  "decreaseQuantity": "ಪ್ರಮಾಣ ಕಡಿಮೆಮಾಡಿ",
+  "tuesdayShort": "ಮಂಗಳ",
+  "back": "ಹಿಂದೆ",
+  "tuesday": "ಮಂಗಳವಾರ",
+  "pickVendorType": "ಏನು ಸೇರಿಸಲು ಬಯಸುತ್ತೀರಿ?",
+  "decreaseRate": "ದರ ಕಡಿಮೆಮಾಡಿ",
+  "thursday": "ಗುರುವಾರ",
+  "mondayShort": "ಸೋಮ",
+  "monday": "ಸೋಮವಾರ",
+  "thursdayShort": "ಗುರು",
+  "wednesday": "ಬುಧವಾರ",
+  "optionalName": "ಹೆಸರು (ಐಚ್ಛಿಕ)",
+  "increaseQuantity": "ಪ್ರಮಾಣ ಹೆಚ್ಚಿಸಿ",
+  "wednesdayShort": "ಬುಧ",
+  "chooseWeekday": "ವಾರದ ಕನಿಷ್ಠ ಒಂದು ದಿನ ಆಯ್ಕೆಮಾಡಿ",
+  "someDays": "ಕೆಲವು ದಿನಗಳು",
+  "everyDay": "ಪ್ರತಿದಿನ",
+  "sundayShort": "ಭಾನು",
+  "nameHint": "ಪೂರೈಕೆದಾರರ ಹೆಸರು",
+  "increaseRate": "ದರ ಹೆಚ್ಚಿಸಿ",
+  "deliverySchedule": "ಯಾವಾಗ ಬರುತ್ತಾರೆ?",
+  "saturdayShort": "ಶನಿ",
+  "unmarked": "ಗುರುತಿಸಿಲ್ಲ",
+  "runningTotal": "ಇದುವರೆಗಿನ ಮೊತ್ತ",
+  "autoCame": "ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬಂದಿದೆ ಎಂದು ಎಣಿಸಲಾಗಿದೆ",
+  "calendarHint": "ಬಂದಿದೆ / ಬಂದಿಲ್ಲ ಬದಲಿಸಲು ದಿನ ಒತ್ತಿ",
+  "nextMonth": "ಮುಂದಿನ ತಿಂಗಳು",
+  "notCameCount": "ಬಂದಿಲ್ಲ: {count} ದಿನಗಳು",
+  "autoCounted": "ಗುರುತಿಸದ ದಿನಗಳು ಬಂದಿದೆ ಎಂದು ಎಣಿಸಲಾಗಿದೆ: {count}",
+  "dayUnavailable": "ಈ ದಿನ ಲಭ್ಯವಿಲ್ಲ",
+  "cameCount": "ಬಂದಿದೆ: {count} ದಿನಗಳು",
+  "chooseVendor": "ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ",
+  "previousMonth": "ಹಿಂದಿನ ತಿಂಗಳು",
+  "noVendorsCalendar": "ಕ್ಯಾಲೆಂಡರ್ ನೋಡಲು ಮೊದಲ ಖಾತೆ ಸೇರಿಸಿ.",
+  "backupTooLarge": "ಬ್ಯಾಕಪ್ 10 MB ಗಿಂತ ದೊಡ್ಡದು. ಚಿಕ್ಕ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.",
+  "shareError": "ಹಂಚಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "textSize": "ಅಕ್ಷರದ ಗಾತ್ರ",
+  "restoreSuccess": "ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ",
+  "largeText": "ದೊಡ್ಡ ಅಕ್ಷರಗಳು",
+  "languageLabel": "ಭಾಷೆ",
+  "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
+  "textSizeSample": "ಅ",
+  "invalidBackup": "ಇದು ಮಾನ್ಯ ಹಿಸಾಬ್ ಡೈರಿ ಬ್ಯಾಕಪ್ ಅಲ್ಲ. ಡೈರಿ ಬದಲಾಗಿಲ್ಲ.",
+  "cancel": "ರದ್ದುಮಾಡಿ",
+  "normalText": "ಸಾಮಾನ್ಯ ಅಕ್ಷರಗಳು",
+  "shareWhatsApp": "WhatsApp ನಲ್ಲಿ ಹಂಚಿ",
+  "restoreBackup": "ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಿ",
+  "markPaid": "ಪಾವತಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+  "noVendorsBill": "ಬಿಲ್ ರಚಿಸಲು ಮೊದಲ ಖಾತೆ ಸೇರಿಸಿ.",
+  "countUnmarkedLabel": "ಗುರುತಿಸದ ದಿನಗಳನ್ನು ಬಂದಿದೆ ಎಂದು ಎಣಿಸಲಾಗುತ್ತದೆ",
+  "dayCount": "{count} ದಿನಗಳು",
+  "totalDue": "ಪಾವತಿಸಬೇಕಾದ ಮೊತ್ತ",
+  "smallText": "ಚಿಕ್ಕ ಅಕ್ಷರಗಳು",
+  "shareBackup": "ಬ್ಯಾಕಪ್ ಹಂಚಿ",
+  "eveningReminder": "ಸಂಜೆಯ ಜ್ಞಾಪನೆ",
+  "restoreError": "ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲಾಗಲಿಲ್ಲ. ಡೈರಿ ಬದಲಾಗಿಲ್ಲ.",
+  "genericVendorName": "ಸ್ನೇಹಿತರೇ",
+  "reminderQuestion": "ಇಂದು ಎಲ್ಲವೂ ಬಂದಿದೆಯೇ?",
+  "reminderAllCame": "ಹೌದು, ಎಲ್ಲವೂ ಬಂದಿದೆ",
+  "reminderView": "ಇಂದಿನದು ನೋಡಿ",
+  "reminderAt": "{time} ಕ್ಕೆ ಜ್ಞಾಪನೆ",
+  "reminderPermission": "ಫೋನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಸೂಚನೆಗಳಿಗೆ ಅನುಮತಿ ನೀಡಿ, ಜ್ಞಾಪನೆ ಮತ್ತೆ ಆನ್ ಮಾಡಿ.",
+  "reminderError": "ಜ್ಞಾಪನೆ ಉಳಿಸಲು ಅಥವಾ ತಲುಪಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಅನುಮತಿ ಪರಿಶೀಲಿಸಿ, ಅಗತ್ಯವಿದ್ದರೆ ಇಂದು ಗುರುತಿಸಿ.",
+  "reminderApproximate": "ನಿಖರ ಅಲಾರಂಗಳು ಆಫ್ ಆಗಿವೆ. ಜ್ಞಾಪನೆ ಸ್ವಲ್ಪ ತಡವಾಗಬಹುದು.",
+  "reminderHelpTitle": "ಜ್ಞಾಪನೆ ಸಹಾಯ",
+  "openBatterySettings": "ಫೋನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ತೆರೆಯಿರಿ",
+  "testReminder": "ಜ್ಞಾಪನೆ ಪರೀಕ್ಷಿಸಿ",
+  "enableReminderFirst": "ಮೊದಲು ಸಂಜೆಯ ಜ್ಞಾಪನೆ ಆನ್ ಮಾಡಿ ಸೂಚನೆಗಳಿಗೆ ಅನುಮತಿ ನೀಡಿ.",
+  "testReminderSent": "ಪರೀಕ್ಷಾ ಸೂಚನೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಸೂಚನೆಗಳ ಫಲಕ ನೋಡಿ.",
+  "proContinue": "ನನ್ನ ಡೈರಿಗೆ ಹಿಂದಿರುಗಿ",
+  "proPremium": "ಪ್ರೀಮಿಯಂ",
+  "proFree": "ಉಚಿತ",
+  "proVendorCaption": "ಸಕ್ರಿಯ ಖಾತೆಗಳು",
+  "proOneTime": "ಒಮ್ಮೆ ಖರೀದಿ. ಚಂದಾ ಇಲ್ಲ.",
+  "proLocalDiary": "ನಿಮ್ಮ ಡೈರಿ ಈ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ.",
+  "proCapacity": "12 ಸಕ್ರಿಯ ಖಾತೆಗಳವರೆಗೆ ನಿರ್ವಹಿಸಿ.",
+  "proTitle": "ಹಿಸಾಬ್ ಡೈರಿ Pro",
+  "proActive": "Pro ಸಕ್ರಿಯ — 12 ಖಾತೆಗಳವರೆಗೆ",
+  "proDescription": "ಒಂದು ಖರೀದಿ, ಇನ್ನಷ್ಟು ಮನೆಯ ಖಾತೆಗಳು",
+  "proLimits": "ಉಚಿತ: 3 ಸಕ್ರಿಯ ಖಾತೆಗಳು. Pro: 12. ಡೈರಿ ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಇರುತ್ತದೆ.",
+  "buyPro": "Pro ಪಡೆಯಿರಿ · {price}",
+  "restorePurchases": "ಖರೀದಿಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ",
+  "purchasePending": "ಸ್ಟೋರ್‌ಗಾಗಿ ಕಾಯುತ್ತಿದೆ…",
+  "storeUnavailable": "ಸ್ಟೋರ್‌ನಲ್ಲಿ Pro ಈಗ ಲಭ್ಯವಿಲ್ಲ. ನಂತರ ಪ್ರಯತ್ನಿಸಿ.",
+  "purchaseError": "ಖರೀದಿ ಪೂರ್ಣವಾಗಲಿಲ್ಲ. Play Store ಪರಿಶೀಲಿಸಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "purchaseCanceled": "ಖರೀದಿ ರದ್ದಾಗಿದೆ. ನಿಮ್ಮ ಯೋಜನೆ ಬದಲಾಗಿಲ್ಲ.",
+  "noProPurchase": "ಈ Play Store ಖಾತೆಯಲ್ಲಿ Pro ಖರೀದಿ ಕಂಡುಬಂದಿಲ್ಲ.",
+  "manageVendors": "ಖಾತೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+  "archiveVendor": "ಖಾತೆ ಆರ್ಕೈವ್ ಮಾಡಿ",
+  "activateVendor": "ಮತ್ತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ",
+  "vendorArchived": "ಆರ್ಕೈವ್ ಆಗಿದೆ",
+  "vendorActive": "ಸಕ್ರಿಯ",
+  "splashTagline": "ದೈನಂದಿನ ಲೆಕ್ಕಗಳು, ಸುಲಭವಾಗಿ.",
+  "shareVendorName": "ಪೂರೈಕೆದಾರರ ಹೆಸರು",
+  "shareService": "ಸೇವೆ",
+  "shareBillingMonth": "ಬಿಲ್ ತಿಂಗಳು",
+  "shareDailyQuantity": "ದೈನಂದಿನ ಪ್ರಮಾಣ",
+  "shareCalculation": "ಲೆಕ್ಕಾಚಾರ (ದಿನಗಳು × ದೈನಂದಿನ ಪ್ರಮಾಣ × ದರ)",
+  "shareTotalAmount": "ಒಟ್ಟು ಮೊತ್ತ",
+  "shareSource": "ಇಲ್ಲಿಂದ ಹಂಚಲಾಗಿದೆ",
+  "vegetables": "ತರಕಾರಿಗಳು",
+  "fruits": "ಹಣ್ಣುಗಳು",
+  "groceries": "ದಿನಸಿ",
+  "waterDelivery": "ನೀರು ವಿತರಣೆ",
+  "eggs": "ಮೊಟ್ಟೆಗಳು",
+  "bread": "ಬ್ರೆಡ್",
+  "laundry": "ಬಟ್ಟೆ ಒಗೆಯುವುದು",
+  "ironing": "ಇಸ್ತ್ರಿ",
+  "cook": "ಅಡುಗೆಯವರು",
+  "gardener": "ತೋಟಗಾರ",
+  "houseCleaning": "ಮನೆ ಸ್ವಚ್ಛತೆ",
+  "cookingGas": "ಅಡುಗೆ ಅನಿಲ",
+  "kilogram": "ಕೆಜಿ",
+  "proComingSoon": "Pro ಶೀಘ್ರದಲ್ಲೇ",
+  "allFeaturesFree": "ಈಗಿನ ಎಲ್ಲಾ ಸೌಲಭ್ಯಗಳು ಉಚಿತ, ಖಾತೆಗಳಿಗೆ ಮಿತಿಯಿಲ್ಲ.",
+  "tutorialAddTitle": "ಮೊದಲ ಖಾತೆ ಸೇರಿಸಿ",
+  "tutorialAddBody": "ಖಾತೆ ಸೇರಿಸಿ ಒತ್ತಿ ಸೇವೆ ಆಯ್ಕೆಮಾಡಿ. ದೈನಂದಿನ ಪ್ರಮಾಣ ಮತ್ತು ದರ ನಮೂದಿಸಿ ಉಳಿಸಿ.",
+  "tutorialMarkTitle": "ಇಂದಿನ ವಿತರಣೆ ಗುರುತಿಸಿ",
+  "tutorialMarkBody": "ಬಂದಿದೆ ಅಥವಾ ಬಂದಿಲ್ಲ ಒತ್ತಿ. ಮತ್ತೆ ಒತ್ತಿದರೆ ಗುರುತು ತೆಗೆಯುತ್ತದೆ. ಕ್ಯಾಲೆಂಡರ್‌ಗಾಗಿ ಖಾತೆಯ ಹೆಸರು ಒತ್ತಿ.",
+  "tutorialAllTitle": "ಎಲ್ಲವೂ ಬಂದಿದೆಯೇ?",
+  "tutorialAllBody": "ಇಂದಿನ ನಿಗದಿತ ವಿತರಣೆಗಳನ್ನು ಒಟ್ಟಿಗೆ ಗುರುತಿಸಲು ಎಲ್ಲವೂ ಬಂದಿದೆ ಒತ್ತಿ.",
+  "tutorialTabsTitle": "ಒಂದು ನೋಟದಲ್ಲಿ ನಿಮ್ಮ ಡೈರಿ",
+  "tutorialTabsBody": "ಇಂದು: ದೈನಂದಿನ ಗುರುತುಗಳು. ತಿಂಗಳು: ಕ್ಯಾಲೆಂಡರ್. ಬಿಲ್: ಮೊತ್ತ ಮತ್ತು WhatsApp. ಸೆಟ್ಟಿಂಗ್‌ಗಳು: ಭಾಷೆ, ಜ್ಞಾಪನೆ.",
+  "tutorialNext": "ಮುಂದೆ",
+  "tutorialDone": "ಡೈರಿ ಪ್ರಾರಂಭಿಸಿ",
+  "tutorialSkip": "ಮಾರ್ಗದರ್ಶನ ಬಿಡಿ",
+  "tutorialVendorTitle": "ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ",
+  "tutorialVendorBody": "ಮನೆಯ ಖಾತೆಗಳ ನಡುವೆ ಬದಲಿಸಲು ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ ಒತ್ತಿ.",
+  "tutorialMonthTitle": "ತಿಂಗಳು ಆಯ್ಕೆಮಾಡಿ",
+  "tutorialMonthBody": "ತಿಂಗಳು ಬದಲಿಸಲು ಎಡ, ಬಲ ಬಾಣ ಬಳಸಿ.",
+  "tutorialCalendarTitle": "ದೈನಂದಿನ ಗುರುತು ಸರಿಪಡಿಸಿ",
+  "tutorialCalendarBody": "ಗುರುತು ಬದಲಿಸಲು ಇಂದು ಅಥವಾ ಹಿಂದಿನ ದಿನ ಒತ್ತಿ. ಮುಂದಿನ ದಿನಗಳನ್ನು ಗುರುತಿಸಲಾಗುವುದಿಲ್ಲ.",
+  "tutorialTotalTitle": "ಇದುವರೆಗಿನ ಮೊತ್ತ ನೋಡಿ",
+  "tutorialTotalBody": "ಕ್ಯಾಲೆಂಡರ್ ಕೆಳಗಿನ ಮೊತ್ತ ವಿತರಣೆ ದಿನಗಳು, ದೈನಂದಿನ ಪ್ರಮಾಣ ಮತ್ತು ದರದಂತೆ ಬದಲಾಗುತ್ತದೆ.",
+  "tutorialBillTotalTitle": "ಬಿಲ್ ಪರಿಶೀಲಿಸಿ",
+  "tutorialBillTotalBody": "ಈ ಖಾತೆ, ತಿಂಗಳ ವಿತರಣೆ ಸಂಖ್ಯೆ ಮತ್ತು ಮೊತ್ತ ಪರಿಶೀಲಿಸಿ. ಬಿಲ್ ಮೊದಲು ಪ್ರಸಕ್ತ ತಿಂಗಳಲ್ಲಿ ತೆರೆಯುತ್ತದೆ.",
+  "tutorialShareTitle": "WhatsApp ನಲ್ಲಿ ಹಂಚಿ",
+  "tutorialShareBody": "WhatsApp ನಲ್ಲಿ ಹಂಚಿ ಒತ್ತಿ. ಕಳುಹಿಸುವ ಮೊದಲು ಬಿಲ್ ಪರಿಶೀಲಿಸಿ ಸ್ವೀಕರಿಸುವವರನ್ನು ಆಯ್ಕೆಮಾಡಿ.",
+  "tutorialPaidTitle": "ಪಾವತಿ ದಾಖಲಿಸಿ",
+  "tutorialPaidBody": "ಹಣ ಕೊಟ್ಟ ನಂತರ ಪಾವತಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ ಒತ್ತಿ. ಇದು ಪಾವತಿ ಸ್ಥಿತಿ ದಾಖಲಿಸುತ್ತದೆ; ಹಣ ಕಳುಹಿಸುವುದಿಲ್ಲ.",
+  "billMessage": "ನಮಸ್ಕಾರ {name} 🙏\n{month} {vendorType} ಬಿಲ್: {days} ದಿನಗಳು × {quantity} {unit} = {total}.\nಧನ್ಯವಾದಗಳು! — {appName}\nPlay Store: [ಲಿಂಕ್ ಶೀಘ್ರದಲ್ಲೇ]",
+  "restoreSummary": "ಡೈರಿಯನ್ನು {vendorCount} ಖಾತೆಗಳು ಮತ್ತು {entryCount} ಗುರುತುಗಳಿಂದ ಬದಲಿಸಬೇಕೇ? ಈಗಿನ ಖಾತೆಗಳು, ಗುರುತುಗಳು, ದರಗಳು, ಪಾವತಿಗಳು, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಬದಲಾಗುತ್ತವೆ.",
+  "reminderBatteryIntro": "ಕೆಲವು ಫೋನ್‌ಗಳು ಹಿನ್ನೆಲೆ ಆಪ್‌ಗಳನ್ನು ನಿಲ್ಲಿಸುತ್ತವೆ. ಜ್ಞಾಪನೆ ಬರದಿದ್ದರೆ ಡೈರಿಯನ್ನು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಅನುಮತಿಸಿ. ಹೆಸರುಗಳು ಫೋನ್‌ಗೆ ಅನುಗುಣವಾಗಿ ಬದಲಾಗುತ್ತವೆ.",
+  "reminderXiaomi": "Xiaomi: Autostart ಅನುಮತಿಸಿ, ಆಪ್ ಬ್ಯಾಟರಿಯಲ್ಲಿ No restrictions ಆಯ್ಕೆಮಾಡಿ.",
+  "reminderOppo": "Oppo: ಆಪ್ ಅಥವಾ ಬ್ಯಾಟರಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಸ್ವಯಂ ಆರಂಭ, ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆ ಅನುಮತಿಸಿ.",
+  "reminderVivo": "Vivo: ಡೈರಿಗೆ Autostart ಮತ್ತು ಹಿನ್ನೆಲೆ ವಿದ್ಯುತ್ ಬಳಕೆ ಅನುಮತಿಸಿ.",
+  "reminderRealme": "Realme: ಆಪ್ ಬ್ಯಾಟರಿ ನಿರ್ವಹಣೆಯಲ್ಲಿ ಸ್ವಯಂ ಆರಂಭ, ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆ ಅನುಮತಿಸಿ.",
+  "proUpgradeTitle": "ಹೆಚ್ಚು ಖಾತೆಗಳು. ಒಂದು ಸರಳ ಡೈರಿ.",
+  "proEverydayHeading": "ಉಚಿತ ಮತ್ತು Pro ನಲ್ಲಿ ದೈನಂದಿನ ಸೌಲಭ್ಯಗಳು",
+  "proDailyHook": "ಮನೆಯ ವಿತರಣೆಗಳನ್ನು ಒಂದೇ ಒತ್ತುವಿಕೆಯಿಂದ ಗುರುತಿಸಿ.",
+  "proRecordsHook": "ಸ್ಪಷ್ಟ ದಾಖಲೆಗಳು ತಿಂಗಳ ಕೊನೆಯ ವಿವಾದಗಳನ್ನು ಕಡಿಮೆಮಾಡುತ್ತವೆ.",
+  "proShareHook": "ಮಾಸಿಕ ಬಿಲ್ WhatsApp ನಲ್ಲಿ ಹಂಚಿ.",
+  "proOfflineHook": "ಇಂಟರ್ನೆಟ್ ಅಥವಾ ಲಾಗಿನ್ ಇಲ್ಲದೆ ಲೆಕ್ಕ ಇಡಿ.",
+  "vendorLimitReached": "ನಿಮ್ಮ ಯೋಜನೆಯಲ್ಲಿ {limit} ಸಕ್ರಿಯ ಖಾತೆಗಳಿಗೆ ಅವಕಾಶವಿದೆ. ಖಾತೆ ಆರ್ಕೈವ್ ಮಾಡಿ ಅಥವಾ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ Pro ಪಡೆಯಿರಿ.",
+  "archiveExplanation": "ಆರ್ಕೈವ್ ಮಾಡಿದರೆ ಖಾತೆ ಇಂದು ವಿಭಾಗದಿಂದ ತೆಗೆಯುತ್ತದೆ. ಗುರುತುಗಳು, ದರಗಳು, ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳು ಉಳಿಯುತ್ತವೆ. ಮತ್ತೆ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು."
+}

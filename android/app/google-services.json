@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "532911946342",
+    "project_id": "hisab-diary-fc5ec",
+    "storage_bucket": "hisab-diary-fc5ec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532911946342:android:005d6cbce2becf29604ba7",
+        "android_client_info": {
+          "package_name": "com.trevio.hisabdiary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHhGLZLOQ9_myxldnnAg7ddVEHGtdgZy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

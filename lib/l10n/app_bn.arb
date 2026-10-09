@@ -1,0 +1,311 @@
+{
+  "@@locale": "bn",
+  "hindiNative": "हिन्दी",
+  "marathiNative": "मराठी",
+  "gujaratiNative": "ગુજરાતી",
+  "englishNative": "English",
+  "@openMonth": {
+    "placeholders": {
+      "vendor": {
+        "type": "String"
+      }
+    }
+  },
+  "@unitRate": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "@cameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@notCameCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@autoCounted": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@dayCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "@restoreSummary": {
+    "placeholders": {
+      "vendorCount": {
+        "type": "String"
+      },
+      "entryCount": {
+        "type": "String"
+      }
+    }
+  },
+  "@billMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "vendorType": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "quantity": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "@reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyPro": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "@vendorLimitReached": {
+    "placeholders": {
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "today": "আজ",
+  "month": "মাস",
+  "appName": "হিসাব ডায়েরি",
+  "bill": "বিল",
+  "storageError": "ডায়েরি খোলা যায়নি। আবার চেষ্টা করুন।",
+  "loading": "ডায়েরি খুলছে",
+  "settings": "সেটিংস",
+  "retry": "আবার চেষ্টা করুন",
+  "privacy": "সবকিছু আপনার ফোনেই থাকে। লগইন বা ইন্টারনেট লাগে না।",
+  "notCame": "আসেনি",
+  "saveError": "পরিবর্তন সংরক্ষণ হয়নি। আবার চেষ্টা করুন।",
+  "piece": "টি",
+  "noDeliveries": "আজ কোনও সরবরাহ নির্ধারিত নেই",
+  "chooseLanguage": "আপনার ভাষা বেছে নিন",
+  "hindi": "হিন্দি",
+  "marathi": "মারাঠি",
+  "gujarati": "গুজরাটি",
+  "english": "ইংরেজি",
+  "tamil": "তামিল",
+  "urdu": "উর্দু",
+  "bengali": "বাংলা",
+  "telugu": "তেলুগু",
+  "kannada": "কন্নড়",
+  "addNew": "＋ নতুন হিসাব",
+  "litre": "লিটার",
+  "milk": "দুধ",
+  "openMonth": "{vendor}-এর মাস খুলুন",
+  "saving": "সংরক্ষণ হচ্ছে…",
+  "carCleaner": "গাড়ি পরিষ্কারক",
+  "continueLabel": "চালিয়ে যান",
+  "visit": "বার",
+  "other": "অন্যান্য",
+  "came": "এসেছে",
+  "addFirst": "＋ প্রথম হিসাব যোগ করুন",
+  "languageLater": "পরে সেটিংস থেকে ভাষা বদলাতে পারবেন",
+  "tiffin": "টিফিন",
+  "maid": "গৃহকর্মী",
+  "allCame": "সব এসেছে",
+  "newspaper": "সংবাদপত্র",
+  "friday": "শুক্রবার",
+  "invalidVendorAmount": "সঠিক সংখ্যা দিন: পরিমাণ ০-এর বেশি এবং দাম ঋণাত্মক নয়।",
+  "dailyQuantity": "দৈনিক পরিমাণ",
+  "unitRate": "প্রতি {unit} দাম",
+  "saturday": "শনিবার",
+  "chooseOne": "একটি বেছে নিন",
+  "sunday": "রবিবার",
+  "fridayShort": "শুক্র",
+  "saveVendor": "সংরক্ষণ করুন",
+  "decreaseQuantity": "পরিমাণ কমান",
+  "tuesdayShort": "মঙ্গল",
+  "back": "ফিরুন",
+  "tuesday": "মঙ্গলবার",
+  "pickVendorType": "কী যোগ করতে চান?",
+  "decreaseRate": "দাম কমান",
+  "thursday": "বৃহস্পতিবার",
+  "mondayShort": "সোম",
+  "monday": "সোমবার",
+  "thursdayShort": "বৃহঃ",
+  "wednesday": "বুধবার",
+  "optionalName": "নাম (ঐচ্ছিক)",
+  "increaseQuantity": "পরিমাণ বাড়ান",
+  "wednesdayShort": "বুধ",
+  "chooseWeekday": "সপ্তাহের অন্তত একটি দিন বেছে নিন",
+  "someDays": "কিছু দিন",
+  "everyDay": "প্রতিদিন",
+  "sundayShort": "রবি",
+  "nameHint": "সরবরাহকারীর নাম",
+  "increaseRate": "দাম বাড়ান",
+  "deliverySchedule": "কখন আসেন?",
+  "saturdayShort": "শনি",
+  "unmarked": "চিহ্নিত নয়",
+  "runningTotal": "এখন পর্যন্ত মোট",
+  "autoCame": "আপনা থেকে এসেছে ধরা হয়েছে",
+  "calendarHint": "এসেছে / আসেনি বদলাতে দিনে ট্যাপ করুন",
+  "nextMonth": "পরের মাস",
+  "notCameCount": "আসেনি: {count} দিন",
+  "autoCounted": "চিহ্নহীন দিন এসেছে ধরা হয়েছে: {count} দিন",
+  "dayUnavailable": "এই দিনটি উপলব্ধ নয়",
+  "cameCount": "এসেছে: {count} দিন",
+  "chooseVendor": "হিসাব বেছে নিন",
+  "previousMonth": "আগের মাস",
+  "noVendorsCalendar": "ক্যালেন্ডার দেখতে প্রথম হিসাব যোগ করুন।",
+  "backupTooLarge": "ব্যাকআপ ১০ MB-এর বড়। ছোট ফাইল বেছে নিন।",
+  "shareError": "শেয়ার করা যায়নি। আবার চেষ্টা করুন।",
+  "textSize": "লেখার আকার",
+  "restoreSuccess": "ব্যাকআপ পুনরুদ্ধার হয়েছে",
+  "largeText": "বড় লেখা",
+  "languageLabel": "ভাষা",
+  "paid": "পরিশোধিত",
+  "textSizeSample": "অ",
+  "invalidBackup": "এটি সঠিক হিসাব ডায়েরি ব্যাকআপ নয়। ডায়েরি বদলায়নি।",
+  "cancel": "বাতিল",
+  "normalText": "সাধারণ লেখা",
+  "shareWhatsApp": "WhatsApp-এ শেয়ার করুন",
+  "restoreBackup": "ব্যাকআপ পুনরুদ্ধার করুন",
+  "markPaid": "পরিশোধিত চিহ্নিত করুন",
+  "noVendorsBill": "বিল তৈরি করতে প্রথম হিসাব যোগ করুন।",
+  "countUnmarkedLabel": "চিহ্নহীন দিন এসেছে ধরা হবে",
+  "dayCount": "{count} দিন",
+  "totalDue": "মোট বকেয়া",
+  "smallText": "ছোট লেখা",
+  "shareBackup": "ব্যাকআপ শেয়ার করুন",
+  "eveningReminder": "সন্ধ্যার রিমাইন্ডার",
+  "restoreError": "ব্যাকআপ পুনরুদ্ধার হয়নি। ডায়েরি বদলায়নি।",
+  "genericVendorName": "বন্ধু",
+  "reminderQuestion": "আজ সব এসেছে?",
+  "reminderAllCame": "হ্যাঁ, সব এসেছে",
+  "reminderView": "আজকের হিসাব দেখুন",
+  "reminderAt": "{time}-এ রিমাইন্ডার",
+  "reminderPermission": "ফোনের সেটিংসে বিজ্ঞপ্তি অনুমতি দিয়ে রিমাইন্ডার আবার চালু করুন।",
+  "reminderError": "রিমাইন্ডার সংরক্ষণ বা পাঠানো যায়নি। অনুমতি দেখুন এবং প্রয়োজনে আজকের হিসাব চিহ্নিত করুন।",
+  "reminderApproximate": "নির্ভুল অ্যালার্ম বন্ধ। রিমাইন্ডার একটু দেরিতে আসতে পারে।",
+  "reminderHelpTitle": "রিমাইন্ডার সহায়তা",
+  "openBatterySettings": "ফোনের সেটিংস খুলুন",
+  "testReminder": "রিমাইন্ডার পরীক্ষা করুন",
+  "enableReminderFirst": "আগে সন্ধ্যার রিমাইন্ডার চালু করে বিজ্ঞপ্তি অনুমতি দিন।",
+  "testReminderSent": "পরীক্ষামূলক বিজ্ঞপ্তি পাঠানো হয়েছে। বিজ্ঞপ্তি প্যানেল দেখুন।",
+  "proContinue": "ডায়েরিতে ফিরুন",
+  "proPremium": "প্রিমিয়াম",
+  "proFree": "বিনামূল্যে",
+  "proVendorCaption": "সক্রিয় হিসাব",
+  "proOneTime": "একবার কিনুন। সাবস্ক্রিপশন নেই।",
+  "proLocalDiary": "আপনার ডায়েরি এই ফোনেই থাকে।",
+  "proCapacity": "১২টি সক্রিয় হিসাব পরিচালনা করুন।",
+  "proTitle": "হিসাব ডায়েরি Pro",
+  "proActive": "Pro চালু — ১২টি সক্রিয় হিসাব পর্যন্ত",
+  "proDescription": "একবার কিনে আরও ঘরোয়া হিসাব",
+  "proLimits": "বিনামূল্যে: ৩টি সক্রিয় হিসাব। Pro: ১২টি। ডায়েরি ফোনেই থাকে।",
+  "buyPro": "Pro কিনুন · {price}",
+  "restorePurchases": "কেনাকাটা পুনরুদ্ধার করুন",
+  "purchasePending": "স্টোরের অপেক্ষায়…",
+  "storeUnavailable": "স্টোরে Pro এখন নেই। পরে চেষ্টা করুন।",
+  "purchaseError": "কেনাকাটা সম্পূর্ণ হয়নি। Play Store দেখে আবার চেষ্টা করুন।",
+  "purchaseCanceled": "কেনাকাটা বাতিল। আপনার প্ল্যান বদলায়নি।",
+  "noProPurchase": "এই Play Store অ্যাকাউন্টে Pro কেনা পাওয়া যায়নি।",
+  "manageVendors": "হিসাব পরিচালনা",
+  "archiveVendor": "হিসাব আর্কাইভ করুন",
+  "activateVendor": "আবার সক্রিয় করুন",
+  "vendorArchived": "আর্কাইভ করা",
+  "vendorActive": "সক্রিয়",
+  "splashTagline": "প্রতিদিনের হিসাব, সহজভাবে।",
+  "shareVendorName": "সরবরাহকারীর নাম",
+  "shareService": "সেবা",
+  "shareBillingMonth": "বিলের মাস",
+  "shareDailyQuantity": "দৈনিক পরিমাণ",
+  "shareCalculation": "হিসাব (দিন × দৈনিক পরিমাণ × দাম)",
+  "shareTotalAmount": "মোট টাকা",
+  "shareSource": "শেয়ার করা হয়েছে",
+  "vegetables": "শাকসবজি",
+  "fruits": "ফল",
+  "groceries": "মুদিখানা",
+  "waterDelivery": "জল সরবরাহ",
+  "eggs": "ডিম",
+  "bread": "পাউরুটি",
+  "laundry": "কাপড় ধোয়া",
+  "ironing": "ইস্ত্রি",
+  "cook": "রাঁধুনি",
+  "gardener": "মালি",
+  "houseCleaning": "বাড়ি পরিষ্কার",
+  "cookingGas": "রান্নার গ্যাস",
+  "kilogram": "কেজি",
+  "proComingSoon": "Pro শীঘ্রই আসছে",
+  "allFeaturesFree": "বর্তমান সব সুবিধা বিনামূল্যে, সীমাহীন হিসাবসহ।",
+  "tutorialAddTitle": "প্রথম হিসাব যোগ করুন",
+  "tutorialAddBody": "হিসাব যোগ করুন ট্যাপ করে সেবা বেছে নিন। দৈনিক পরিমাণ ও দাম দিয়ে সংরক্ষণ করুন।",
+  "tutorialMarkTitle": "আজকের সরবরাহ চিহ্নিত করুন",
+  "tutorialMarkBody": "এসেছে বা আসেনি ট্যাপ করুন। আবার ট্যাপ করলে চিহ্ন মুছবে। ক্যালেন্ডার খুলতে হিসাবের নাম ট্যাপ করুন।",
+  "tutorialAllTitle": "সব এসেছে?",
+  "tutorialAllBody": "আজকের নির্ধারিত সরবরাহ একসঙ্গে চিহ্নিত করতে সব এসেছে ট্যাপ করুন।",
+  "tutorialTabsTitle": "এক নজরে আপনার ডায়েরি",
+  "tutorialTabsBody": "আজ: দৈনিক চিহ্ন। মাস: ক্যালেন্ডার। বিল: মোট ও WhatsApp শেয়ার। সেটিংস: ভাষা ও রিমাইন্ডার।",
+  "tutorialNext": "পরবর্তী",
+  "tutorialDone": "ডায়েরি শুরু করুন",
+  "tutorialSkip": "নির্দেশনা এড়িয়ে যান",
+  "tutorialVendorTitle": "হিসাব বেছে নিন",
+  "tutorialVendorBody": "ঘরোয়া হিসাব বদলাতে হিসাব বেছে নিন ট্যাপ করুন।",
+  "tutorialMonthTitle": "মাস বেছে নিন",
+  "tutorialMonthBody": "মাস বদলাতে বাঁ ও ডান তীর ব্যবহার করুন।",
+  "tutorialCalendarTitle": "দৈনিক চিহ্ন ঠিক করুন",
+  "tutorialCalendarBody": "চিহ্ন বদলাতে আজ বা আগের দিনে ট্যাপ করুন। ভবিষ্যতের দিন চিহ্নিত করা যায় না।",
+  "tutorialTotalTitle": "এখন পর্যন্ত মোট দেখুন",
+  "tutorialTotalBody": "ক্যালেন্ডারের নিচে মোট সরবরাহের দিন, দৈনিক পরিমাণ ও দাম অনুযায়ী বদলায়।",
+  "tutorialBillTotalTitle": "বিল যাচাই করুন",
+  "tutorialBillTotalBody": "এই হিসাব ও মাসের সরবরাহ সংখ্যা ও মোট দেখুন। বিল প্রথমে বর্তমান মাসে খোলে।",
+  "tutorialShareTitle": "WhatsApp-এ শেয়ার করুন",
+  "tutorialShareBody": "WhatsApp-এ শেয়ার করুন ট্যাপ করুন। পাঠানোর আগে বিল যাচাই করে প্রাপক বেছে নিন।",
+  "tutorialPaidTitle": "পেমেন্ট নথিভুক্ত করুন",
+  "tutorialPaidBody": "টাকা দেওয়ার পর পরিশোধিত চিহ্নিত করুন ট্যাপ করুন। এতে পেমেন্টের অবস্থা নথিভুক্ত হয়, টাকা পাঠানো হয় না।",
+  "billMessage": "নমস্কার {name} 🙏\n{month} {vendorType} বিল: {days} দিন × {quantity} {unit} = {total}।\nধন্যবাদ! — {appName}\nPlay Store: [লিংক শীঘ্রই আসছে]",
+  "restoreSummary": "ডায়েরি {vendorCount}টি হিসাব ও {entryCount}টি চিহ্ন দিয়ে বদলাবেন? বর্তমান হিসাব, চিহ্ন, দাম, পেমেন্ট ও সেটিংস বদলে যাবে।",
+  "reminderBatteryIntro": "কিছু ফোন পটভূমিতে অ্যাপ থামায়। রিমাইন্ডার না এলে ডায়েরিকে পটভূমিতে চলার অনুমতি দিন। ফোনভেদে নাম বদলায়।",
+  "reminderXiaomi": "Xiaomi: Autostart অনুমতি দিন, অ্যাপের ব্যাটারিতে No restrictions বেছে নিন।",
+  "reminderOppo": "Oppo: অ্যাপ বা ব্যাটারি সেটিংসে স্বয়ংক্রিয় চালু ও পটভূমির অনুমতি দিন।",
+  "reminderVivo": "Vivo: ডায়েরির Autostart ও পটভূমিতে ব্যাটারি ব্যবহার অনুমতি দিন।",
+  "reminderRealme": "Realme: অ্যাপের ব্যাটারি ব্যবস্থাপনায় স্বয়ংক্রিয় চালু ও পটভূমির অনুমতি দিন।",
+  "proUpgradeTitle": "আরও হিসাব। একটি সহজ ডায়েরি।",
+  "proEverydayHeading": "বিনামূল্যে ও Pro-তে দৈনন্দিন সুবিধা",
+  "proDailyHook": "ঘরোয়া সরবরাহ এক ট্যাপে চিহ্নিত করুন।",
+  "proRecordsHook": "স্পষ্ট রেকর্ডে মাস শেষে তর্ক কমে।",
+  "proShareHook": "মাসিক বিল WhatsApp-এ শেয়ার করুন।",
+  "proOfflineHook": "ইন্টারনেট বা লগইন ছাড়াই হিসাব রাখুন।",
+  "vendorLimitReached": "আপনার প্ল্যানে {limit}টি সক্রিয় হিসাব রাখা যায়। একটি আর্কাইভ করুন বা সেটিংসে Pro কিনুন।",
+  "archiveExplanation": "আর্কাইভ করলে আজ থেকে হিসাব সরবে। চিহ্ন, দাম ও পরিশোধিত বিল থাকবে। আবার সক্রিয় করতে পারবেন।"
+}
