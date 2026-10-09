@@ -354,5 +354,16 @@
   "editVendorRatesInfo": "পরিমাণ এবং দামের পরিবর্তন এই মাস থেকে প্রযোজ্য। সরবরাহের দিন বদলালে চিহ্ন না দেওয়া দিনের হিসাবও বদলায়।",
   "allVendors": "সব বিক্রেতা",
   "monthlyTotal": "মাসিক মোট",
-  "allVendorsBillInfo": "আপনার সক্রিয় অ্যাকাউন্টগুলির মাসিক বিল। পরিশোধ করা বিলও মোট পরিমাণে অন্তর্ভুক্ত।"
+  "allVendorsBillInfo": "আপনার সক্রিয় অ্যাকাউন্টগুলির মাসিক বিল। পরিশোধ করা বিলও মোট পরিমাণে অন্তর্ভুক্ত।",
+  "sharePdf": "PDF শেয়ার করুন",
+  "shareCsv": "CSV শেয়ার করুন",
+  "spendingComparison": "মাসিক তুলনা",
+  "comparisonFullMonths": "পরিশোধিত বিলসহ পুরো মাসের বিল।",
+  "comparisonMonthToDate": "পরিশোধিত বিলসহ এই মাসে এখন পর্যন্ত হওয়া বিল।",
+  "comparisonNoBaseline": "তুলনা করার জন্য আগের সময়কালে কোনো পরিমাণ নেই।",
+  "comparisonHigher": "{amount} বেশি",
+  "comparisonLower": "{amount} কম",
+  "comparisonUnchanged": "কোনো পরিবর্তন নেই",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

@@ -274,5 +274,16 @@
   "editVendorRatesInfo": "Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days.",
   "allVendors": "All vendors",
   "monthlyTotal": "Monthly total",
-  "allVendorsBillInfo": "Monthly bills for your active accounts. Paid bills are included in the total."
+  "allVendorsBillInfo": "Monthly bills for your active accounts. Paid bills are included in the total.",
+  "sharePdf": "Share PDF",
+  "shareCsv": "Share CSV",
+  "spendingComparison": "Monthly comparison",
+  "comparisonFullMonths": "Complete monthly bills, including paid bills.",
+  "comparisonMonthToDate": "Month-to-date bill amounts, including paid bills.",
+  "comparisonNoBaseline": "No amount in the previous period to compare.",
+  "comparisonHigher": "{amount} higher",
+  "comparisonLower": "{amount} lower",
+  "comparisonUnchanged": "No change",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

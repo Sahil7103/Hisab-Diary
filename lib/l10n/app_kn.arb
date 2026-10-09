@@ -354,5 +354,16 @@
   "editVendorRatesInfo": "ಪ್ರಮಾಣ ಮತ್ತು ಬೆಲೆಯ ಬದಲಾವಣೆಗಳು ಈ ತಿಂಗಳಿನಿಂದ ಅನ್ವಯಿಸುತ್ತವೆ. ವಿತರಣೆಯ ದಿನಗಳನ್ನು ಬದಲಿಸಿದರೆ ಗುರುತಿಸದ ದಿನಗಳ ಲೆಕ್ಕವೂ ಬದಲಾಗುತ್ತದೆ.",
   "allVendors": "ಎಲ್ಲಾ ಮಾರಾಟಗಾರರು",
   "monthlyTotal": "ಮಾಸಿಕ ಒಟ್ಟು",
-  "allVendorsBillInfo": "ನಿಮ್ಮ ಸಕ್ರಿಯ ಖಾತೆಗಳ ಮಾಸಿಕ ಬಿಲ್‌ಗಳು. ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳೂ ಒಟ್ಟು ಮೊತ್ತದಲ್ಲಿ ಸೇರಿವೆ."
+  "allVendorsBillInfo": "ನಿಮ್ಮ ಸಕ್ರಿಯ ಖಾತೆಗಳ ಮಾಸಿಕ ಬಿಲ್‌ಗಳು. ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳೂ ಒಟ್ಟು ಮೊತ್ತದಲ್ಲಿ ಸೇರಿವೆ.",
+  "sharePdf": "PDF ಹಂಚಿಕೊಳ್ಳಿ",
+  "shareCsv": "CSV ಹಂಚಿಕೊಳ್ಳಿ",
+  "spendingComparison": "ಮಾಸಿಕ ಹೋಲಿಕೆ",
+  "comparisonFullMonths": "ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳು ಸೇರಿದಂತೆ ಪೂರ್ಣ ತಿಂಗಳ ಬಿಲ್‌ಗಳು.",
+  "comparisonMonthToDate": "ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳು ಸೇರಿದಂತೆ ಈ ತಿಂಗಳಲ್ಲಿ ಇಲ್ಲಿಯವರೆಗಿನ ಬಿಲ್‌ಗಳು.",
+  "comparisonNoBaseline": "ಹೋಲಿಸಲು ಹಿಂದಿನ ಅವಧಿಯಲ್ಲಿ ಯಾವುದೇ ಮೊತ್ತವಿಲ್ಲ.",
+  "comparisonHigher": "{amount} ಹೆಚ್ಚು",
+  "comparisonLower": "{amount} ಕಡಿಮೆ",
+  "comparisonUnchanged": "ಬದಲಾವಣೆ ಇಲ್ಲ",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

@@ -1644,6 +1644,72 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'आपके सक्रिय खातों के मासिक बिल। भुगतान किए गए बिल भी कुल राशि में शामिल हैं।'**
   String get allVendorsBillInfo;
+
+  /// No description provided for @sharePdf.
+  ///
+  /// In hi, this message translates to:
+  /// **'PDF साझा करें'**
+  String get sharePdf;
+
+  /// No description provided for @shareCsv.
+  ///
+  /// In hi, this message translates to:
+  /// **'CSV साझा करें'**
+  String get shareCsv;
+
+  /// No description provided for @spendingComparison.
+  ///
+  /// In hi, this message translates to:
+  /// **'मासिक तुलना'**
+  String get spendingComparison;
+
+  /// No description provided for @comparisonFullMonths.
+  ///
+  /// In hi, this message translates to:
+  /// **'पूरे महीने के बिल, भुगतान किए गए बिलों सहित।'**
+  String get comparisonFullMonths;
+
+  /// No description provided for @comparisonMonthToDate.
+  ///
+  /// In hi, this message translates to:
+  /// **'इस महीने अब तक के बिल, भुगतान किए गए बिलों सहित।'**
+  String get comparisonMonthToDate;
+
+  /// No description provided for @comparisonNoBaseline.
+  ///
+  /// In hi, this message translates to:
+  /// **'तुलना के लिए पिछली अवधि में कोई राशि नहीं है।'**
+  String get comparisonNoBaseline;
+
+  /// No description provided for @comparisonHigher.
+  ///
+  /// In hi, this message translates to:
+  /// **'{amount} अधिक'**
+  String comparisonHigher(String amount);
+
+  /// No description provided for @comparisonLower.
+  ///
+  /// In hi, this message translates to:
+  /// **'{amount} कम'**
+  String comparisonLower(String amount);
+
+  /// No description provided for @comparisonUnchanged.
+  ///
+  /// In hi, this message translates to:
+  /// **'कोई बदलाव नहीं'**
+  String get comparisonUnchanged;
+
+  /// No description provided for @comparisonChangePercent.
+  ///
+  /// In hi, this message translates to:
+  /// **'{percent}%'**
+  String comparisonChangePercent(String percent);
+
+  /// No description provided for @comparisonPeriod.
+  ///
+  /// In hi, this message translates to:
+  /// **'{start} – {end}'**
+  String comparisonPeriod(String start, String end);
 }
 
 class _AppLocalizationsDelegate

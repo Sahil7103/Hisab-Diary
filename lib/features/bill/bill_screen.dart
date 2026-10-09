@@ -19,6 +19,11 @@ import '../vendors/vendor_selector.dart';
 import '../vendors/vendor_type_screen.dart';
 import 'bill_message.dart';
 import 'bill_repository.dart';
+import 'all_vendors_bill.dart';
+import 'bill_export_service.dart';
+import 'bill_share_actions.dart';
+import 'spending_comparison.dart';
+import 'spending_comparison_card.dart';
 
 // Prevent duplicate dialogs while the persisted setting is being saved.
 bool _billTutorialShown = false;
@@ -70,10 +75,16 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
     _scrollController.dispose();
     super.dispose();
   }
-  Future<void> _revealTutorialTarget({bool bottom = false}) async {
+  Future<void> _revealTutorialTarget({bool bottom = false, GlobalKey? target}) async {
     if (!mounted || !_scrollController.hasClients) return;
-    await _scrollController.animateTo(bottom ? _scrollController.position.maxScrollExtent : 0,
-      duration: DiaryMotion.duration(context, DiaryMotion.transition), curve: Curves.easeOut);
+    final targetContext = target?.currentContext;
+    if (targetContext != null) {
+      await Scrollable.ensureVisible(targetContext, alignment: 0.3,
+        duration: DiaryMotion.duration(context, DiaryMotion.transition), curve: Curves.easeOut);
+    } else {
+      await _scrollController.animateTo(bottom ? _scrollController.position.maxScrollExtent : 0,
+        duration: DiaryMotion.duration(context, DiaryMotion.transition), curve: Curves.easeOut);
+    }
     await WidgetsBinding.instance.endOfFrame;
   }
 
@@ -110,7 +121,7 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
             body: _allVendors ? strings.allVendorsBillInfo : strings.tutorialBillTotalBody,
             onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _shareKey, title: strings.tutorialShareTitle,
-            body: strings.tutorialShareBody, onReveal: () => _revealTutorialTarget(bottom: true)),
+            body: strings.tutorialShareBody, onReveal: () => _revealTutorialTarget(target: _shareKey)),
           if (!_allVendors) DiaryTutorialStep(target: _paidKey, title: strings.tutorialPaidTitle,
             body: strings.tutorialPaidBody, onReveal: () => _revealTutorialTarget(bottom: true)),
         ]));
@@ -140,6 +151,15 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
       if (mounted) setState(() => _busy = false);
     }
   }
+  Future<void> _shareExport(AllVendorsBill bill, BillExportFormat format) {
+    final strings = AppLocalizations.of(context)!;
+    return _perform(() async {
+      final file = await BillExportService().createExport(bill, strings, format);
+      if (!mounted) return;
+      await ref.read(billRepositoryProvider).shareExport(file);
+    }, strings.shareError);
+  }
+
   @override
   Widget build(BuildContext context) {
     final strings = AppLocalizations.of(context)!;
@@ -234,9 +254,11 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
                   textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
               ]))),
             const SizedBox(height: 8),
-            DiaryButton(key: _shareKey, label: strings.shareWhatsApp,
-              color: DiaryColors.cameEdge, edge: DiaryColors.cameEdge,
-              onPressed: _busy ? null : () => _perform(() => repository.shareMessage(message), strings.shareError)),
+            ..._comparisonContent(context, vendorId: vendor.id),
+            BillShareActions(textShareKey: _shareKey, busy: _busy,
+              onShareText: () => _perform(() => repository.shareMessage(message), strings.shareError),
+              onShareExport: (format) => _shareExport(
+                AllVendorsBill(month: summary.month, bills: [summary]), format)),
             const SizedBox(height: 12),
             if (paid.hasError) ...[
               Text(strings.storageError, style: Theme.of(context).textTheme.bodyMedium),
@@ -280,11 +302,28 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
           ]))),
         Text(strings.allVendorsBillInfo, style: Theme.of(context).textTheme.bodyMedium),
         const SizedBox(height: 16),
-        DiaryButton(key: _shareKey, label: strings.shareWhatsApp,
-          color: DiaryColors.cameEdge, edge: DiaryColors.cameEdge,
-          onPressed: _busy ? null : () => _perform(() => ref.read(billRepositoryProvider)
-            .shareMessage(allVendorsShareMessage(summary, strings)), strings.shareError)),
+        ..._comparisonContent(context),
+        BillShareActions(textShareKey: _shareKey, busy: _busy,
+          onShareText: () => _perform(() => ref.read(billRepositoryProvider)
+            .shareMessage(allVendorsShareMessage(summary, strings)), strings.shareError),
+          onShareExport: (format) => _shareExport(summary, format)),
       ],
+    );
+  }
+
+  List<Widget> _comparisonContent(BuildContext context, {int? vendorId}) {
+    final strings = AppLocalizations.of(context)!;
+    final request = (vendorId: vendorId, month: _month, today: _today);
+    return ref.watch(spendingComparisonProvider(request)).when(
+      loading: () => [const LinearProgressIndicator(), const SizedBox(height: 16)],
+      error: (_, _) => [
+        Text(strings.storageError, style: Theme.of(context).textTheme.bodyMedium),
+        DiaryButton(label: strings.retry,
+          onPressed: () => ref.invalidate(spendingComparisonProvider(request))),
+        const SizedBox(height: 16),
+      ],
+      data: (comparison) => [SpendingComparisonCard(comparison: comparison),
+        const SizedBox(height: 16)],
     );
   }
 

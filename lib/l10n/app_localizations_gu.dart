@@ -841,4 +841,47 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'તમારા સક્રિય ખાતાઓનાં માસિક બિલ. ચૂકવેલા બિલ પણ કુલ રકમમાં સામેલ છે.';
+
+  @override
+  String get sharePdf => 'PDF શેર કરો';
+
+  @override
+  String get shareCsv => 'CSV શેર કરો';
+
+  @override
+  String get spendingComparison => 'માસિક સરખામણી';
+
+  @override
+  String get comparisonFullMonths => 'ચૂકવેલા બિલ સહિત આખા મહિનાનાં બિલ.';
+
+  @override
+  String get comparisonMonthToDate =>
+      'ચૂકવેલા બિલ સહિત આ મહિનામાં અત્યાર સુધીનાં બિલ.';
+
+  @override
+  String get comparisonNoBaseline =>
+      'સરખામણી માટે અગાઉના સમયગાળામાં કોઈ રકમ નથી.';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount વધુ';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount ઓછા';
+  }
+
+  @override
+  String get comparisonUnchanged => 'કોઈ ફેરફાર નથી';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

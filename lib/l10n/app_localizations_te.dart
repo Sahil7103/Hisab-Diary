@@ -846,4 +846,47 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'మీ క్రియాశీల ఖాతాల నెలవారీ బిల్లులు. చెల్లించిన బిల్లులు కూడా మొత్తం లో చేర్చబడ్డాయి.';
+
+  @override
+  String get sharePdf => 'PDF షేర్ చేయండి';
+
+  @override
+  String get shareCsv => 'CSV షేర్ చేయండి';
+
+  @override
+  String get spendingComparison => 'నెలవారీ పోలిక';
+
+  @override
+  String get comparisonFullMonths =>
+      'చెల్లించిన బిల్లులతో సహా మొత్తం నెల బిల్లులు.';
+
+  @override
+  String get comparisonMonthToDate =>
+      'చెల్లించిన బిల్లులతో సహా ఈ నెలలో ఇప్పటివరకు బిల్లులు.';
+
+  @override
+  String get comparisonNoBaseline => 'పోల్చడానికి గత కాలంలో మొత్తం ఏదీ లేదు.';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount ఎక్కువ';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount తక్కువ';
+  }
+
+  @override
+  String get comparisonUnchanged => 'మార్పు లేదు';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

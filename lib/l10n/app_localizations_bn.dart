@@ -843,4 +843,47 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'আপনার সক্রিয় অ্যাকাউন্টগুলির মাসিক বিল। পরিশোধ করা বিলও মোট পরিমাণে অন্তর্ভুক্ত।';
+
+  @override
+  String get sharePdf => 'PDF শেয়ার করুন';
+
+  @override
+  String get shareCsv => 'CSV শেয়ার করুন';
+
+  @override
+  String get spendingComparison => 'মাসিক তুলনা';
+
+  @override
+  String get comparisonFullMonths => 'পরিশোধিত বিলসহ পুরো মাসের বিল।';
+
+  @override
+  String get comparisonMonthToDate =>
+      'পরিশোধিত বিলসহ এই মাসে এখন পর্যন্ত হওয়া বিল।';
+
+  @override
+  String get comparisonNoBaseline =>
+      'তুলনা করার জন্য আগের সময়কালে কোনো পরিমাণ নেই।';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount বেশি';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount কম';
+  }
+
+  @override
+  String get comparisonUnchanged => 'কোনো পরিবর্তন নেই';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

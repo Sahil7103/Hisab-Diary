@@ -354,5 +354,16 @@
   "editVendorRatesInfo": "مقدار اور قیمت کی تبدیلیاں اس مہینے سے لاگو ہوتی ہیں۔ ترسیل کے دن بدلنے سے غیر نشان زدہ دنوں کا حساب بھی بدلتا ہے۔",
   "allVendors": "تمام دکاندار",
   "monthlyTotal": "ماہانہ کل رقم",
-  "allVendorsBillInfo": "آپ کے فعال کھاتوں کے ماہانہ بل۔ ادا شدہ بل بھی کل رقم میں شامل ہیں۔"
+  "allVendorsBillInfo": "آپ کے فعال کھاتوں کے ماہانہ بل۔ ادا شدہ بل بھی کل رقم میں شامل ہیں۔",
+  "sharePdf": "PDF شیئر کریں",
+  "shareCsv": "CSV شیئر کریں",
+  "spendingComparison": "ماہانہ موازنہ",
+  "comparisonFullMonths": "پورے مہینے کے بل، بشمول ادا شدہ بل۔",
+  "comparisonMonthToDate": "اس ماہ اب تک کے بل، بشمول ادا شدہ بل۔",
+  "comparisonNoBaseline": "موازنے کے لیے پچھلی مدت میں کوئی رقم نہیں ہے۔",
+  "comparisonHigher": "{amount} زیادہ",
+  "comparisonLower": "{amount} کم",
+  "comparisonUnchanged": "کوئی تبدیلی نہیں",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

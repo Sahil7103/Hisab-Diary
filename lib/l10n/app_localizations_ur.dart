@@ -845,4 +845,46 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'آپ کے فعال کھاتوں کے ماہانہ بل۔ ادا شدہ بل بھی کل رقم میں شامل ہیں۔';
+
+  @override
+  String get sharePdf => 'PDF شیئر کریں';
+
+  @override
+  String get shareCsv => 'CSV شیئر کریں';
+
+  @override
+  String get spendingComparison => 'ماہانہ موازنہ';
+
+  @override
+  String get comparisonFullMonths => 'پورے مہینے کے بل، بشمول ادا شدہ بل۔';
+
+  @override
+  String get comparisonMonthToDate => 'اس ماہ اب تک کے بل، بشمول ادا شدہ بل۔';
+
+  @override
+  String get comparisonNoBaseline =>
+      'موازنے کے لیے پچھلی مدت میں کوئی رقم نہیں ہے۔';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount زیادہ';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount کم';
+  }
+
+  @override
+  String get comparisonUnchanged => 'کوئی تبدیلی نہیں';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

@@ -852,4 +852,48 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'உங்கள் செயலில் உள்ள கணக்குகளின் மாதாந்திர பில்கள். செலுத்தப்பட்ட பில்களும் மொத்தத்தில் சேர்க்கப்பட்டுள்ளன.';
+
+  @override
+  String get sharePdf => 'PDF பகிரவும்';
+
+  @override
+  String get shareCsv => 'CSV பகிரவும்';
+
+  @override
+  String get spendingComparison => 'மாதாந்திர ஒப்பீடு';
+
+  @override
+  String get comparisonFullMonths =>
+      'செலுத்திய பில்கள் உட்பட முழு மாதத்தின் பில்கள்.';
+
+  @override
+  String get comparisonMonthToDate =>
+      'செலுத்திய பில்கள் உட்பட இந்த மாதத்தில் இதுவரையிலான பில்கள்.';
+
+  @override
+  String get comparisonNoBaseline =>
+      'ஒப்பிட முந்தைய காலப்பகுதியில் தொகை எதுவும் இல்லை.';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount அதிகம்';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount குறைவு';
+  }
+
+  @override
+  String get comparisonUnchanged => 'மாற்றம் இல்லை';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

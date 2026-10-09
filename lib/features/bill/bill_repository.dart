@@ -8,6 +8,7 @@ import '../../core/utils/date_keys.dart';
 import '../month/month_bill.dart';
 import '../month/month_repository.dart';
 import 'all_vendors_bill.dart';
+import 'bill_export_service.dart';
 import 'bill_review_service.dart';
 
 final billReviewServiceProvider = Provider<BillReviewService>((ref) {
@@ -67,9 +68,15 @@ class BillRepository {
         paidAt: diaryDate(DateTime.now())), mode: InsertMode.insertOrIgnore);
   }));
 
-  Future<void> shareMessage(String message) async {
+  Future<void> shareMessage(String message) => _share(ShareParams(text: message));
+
+  Future<void> shareExport(BillExportFile file) => _share(ShareParams(
+    files: [XFile.fromData(file.bytes, mimeType: file.mimeType)],
+    fileNameOverrides: [file.name]));
+
+  Future<void> _share(ShareParams params) async {
     final status = await AppTelemetry.measure('bill_share', () async {
-      final result = await SharePlus.instance.share(ShareParams(text: message));
+      final result = await SharePlus.instance.share(params);
       AppTelemetry.event('bill_share_${result.status.name}');
       return result.status;
     });

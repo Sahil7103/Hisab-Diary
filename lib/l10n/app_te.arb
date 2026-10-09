@@ -354,5 +354,16 @@
   "editVendorRatesInfo": "పరిమాణం మరియు ధర మార్పులు ఈ నెల నుండి వర్తిస్తాయి. డెలివరీ రోజులను మార్చితే గుర్తించని రోజుల లెక్క కూడా మారుతుంది.",
   "allVendors": "అందరు విక్రేతలు",
   "monthlyTotal": "నెలవారీ మొత్తం",
-  "allVendorsBillInfo": "మీ క్రియాశీల ఖాతాల నెలవారీ బిల్లులు. చెల్లించిన బిల్లులు కూడా మొత్తం లో చేర్చబడ్డాయి."
+  "allVendorsBillInfo": "మీ క్రియాశీల ఖాతాల నెలవారీ బిల్లులు. చెల్లించిన బిల్లులు కూడా మొత్తం లో చేర్చబడ్డాయి.",
+  "sharePdf": "PDF షేర్ చేయండి",
+  "shareCsv": "CSV షేర్ చేయండి",
+  "spendingComparison": "నెలవారీ పోలిక",
+  "comparisonFullMonths": "చెల్లించిన బిల్లులతో సహా మొత్తం నెల బిల్లులు.",
+  "comparisonMonthToDate": "చెల్లించిన బిల్లులతో సహా ఈ నెలలో ఇప్పటివరకు బిల్లులు.",
+  "comparisonNoBaseline": "పోల్చడానికి గత కాలంలో మొత్తం ఏదీ లేదు.",
+  "comparisonHigher": "{amount} ఎక్కువ",
+  "comparisonLower": "{amount} తక్కువ",
+  "comparisonUnchanged": "మార్పు లేదు",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

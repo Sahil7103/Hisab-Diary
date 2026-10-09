@@ -852,4 +852,48 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'Monthly bills for your active accounts. Paid bills are included in the total.';
+
+  @override
+  String get sharePdf => 'Share PDF';
+
+  @override
+  String get shareCsv => 'Share CSV';
+
+  @override
+  String get spendingComparison => 'Monthly comparison';
+
+  @override
+  String get comparisonFullMonths =>
+      'Complete monthly bills, including paid bills.';
+
+  @override
+  String get comparisonMonthToDate =>
+      'Month-to-date bill amounts, including paid bills.';
+
+  @override
+  String get comparisonNoBaseline =>
+      'No amount in the previous period to compare.';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount higher';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount lower';
+  }
+
+  @override
+  String get comparisonUnchanged => 'No change';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

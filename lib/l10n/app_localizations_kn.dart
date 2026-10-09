@@ -845,4 +845,48 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get allVendorsBillInfo =>
       'ನಿಮ್ಮ ಸಕ್ರಿಯ ಖಾತೆಗಳ ಮಾಸಿಕ ಬಿಲ್‌ಗಳು. ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳೂ ಒಟ್ಟು ಮೊತ್ತದಲ್ಲಿ ಸೇರಿವೆ.';
+
+  @override
+  String get sharePdf => 'PDF ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get shareCsv => 'CSV ಹಂಚಿಕೊಳ್ಳಿ';
+
+  @override
+  String get spendingComparison => 'ಮಾಸಿಕ ಹೋಲಿಕೆ';
+
+  @override
+  String get comparisonFullMonths =>
+      'ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳು ಸೇರಿದಂತೆ ಪೂರ್ಣ ತಿಂಗಳ ಬಿಲ್‌ಗಳು.';
+
+  @override
+  String get comparisonMonthToDate =>
+      'ಪಾವತಿಸಿದ ಬಿಲ್‌ಗಳು ಸೇರಿದಂತೆ ಈ ತಿಂಗಳಲ್ಲಿ ಇಲ್ಲಿಯವರೆಗಿನ ಬಿಲ್‌ಗಳು.';
+
+  @override
+  String get comparisonNoBaseline =>
+      'ಹೋಲಿಸಲು ಹಿಂದಿನ ಅವಧಿಯಲ್ಲಿ ಯಾವುದೇ ಮೊತ್ತವಿಲ್ಲ.';
+
+  @override
+  String comparisonHigher(String amount) {
+    return '$amount ಹೆಚ್ಚು';
+  }
+
+  @override
+  String comparisonLower(String amount) {
+    return '$amount ಕಡಿಮೆ';
+  }
+
+  @override
+  String get comparisonUnchanged => 'ಬದಲಾವಣೆ ಇಲ್ಲ';
+
+  @override
+  String comparisonChangePercent(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String comparisonPeriod(String start, String end) {
+    return '$start – $end';
+  }
 }

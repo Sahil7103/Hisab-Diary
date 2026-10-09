@@ -274,5 +274,16 @@
   "editVendorRatesInfo": "જથ્થા અને કિંમતના ફેરફાર આ મહિનાથી લાગુ થાય છે. ડિલિવરીના દિવસો બદલવાથી નોંધ વગરના દિવસોનો હિસાબ પણ બદલાય છે.",
   "allVendors": "બધા વિક્રેતાઓ",
   "monthlyTotal": "માસિક કુલ",
-  "allVendorsBillInfo": "તમારા સક્રિય ખાતાઓનાં માસિક બિલ. ચૂકવેલા બિલ પણ કુલ રકમમાં સામેલ છે."
+  "allVendorsBillInfo": "તમારા સક્રિય ખાતાઓનાં માસિક બિલ. ચૂકવેલા બિલ પણ કુલ રકમમાં સામેલ છે.",
+  "sharePdf": "PDF શેર કરો",
+  "shareCsv": "CSV શેર કરો",
+  "spendingComparison": "માસિક સરખામણી",
+  "comparisonFullMonths": "ચૂકવેલા બિલ સહિત આખા મહિનાનાં બિલ.",
+  "comparisonMonthToDate": "ચૂકવેલા બિલ સહિત આ મહિનામાં અત્યાર સુધીનાં બિલ.",
+  "comparisonNoBaseline": "સરખામણી માટે અગાઉના સમયગાળામાં કોઈ રકમ નથી.",
+  "comparisonHigher": "{amount} વધુ",
+  "comparisonLower": "{amount} ઓછા",
+  "comparisonUnchanged": "કોઈ ફેરફાર નથી",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}"
 }

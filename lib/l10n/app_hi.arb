@@ -361,5 +361,47 @@
   },
   "allVendors": "सभी विक्रेता",
   "monthlyTotal": "मासिक कुल",
-  "allVendorsBillInfo": "आपके सक्रिय खातों के मासिक बिल। भुगतान किए गए बिल भी कुल राशि में शामिल हैं।"
+  "allVendorsBillInfo": "आपके सक्रिय खातों के मासिक बिल। भुगतान किए गए बिल भी कुल राशि में शामिल हैं।",
+  "sharePdf": "PDF साझा करें",
+  "shareCsv": "CSV साझा करें",
+  "spendingComparison": "मासिक तुलना",
+  "comparisonFullMonths": "पूरे महीने के बिल, भुगतान किए गए बिलों सहित।",
+  "comparisonMonthToDate": "इस महीने अब तक के बिल, भुगतान किए गए बिलों सहित।",
+  "comparisonNoBaseline": "तुलना के लिए पिछली अवधि में कोई राशि नहीं है।",
+  "comparisonHigher": "{amount} अधिक",
+  "comparisonLower": "{amount} कम",
+  "comparisonUnchanged": "कोई बदलाव नहीं",
+  "comparisonChangePercent": "{percent}%",
+  "comparisonPeriod": "{start} – {end}",
+  "@comparisonHigher": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@comparisonLower": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@comparisonChangePercent": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "@comparisonPeriod": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  }
 }
