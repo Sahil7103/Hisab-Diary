@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/app_providers.dart';
 import '../../core/storage/app_database.dart';
+import '../../core/services/diary_usage_analytics.dart';
 import '../../core/utils/date_keys.dart';
 import '../today/today_repository.dart' show Attendance;
 import 'month_bill.dart';
@@ -20,7 +21,9 @@ final monthBillProvider = StreamProvider.autoDispose.family<MonthBill,
 });
 
 class MonthRepository {
-  MonthRepository(this.database);
+  MonthRepository(this.database, {DiaryUsageAnalytics? analytics})
+      : analytics = analytics ?? DiaryUsageAnalytics(database);
+  final DiaryUsageAnalytics analytics;
   final AppDatabase database;
 
   Stream<MonthBill> watchMonth(int vendorId, DateTime month, DateTime today) {
@@ -51,26 +54,33 @@ class MonthRepository {
         entry.status == 'came' ? Attendance.came : Attendance.notCame});
   });
 
-  Future<void> toggleDay(int vendorId, DateTime day) => database.transaction(() async {
-    final date = diaryDate(day);
-    final today = diaryDate(DateTime.now());
-    final vendor = await (database.select(database.vendors)
-      ..where((row) => row.id.equals(vendorId))).getSingle();
-    if (vendor.archived || date.compareTo(today) > 0) {
-      return;
+  Future<void> toggleDay(int vendorId, DateTime day) async {
+    final markedCame = await database.transaction(() async {
+      final date = diaryDate(day);
+      final today = diaryDate(DateTime.now());
+      final vendor = await (database.select(database.vendors)
+        ..where((row) => row.id.equals(vendorId))).getSingle();
+      if (vendor.archived || date.compareTo(today) > 0) {
+        return null;
+      }
+      final entry = await (database.select(database.entries)..where((row) =>
+        row.vendorId.equals(vendorId) & row.date.equals(date))).getSingleOrNull();
+      final setting = await (database.select(database.settings)
+        ..where((row) => row.key.equals('countUnmarkedAsCame'))).getSingleOrNull();
+      final automaticallyCame = entry == null && setting?.value != 'false' &&
+        date.compareTo(today) < 0 && date.compareTo(vendor.createdAt) >= 0 &&
+        (vendor.scheduleDays & (1 << (day.weekday - 1))) != 0;
+      final came = entry?.status == 'came' || automaticallyCame;
+      await database.into(database.entries).insertOnConflictUpdate(
+        EntriesCompanion.insert(vendorId: vendorId, date: date,
+          status: came ? 'notCame' : 'came'));
+      return !came;
+    });
+    if (markedCame != null) {
+      await analytics.deliveryMarked(
+        source: DeliverySource.month, came: markedCame);
     }
-    final entry = await (database.select(database.entries)..where((row) =>
-      row.vendorId.equals(vendorId) & row.date.equals(date))).getSingleOrNull();
-    final setting = await (database.select(database.settings)
-      ..where((row) => row.key.equals('countUnmarkedAsCame'))).getSingleOrNull();
-    final automaticallyCame = entry == null && setting?.value != 'false' &&
-      date.compareTo(today) < 0 && date.compareTo(vendor.createdAt) >= 0 &&
-      (vendor.scheduleDays & (1 << (day.weekday - 1))) != 0;
-    final came = entry?.status == 'came' || automaticallyCame;
-    await database.into(database.entries).insertOnConflictUpdate(
-      EntriesCompanion.insert(vendorId: vendorId, date: date,
-        status: came ? 'notCame' : 'came'));
-  });
+  }
 }
 
 

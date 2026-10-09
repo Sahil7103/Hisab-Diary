@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/hisab_app.dart';
+import 'app/app_providers.dart';
+import 'core/services/diary_usage_analytics.dart';
 import 'core/services/app_telemetry.dart';
 import 'features/pro/pro_purchase_service.dart';
 import 'features/reminders/reminder_service.dart';
@@ -35,6 +38,7 @@ class _DiaryRuntimeState extends ConsumerState<_DiaryRuntime> {
   @override
   void initState() {
     super.initState();
+    unawaited(DiaryUsageAnalytics(ref.read(databaseProvider)).initialize());
     ref.read(proPurchaseServiceProvider).start();
     ref.read(reminderServiceProvider).start();
   }

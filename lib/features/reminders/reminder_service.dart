@@ -1,5 +1,7 @@
 import '../../core/constants/app_languages.dart';
 import '../../core/services/app_telemetry.dart';
+import '../../core/services/diary_usage_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
@@ -37,7 +39,14 @@ void reminderBackgroundAction(NotificationResponse response) async {
   if (response.actionId != _allCameAction) return;
   final database = AppDatabase();
   try {
-    await TodayRepository(database).markAllCame(DateTime.now());
+    try {
+      await Firebase.initializeApp();
+      await AppTelemetry.initialize();
+    } catch (error) {
+      debugPrint('Reminder monitoring unavailable (${error.runtimeType}).');
+    }
+    await TodayRepository(database).markAllCame(DateTime.now(),
+      source: DeliverySource.reminder);
   } catch (_) {
     // Report a failed background write when the diary is next opened.
     try {
@@ -109,7 +118,8 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
   Future<void> _foregroundAction(NotificationResponse response) async {
     if (response.actionId == _allCameAction) {
       try {
-        await TodayRepository(database).markAllCame(DateTime.now());
+        await TodayRepository(database).markAllCame(DateTime.now(),
+          source: DeliverySource.reminder);
       } catch (_) {
         try {
           await database.saveSetting('reminderActionError', 'true');

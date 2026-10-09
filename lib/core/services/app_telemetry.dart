@@ -7,6 +7,7 @@ import 'package:firebase_performance/firebase_performance.dart';
 /// Monitoring must never interrupt the offline diary or include diary contents.
 class AppTelemetry {
   static bool _enabled = false;
+  static bool get enabled => _enabled;
   static Future<void> _guard(Future<void> Function() action) async {
     try {
       await action();
@@ -35,9 +36,13 @@ class AppTelemetry {
     };
   }
 
-  static void event(String name) {
+  static void event(String name) => unawaited(trackEvent(name));
+
+  static Future<void> trackEvent(String name,
+      {Map<String, Object>? parameters}) async {
     if (!_enabled) return;
-    unawaited(_guard(() => FirebaseAnalytics.instance.logEvent(name: name)));
+    await _guard(() => FirebaseAnalytics.instance.logEvent(
+      name: name, parameters: parameters));
   }
 
   static void screen(String name) {
