@@ -32,5 +32,6 @@ String billShareMessage(MonthBill bill, AppLocalizations strings) {
     '*${strings.shareTotalAmount}: ${billTotalLabel(bill, strings.localeName)}*',
     '',
     '${strings.shareSource}: ${strings.appName}',
+    'https://play.google.com/store/apps/details?id=com.trevio.hisabdiary',
   ].join('\n');
 }

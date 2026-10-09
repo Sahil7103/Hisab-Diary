@@ -34,6 +34,7 @@ void main() {
       expect(message, contains('*${strings.shareTotalAmount}: ${billTotalLabel(bill, locale)}*'));
       expect(message, contains(strings.cameCount(locale == 'mr' ? '\u0968' : '2')));
       expect(message, contains('\n\n'));
+      expect(message, contains('https://play.google.com/store/apps/details?id=com.trevio.hisabdiary'));
       expect(message, isNot(contains('Play Store: [')));
       expect(message, isNot(contains('{total}')));
     }

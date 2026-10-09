@@ -8,6 +8,10 @@
 - Core diary features work offline without login. Release builds use Firebase
   Analytics, Crashlytics and Performance; see `FIREBASE_MONITORING.md`.
 - Pro purchases are disabled for this release; vendor accounts are unlimited.
+- Shared bills include the Play Store download link. After a successful share,
+  the app requests a native review once per local diary installation, when the
+  review API is available and the app is resumed. The flag stays outside backups.
+  Google controls whether its dialog appears; validate using a Play test track.
 - Privacy policy: https://sahil7103.github.io/Hisab-Diary/
 - GitHub Pages publishes only `/docs` from `main`. Signing properties, keystores,
   local data, builds and internal marketing documents are excluded from Git.

@@ -6,9 +6,16 @@ import '../../app/app_providers.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/utils/date_keys.dart';
 import '../month/month_bill.dart';
+import 'bill_review_service.dart';
 
+final billReviewServiceProvider = Provider<BillReviewService>((ref) {
+  final service = BillReviewService(ref.watch(databaseProvider));
+  ref.onDispose(service.dispose);
+  return service;
+});
 final billRepositoryProvider = Provider<BillRepository>((ref) =>
-  BillRepository(ref.watch(databaseProvider)));
+  BillRepository(ref.watch(databaseProvider),
+    reviewService: ref.watch(billReviewServiceProvider)));
 final paidMonthProvider = StreamProvider.autoDispose.family<bool,
     ({int vendorId, DateTime month})>((ref, request) {
   final db = ref.watch(databaseProvider);
@@ -17,8 +24,9 @@ final paidMonthProvider = StreamProvider.autoDispose.family<bool,
 });
 
 class BillRepository {
-  BillRepository(this.database);
+  BillRepository(this.database, {this.reviewService});
   final AppDatabase database;
+  final BillReviewService? reviewService;
 
   Future<void> markPaid(int vendorId, DateTime month) => AppTelemetry.measure('bill_mark_paid', () => database.transaction(() async {
     if (diaryMonth(month).compareTo(diaryMonth(DateTime.now())) > 0) {
@@ -32,10 +40,12 @@ class BillRepository {
   }));
 
   Future<void> shareMessage(String message) async {
-    await AppTelemetry.measure('bill_share', () async {
+    final status = await AppTelemetry.measure('bill_share', () async {
       final result = await SharePlus.instance.share(ShareParams(text: message));
       AppTelemetry.event('bill_share_${result.status.name}');
+      return result.status;
     });
+    await reviewService?.afterShare(status);
 
   }
 }
