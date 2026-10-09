@@ -12,7 +12,12 @@
           "package_name": "com.trevio.hisabdiary"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "532911946342-ol48ipj514tej1m2i0iqa1rbr6er4m15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCHhGLZLOQ9_myxldnnAg7ddVEHGtdgZy4"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532911946342-ol48ipj514tej1m2i0iqa1rbr6er4m15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
