@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 import '../../app/theme/diary_theme.dart';
 import '../../app/theme/diary_motion.dart';
 import '../../core/widgets/diary_button.dart';
@@ -11,11 +11,13 @@ import '../vendors/vendor_icon.dart';
 
 class VendorCard extends StatelessWidget {
   const VendorCard({super.key, required this.record, required this.busy,
-    required this.onMark, required this.onOpen});
+    required this.onMark, required this.onOpen, required this.onEdit, required this.onDelete});
   final TodayVendor record;
   final bool busy;
   final ValueChanged<Attendance> onMark;
   final VoidCallback onOpen;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -52,26 +54,47 @@ class VendorCard extends StatelessWidget {
           label: came ? strings.came : strings.notCame,
           icon: came ? Icons.check : Icons.close, color: color));
         return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Semantics(button: true, onTap: onOpen, label: strings.openMonth([title, subtitle].join(' · ')),
-            excludeSemantics: true,
-            child: Material(color: Colors.transparent,
-              child: InkWell(onTap: onOpen,
-                borderRadius: BorderRadius.circular(18),
-                child: Row(children: [
-                  Container(width: 56, height: 56, padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(color: DiaryColors.haldiSoft,
-                      borderRadius: BorderRadius.circular(18)),
-                    child: VendorIcon(type: vendor.type, size: 32)),
-                  const SizedBox(width: 12),
-                  Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title, style: Theme.of(context).textTheme.titleLarge),
-                      Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
-                    ])),
-                  if (!large && stamp != null) ...[
-                    const SizedBox(width: 8), stamp,
-                  ],
-                ])))),
+          Row(textDirection: TextDirection.ltr, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Expanded(child: Semantics(button: true, onTap: onOpen, label: strings.openMonth([title, subtitle].join(' · ')),
+              excludeSemantics: true,
+              child: Material(color: Colors.transparent,
+                child: InkWell(onTap: onOpen,
+                  borderRadius: BorderRadius.circular(18),
+                  child: Row(children: [
+                    Container(width: 56, height: 56, padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(color: DiaryColors.haldiSoft,
+                        borderRadius: BorderRadius.circular(18)),
+                      child: VendorIcon(type: vendor.type, size: 32)),
+                    const SizedBox(width: 12),
+                    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(title, style: Theme.of(context).textTheme.titleLarge),
+                        Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+                      ])),
+                    if (!large && stamp != null) ...[
+                      const SizedBox(width: 8), stamp,
+                    ],
+                  ]))))),
+            PopupMenuButton<int>(enabled: !busy, padding: EdgeInsets.zero,
+              tooltip: MaterialLocalizations.of(context).showMenuTooltip,
+              color: DiaryColors.paper,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14),
+                side: const BorderSide(color: DiaryColors.ink, width: 2)),
+              icon: const Icon(Icons.more_vert_rounded, color: DiaryColors.ink),
+              onSelected: (action) { if (action == 0) { onEdit(); } else { onDelete(); } },
+              itemBuilder: (_) => [
+                PopupMenuItem(value: 0, child: Row(children: [
+                  const Icon(Icons.edit_outlined, size: 20, color: DiaryColors.ink),
+                  const SizedBox(width: 10), Expanded(child: Text(strings.editVendor,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: DiaryColors.ink))),
+                ])),
+                PopupMenuItem(value: 1, child: Row(children: [
+                  const Icon(Icons.delete_outline_rounded, size: 20, color: DiaryColors.absentEdge),
+                  const SizedBox(width: 10), Expanded(child: Text(strings.deleteVendor,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: DiaryColors.absentEdge))),
+                ])),
+              ]),
+          ]),
           if (large && stamp != null) Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Align(alignment: Alignment.centerRight, child: stamp)),

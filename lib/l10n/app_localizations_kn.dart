@@ -820,4 +820,19 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get assistantWelcome =>
       'ಸಹಾಯ ಬೇಕಾದಾಗ ತೇಲುವ ಪೆನ್ಸಿಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ. ಕೆಲಸ ಆಯ್ಕೆ ಮಾಡಿ ಅಥವಾ ಪ್ರಶ್ನೆ ಕೇಳಿ; ಎಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಬೇಕೆಂದು ತೋರಿಸುತ್ತೇನೆ. ಸಣ್ಣ ಪರಿಚಯದಿಂದ ಆರಂಭಿಸೋಣ!';
+
+  @override
+  String get editVendor => 'ಖಾತೆಯನ್ನು ಸಂಪಾದಿಸಿ';
+
+  @override
+  String get deleteVendor => 'ಖಾತೆಯನ್ನು ಅಳಿಸಿ';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name ಅಳಿಸಬೇಕೇ? ಅದರ ದಿನನಿತ್ಯದ ಗುರುತುಗಳು, ಉಳಿಸಿದ ದರಗಳು ಮತ್ತು ಪಾವತಿ ಇತಿಹಾಸವೂ ಅಳಿಸಲಾಗುತ್ತದೆ. ಇದನ್ನು ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'ಪ್ರಮಾಣ ಮತ್ತು ಬೆಲೆಯ ಬದಲಾವಣೆಗಳು ಈ ತಿಂಗಳಿನಿಂದ ಅನ್ವಯಿಸುತ್ತವೆ. ವಿತರಣೆಯ ದಿನಗಳನ್ನು ಬದಲಿಸಿದರೆ ಗುರುತಿಸದ ದಿನಗಳ ಲೆಕ್ಕವೂ ಬದಲಾಗುತ್ತದೆ.';
 }

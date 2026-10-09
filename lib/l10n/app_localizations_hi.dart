@@ -819,4 +819,19 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get assistantWelcome =>
       'जब भी मदद चाहिए, तैरती पेंसिल पर टैप करें। काम चुनें या सवाल पूछें, मैं सही जगह दिखाऊँगा। चलिए छोटा परिचय शुरू करें!';
+
+  @override
+  String get editVendor => 'खाता संपादित करें';
+
+  @override
+  String get deleteVendor => 'खाता हटाएँ';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name को हटाएँ? इसकी रोज़ की नोंद, सहेजे गए दर और भुगतान का इतिहास भी हट जाएगा। इसे वापस नहीं लाया जा सकता।';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'मात्रा और कीमत में बदलाव इस महीने से लागू होते हैं। डिलीवरी के दिन बदलने से बिना नोंद वाले दिनों का हिसाब भी बदलता है।';
 }

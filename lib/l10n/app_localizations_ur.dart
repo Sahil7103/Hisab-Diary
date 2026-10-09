@@ -820,4 +820,19 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get assistantWelcome =>
       'مدد چاہیے تو تیرتی پنسل پر ٹیپ کریں۔ کام منتخب کریں یا سوال پوچھیں، میں بتاؤں گا کہاں ٹیپ کرنا ہے۔ آئیے مختصر رہنمائی شروع کریں!';
+
+  @override
+  String get editVendor => 'کھاتے میں ترمیم کریں';
+
+  @override
+  String get deleteVendor => 'کھاتہ حذف کریں';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name حذف کریں؟ اس کے روزانہ نشان، محفوظ قیمتیں اور ادائیگی کی تاریخ بھی حذف ہو جائے گی۔ اسے واپس نہیں لایا جا سکتا۔';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'مقدار اور قیمت کی تبدیلیاں اس مہینے سے لاگو ہوتی ہیں۔ ترسیل کے دن بدلنے سے غیر نشان زدہ دنوں کا حساب بھی بدلتا ہے۔';
 }

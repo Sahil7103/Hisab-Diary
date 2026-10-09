@@ -1602,6 +1602,30 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'जब भी मदद चाहिए, तैरती पेंसिल पर टैप करें। काम चुनें या सवाल पूछें, मैं सही जगह दिखाऊँगा। चलिए छोटा परिचय शुरू करें!'**
   String get assistantWelcome;
+
+  /// No description provided for @editVendor.
+  ///
+  /// In hi, this message translates to:
+  /// **'खाता संपादित करें'**
+  String get editVendor;
+
+  /// No description provided for @deleteVendor.
+  ///
+  /// In hi, this message translates to:
+  /// **'खाता हटाएँ'**
+  String get deleteVendor;
+
+  /// No description provided for @deleteVendorConfirm.
+  ///
+  /// In hi, this message translates to:
+  /// **'{name} को हटाएँ? इसकी रोज़ की नोंद, सहेजे गए दर और भुगतान का इतिहास भी हट जाएगा। इसे वापस नहीं लाया जा सकता।'**
+  String deleteVendorConfirm(String name);
+
+  /// No description provided for @editVendorRatesInfo.
+  ///
+  /// In hi, this message translates to:
+  /// **'मात्रा और कीमत में बदलाव इस महीने से लागू होते हैं। डिलीवरी के दिन बदलने से बिना नोंद वाले दिनों का हिसाब भी बदलता है।'**
+  String get editVendorRatesInfo;
 }
 
 class _AppLocalizationsDelegate

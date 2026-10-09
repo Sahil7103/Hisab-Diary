@@ -267,5 +267,9 @@
   "helpBackupBody": "Tap here to export your diary backup. Save the file somewhere you can find it later.",
   "helpRestoreBody": "Tap here to choose a saved backup. Review the confirmation carefully: restoring replaces the diary on this device.",
   "assistantHello": "Hi! I’m your diary helper.",
-  "assistantWelcome": "Tap my floating pencil anytime you need help. Choose a task or ask a question, and I’ll show you where to tap. Let’s start with a quick tour!"
+  "assistantWelcome": "Tap my floating pencil anytime you need help. Choose a task or ask a question, and I’ll show you where to tap. Let’s start with a quick tour!",
+  "editVendor": "Edit account",
+  "deleteVendor": "Delete account",
+  "deleteVendorConfirm": "Delete {name}? Its daily marks, saved rates and payment history will also be deleted. This cannot be undone.",
+  "editVendorRatesInfo": "Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days."
 }

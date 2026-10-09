@@ -14,6 +14,10 @@ import '../../core/widgets/diary_tutorial.dart';
 import '../settings/settings_repository.dart';
 import '../help/help_assistant_overlay.dart';
 import '../vendors/vendor_type_screen.dart';
+import '../vendors/vendor_details_screen.dart';
+import '../vendors/vendor_repository.dart';
+import '../vendors/vendor_type.dart';
+import '../../core/storage/app_database.dart';
 import '../month/month_repository.dart' show activeVendorsProvider;
 
 // Prevent duplicate dialogs while the persisted setting is being saved.
@@ -133,6 +137,37 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
       if (mounted) setState(() => _busy = false);
     }
   }
+  void _editVendor(Vendor vendor) {
+    if (_busy) return;
+    Navigator.of(context).push<bool>(MaterialPageRoute(builder: (_) => VendorDetailsScreen(
+      type: VendorType.values.firstWhere((type) => type.name == vendor.type,
+        orElse: () => VendorType.other), vendor: vendor)));
+  }
+
+  Future<void> _deleteVendor(Vendor vendor) async {
+    if (_busy) return;
+    final strings = AppLocalizations.of(context)!;
+    final name = vendor.name.trim().isEmpty ? vendorTypeLabel(strings, vendor.type) : vendor.name;
+    final confirmed = await showDialog<bool>(context: context, builder: (context) =>
+      AlertDialog(title: Text(strings.deleteVendor),
+        content: Text(strings.deleteVendorConfirm(name)), actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(strings.cancel)),
+          TextButton(style: TextButton.styleFrom(foregroundColor: DiaryColors.absentEdge),
+            onPressed: () => Navigator.of(context).pop(true), child: Text(strings.deleteVendor)),
+        ]));
+    if (!mounted || confirmed != true) return;
+    setState(() => _busy = true);
+    try {
+      await ref.read(vendorRepositoryProvider).deleteVendor(vendor.id);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(strings.saveError)));
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final strings = AppLocalizations.of(context)!;
@@ -179,6 +214,8 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
             for (final record in vendors) VendorCard(
               key: record == vendors.first ? _cardKey : null, record: record, busy: _busy,
               onOpen: () => widget.onOpenVendor(record.vendor.id),
+              onEdit: () => _editVendor(record.vendor),
+              onDelete: () => _deleteVendor(record.vendor),
               onMark: (status) => _mark(() => repository.toggle(record.vendor.id, _day, status))),
             DiaryButton(key: _addKey, label: strings.addNew, onPressed: addVendor,
               color: Colors.white, foreground: DiaryColors.ink, edge: DiaryColors.ink),

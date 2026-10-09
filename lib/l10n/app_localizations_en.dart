@@ -827,4 +827,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get assistantWelcome =>
       'Tap my floating pencil anytime you need help. Choose a task or ask a question, and I’ll show you where to tap. Let’s start with a quick tour!';
+
+  @override
+  String get editVendor => 'Edit account';
+
+  @override
+  String get deleteVendor => 'Delete account';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return 'Delete $name? Its daily marks, saved rates and payment history will also be deleted. This cannot be undone.';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'Quantity and price changes apply from this month. Changing delivery days also recalculates unmarked days.';
 }

@@ -818,4 +818,19 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get assistantWelcome =>
       'সাহায্য চাইলে ভাসমান পেন্সিলে ট্যাপ করুন। কাজ বাছুন বা প্রশ্ন করুন, কোথায় ট্যাপ করবেন তা দেখাব। চলুন ছোট পরিচয় শুরু করি!';
+
+  @override
+  String get editVendor => 'হিসাব সম্পাদনা করুন';
+
+  @override
+  String get deleteVendor => 'হিসাব মুছুন';
+
+  @override
+  String deleteVendorConfirm(String name) {
+    return '$name মুছবেন? এর দৈনিক চিহ্ন, সংরক্ষিত দর এবং পেমেন্টের ইতিহাসও মুছে যাবে। এটি ফিরিয়ে আনা যাবে না।';
+  }
+
+  @override
+  String get editVendorRatesInfo =>
+      'পরিমাণ এবং দামের পরিবর্তন এই মাস থেকে প্রযোজ্য। সরবরাহের দিন বদলালে চিহ্ন না দেওয়া দিনের হিসাবও বদলায়।';
 }
