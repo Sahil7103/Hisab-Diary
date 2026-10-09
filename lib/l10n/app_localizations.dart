@@ -1536,6 +1536,60 @@ abstract class AppLocalizations {
   /// In hi, this message translates to:
   /// **'पासवर्ड छिपाएँ'**
   String get hidePassword;
+
+  /// No description provided for @helpAssistant.
+  ///
+  /// In hi, this message translates to:
+  /// **'मदद सहायक'**
+  String get helpAssistant;
+
+  /// No description provided for @helpIntro.
+  ///
+  /// In hi, this message translates to:
+  /// **'डायरी इस्तेमाल करने का सवाल पूछें या नीचे काम चुनें। हम सही स्क्रीन पर मार्गदर्शन दिखाएँगे।'**
+  String get helpIntro;
+
+  /// No description provided for @helpQuestion.
+  ///
+  /// In hi, this message translates to:
+  /// **'आप क्या करना चाहते हैं?'**
+  String get helpQuestion;
+
+  /// No description provided for @helpShowMe.
+  ///
+  /// In hi, this message translates to:
+  /// **'मुझे दिखाएँ'**
+  String get helpShowMe;
+
+  /// No description provided for @helpNoMatch.
+  ///
+  /// In hi, this message translates to:
+  /// **'मार्गदर्शन के लिए नीचे कोई काम चुनें।'**
+  String get helpNoMatch;
+
+  /// No description provided for @helpChoices.
+  ///
+  /// In hi, this message translates to:
+  /// **'किस काम में मदद चाहिए?'**
+  String get helpChoices;
+
+  /// No description provided for @helpReminderBody.
+  ///
+  /// In hi, this message translates to:
+  /// **'रिमाइंडर चालू करें, सूचना की अनुमति दें और समय चुनें।'**
+  String get helpReminderBody;
+
+  /// No description provided for @helpBackupBody.
+  ///
+  /// In hi, this message translates to:
+  /// **'डायरी की बैकअप फ़ाइल बनाने के लिए यहाँ टैप करें। फ़ाइल सुरक्षित जगह रखें।'**
+  String get helpBackupBody;
+
+  /// No description provided for @helpRestoreBody.
+  ///
+  /// In hi, this message translates to:
+  /// **'बैकअप फ़ाइल चुनने के लिए यहाँ टैप करें। पुष्टि ध्यान से पढ़ें: इससे इस डिवाइस की डायरी बदल जाएगी।'**
+  String get helpRestoreBody;
 }
 
 class _AppLocalizationsDelegate

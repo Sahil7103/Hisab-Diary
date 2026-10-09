@@ -780,4 +780,35 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get hidePassword => 'পাসওয়ার্ড লুকান';
+
+  @override
+  String get helpAssistant => 'সাহায্য সহকারী';
+
+  @override
+  String get helpIntro =>
+      'ডায়েরি ব্যবহার সম্পর্কে প্রশ্ন করুন বা নিচে কাজ বাছুন। আমরা সঠিক স্ক্রিনে নির্দেশনা দেখাব।';
+
+  @override
+  String get helpQuestion => 'আপনি কী করতে চান?';
+
+  @override
+  String get helpShowMe => 'আমাকে দেখান';
+
+  @override
+  String get helpNoMatch => 'নির্দেশনার জন্য নিচে কাজ বাছুন।';
+
+  @override
+  String get helpChoices => 'কোন কাজে সাহায্য চান?';
+
+  @override
+  String get helpReminderBody =>
+      'রিমাইন্ডার চালু করুন, বিজ্ঞপ্তির অনুমতি দিন এবং সময় বাছুন।';
+
+  @override
+  String get helpBackupBody =>
+      'ডায়েরির ব্যাকআপ তৈরি করতে এখানে ট্যাপ করুন। ফাইলটি নিরাপদে রাখুন।';
+
+  @override
+  String get helpRestoreBody =>
+      'ব্যাকআপ বাছতে এখানে ট্যাপ করুন। নিশ্চিতকরণ মন দিয়ে পড়ুন: এই ডিভাইসের ডায়েরি বদলে যাবে।';
 }

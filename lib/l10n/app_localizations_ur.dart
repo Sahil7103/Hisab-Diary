@@ -782,4 +782,35 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get hidePassword => 'پاس ورڈ چھپائیں';
+
+  @override
+  String get helpAssistant => 'مددگار';
+
+  @override
+  String get helpIntro =>
+      'ڈائری استعمال کرنے کا سوال پوچھیں یا نیچے کام منتخب کریں۔ ہم متعلقہ اسکرین پر رہنمائی دکھائیں گے۔';
+
+  @override
+  String get helpQuestion => 'آپ کیا کرنا چاہتے ہیں؟';
+
+  @override
+  String get helpShowMe => 'مجھے دکھائیں';
+
+  @override
+  String get helpNoMatch => 'رہنمائی کے لیے نیچے کام منتخب کریں۔';
+
+  @override
+  String get helpChoices => 'کس کام میں مدد چاہیے؟';
+
+  @override
+  String get helpReminderBody =>
+      'یاد دہانی فعال کریں، اطلاعات کی اجازت دیں اور وقت منتخب کریں۔';
+
+  @override
+  String get helpBackupBody =>
+      'ڈائری کا بیک اپ بنانے کے لیے یہاں ٹیپ کریں۔ فائل محفوظ جگہ رکھیں۔';
+
+  @override
+  String get helpRestoreBody =>
+      'بیک اپ منتخب کرنے کے لیے یہاں ٹیپ کریں۔ تصدیق غور سے پڑھیں: اس آلے کی ڈائری بدل جائے گی۔';
 }

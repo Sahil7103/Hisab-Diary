@@ -14,8 +14,9 @@ class DiaryTutorialStep {
 }
 
 class DiaryTutorial extends StatefulWidget {
-  const DiaryTutorial({super.key, required this.steps});
+  const DiaryTutorial({super.key, required this.steps, this.initialStep = 0}) : assert(steps.length > 0);
   final List<DiaryTutorialStep> steps;
+  final int initialStep;
   @override
   State<DiaryTutorial> createState() => _DiaryTutorialState();
 }
@@ -27,6 +28,7 @@ class _DiaryTutorialState extends State<DiaryTutorial> with WidgetsBindingObserv
   @override
   void initState() {
     super.initState();
+    _step = widget.initialStep.clamp(0, widget.steps.length - 1);
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _reveal());
   }

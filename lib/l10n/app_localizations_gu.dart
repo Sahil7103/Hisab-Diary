@@ -778,4 +778,35 @@ class AppLocalizationsGu extends AppLocalizations {
 
   @override
   String get hidePassword => 'પાસવર્ડ છુપાવો';
+
+  @override
+  String get helpAssistant => 'મદદ સહાયક';
+
+  @override
+  String get helpIntro =>
+      'ડાયરી વાપરવા વિશે પ્રશ્ન પૂછો અથવા નીચે કામ પસંદ કરો. અમે યોગ્ય સ્ક્રીન પર માર્ગદર્શન બતાવીશું.';
+
+  @override
+  String get helpQuestion => 'તમે શું કરવા માંગો છો?';
+
+  @override
+  String get helpShowMe => 'મને બતાવો';
+
+  @override
+  String get helpNoMatch => 'માર્ગદર્શન માટે નીચે કામ પસંદ કરો.';
+
+  @override
+  String get helpChoices => 'કયા કામમાં મદદ જોઈએ?';
+
+  @override
+  String get helpReminderBody =>
+      'રિમાઇન્ડર ચાલુ કરો, સૂચનાની પરવાનગી આપો અને સમય પસંદ કરો.';
+
+  @override
+  String get helpBackupBody =>
+      'ડાયરીનો બેકઅપ બનાવવા અહીં ટૅપ કરો. ફાઇલ સુરક્ષિત જગ્યાએ રાખો.';
+
+  @override
+  String get helpRestoreBody =>
+      'બેકઅપ પસંદ કરવા અહીં ટૅપ કરો. પુષ્ટિ ધ્યાનથી વાંચો: આ ઉપકરણની ડાયરી બદલાઈ જશે.';
 }

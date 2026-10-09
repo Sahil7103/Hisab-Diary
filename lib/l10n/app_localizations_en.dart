@@ -789,4 +789,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hidePassword => 'Hide password';
+
+  @override
+  String get helpAssistant => 'Help assistant';
+
+  @override
+  String get helpIntro =>
+      'Ask how to use your diary, or choose a task below. We will open the screen and guide you.';
+
+  @override
+  String get helpQuestion => 'What would you like to do?';
+
+  @override
+  String get helpShowMe => 'Show me';
+
+  @override
+  String get helpNoMatch => 'Choose a task below so we can guide you.';
+
+  @override
+  String get helpChoices => 'Which task would you like help with?';
+
+  @override
+  String get helpReminderBody =>
+      'Turn on the reminder switch, allow notifications when asked, then choose your reminder time.';
+
+  @override
+  String get helpBackupBody =>
+      'Tap here to export your diary backup. Save the file somewhere you can find it later.';
+
+  @override
+  String get helpRestoreBody =>
+      'Tap here to choose a saved backup. Review the confirmation carefully: restoring replaces the diary on this device.';
 }

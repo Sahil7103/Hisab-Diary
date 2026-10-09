@@ -783,4 +783,35 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get hidePassword => 'పాస్‌వర్డ్ దాచండి';
+
+  @override
+  String get helpAssistant => 'సహాయ మార్గదర్శి';
+
+  @override
+  String get helpIntro =>
+      'డైరీ వాడకం గురించి అడగండి లేదా కింద పని ఎంచుకోండి. సంబంధిత స్క్రీన్‌లో మార్గదర్శనం చూపిస్తాము.';
+
+  @override
+  String get helpQuestion => 'మీరు ఏమి చేయాలనుకుంటున్నారు?';
+
+  @override
+  String get helpShowMe => 'నాకు చూపించండి';
+
+  @override
+  String get helpNoMatch => 'మార్గదర్శనం కోసం కింద పని ఎంచుకోండి.';
+
+  @override
+  String get helpChoices => 'ఏ పనిలో సహాయం కావాలి?';
+
+  @override
+  String get helpReminderBody =>
+      'రిమైండర్ ఆన్ చేసి, నోటిఫికేషన్ అనుమతి ఇచ్చి, సమయం ఎంచుకోండి.';
+
+  @override
+  String get helpBackupBody =>
+      'డైరీ బ్యాకప్ కోసం ఇక్కడ నొక్కండి. ఫైల్‌ను భద్రంగా ఉంచండి.';
+
+  @override
+  String get helpRestoreBody =>
+      'బ్యాకప్ ఎంచుకోవడానికి ఇక్కడ నొక్కండి. నిర్ధారణ జాగ్రత్తగా చదవండి: ఈ పరికరంలోని డైరీ మారుతుంది.';
 }

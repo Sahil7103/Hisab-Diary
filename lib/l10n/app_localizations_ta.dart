@@ -789,4 +789,35 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get hidePassword => 'கடவுச்சொல்லை மறை';
+
+  @override
+  String get helpAssistant => 'உதவி வழிகாட்டி';
+
+  @override
+  String get helpIntro =>
+      'நாட்குறிப்பைப் பயன்படுத்துவது பற்றி கேளுங்கள் அல்லது கீழே ஒரு பணியைத் தேர்ந்தெடுங்கள். உரிய திரையில் வழிகாட்டுவோம்.';
+
+  @override
+  String get helpQuestion => 'என்ன செய்ய விரும்புகிறீர்கள்?';
+
+  @override
+  String get helpShowMe => 'காட்டுங்கள்';
+
+  @override
+  String get helpNoMatch => 'வழிகாட்ட கீழே ஒரு பணியைத் தேர்ந்தெடுங்கள்.';
+
+  @override
+  String get helpChoices => 'எந்தப் பணிக்கு உதவி வேண்டும்?';
+
+  @override
+  String get helpReminderBody =>
+      'நினைவூட்டலை இயக்கி, அறிவிப்பு அனுமதி அளித்து, நேரத்தைத் தேர்ந்தெடுங்கள்.';
+
+  @override
+  String get helpBackupBody =>
+      'காப்புப்பிரதி எடுக்க இங்கே தட்டுங்கள். கோப்பைப் பாதுகாப்பாக வைத்திருங்கள்.';
+
+  @override
+  String get helpRestoreBody =>
+      'காப்புப்பிரதியைத் தேர்ந்தெடுக்க இங்கே தட்டுங்கள். உறுதிப்படுத்தலை கவனமாகப் படியுங்கள்: இந்த சாதனத்தின் நாட்குறிப்பு மாற்றப்படும்.';
 }

@@ -8,6 +8,9 @@ import '../../core/widgets/diary_screen_header.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/language_screen.dart';
 import '../auth/account_screen.dart';
+import '../help/help_screen.dart';
+import '../help/help_topic.dart';
+import '../help/help_spotlight.dart';
 import 'backup_service.dart';
 import 'settings_repository.dart';
 import 'privacy_policy.dart';
@@ -17,12 +20,19 @@ import '../pro/vendor_limits.dart';
 import '../vendors/manage_vendors_screen.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({super.key, this.helpTopic, this.onHelpRequested});
+  final HelpTopic? helpTopic;
+  final ValueChanged<HelpTopic>? onHelpRequested;
   @override
   ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _busy = false;
+  Future<void> _openAssistant() async {
+    final topic = await Navigator.of(context).push<HelpTopic>(MaterialPageRoute(
+      builder: (_) => const HelpScreen()));
+    if (mounted && topic != null) widget.onHelpRequested?.call(topic);
+  }
   void _notify(String message) => ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(message)));
   Future<void> _perform(Future<void> Function() action, String error) async {
@@ -81,8 +91,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final languageLabel = languageNativeNames[language] ?? languageNativeNames['hi']!;
     final scale = double.tryParse(values['textScale'] ?? '') ?? 1.0;
     final automatic = values['countUnmarkedAsCame'] != 'false';
-    return ListView(padding: const EdgeInsets.fromLTRB(18, 6, 18, 16), children: [
+    return SingleChildScrollView(child: Padding(padding: const EdgeInsets.fromLTRB(18, 6, 18, 16), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       DiaryScreenHeader(title: strings.settings),
+      if (widget.onHelpRequested != null) _SettingsRow(label: strings.helpAssistant,
+        trailing: const Icon(Icons.help_outline_rounded, color: DiaryColors.pen),
+        onTap: _busy ? null : _openAssistant),
       _SettingsRow(label: strings.accountTitle,
         trailing: const Icon(Icons.person_outline_rounded, color: DiaryColors.pen),
         onTap: _busy ? null : () => Navigator.of(context).push<void>(MaterialPageRoute(
@@ -107,7 +120,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   .copyWith(color: DiaryColors.ink)),
           ))),
       ]),
-      const ReminderSettings(),
+      HelpSpotlight(enabled: widget.helpTopic == HelpTopic.reminder,
+        title: strings.eveningReminder, body: strings.helpReminderBody,
+        child: const ReminderSettings()),
       _SettingsRow(label: proPurchasesEnabled
           ? (values[proEntitlementKey] == 'true' ? strings.proActive : strings.proTitle)
           : strings.proComingSoon,
@@ -125,14 +140,18 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         onChanged: _busy ? null : (value) => _perform(
           () => repository.setCountUnmarked(value), strings.saveError)),
       const SizedBox(height: 18),
-      DiaryButton(label: strings.shareBackup, color: Colors.white,
+      HelpSpotlight(enabled: widget.helpTopic == HelpTopic.backup,
+        title: strings.shareBackup, body: strings.helpBackupBody,
+        child: DiaryButton(label: strings.shareBackup, color: Colors.white,
         foreground: DiaryColors.ink, edge: DiaryColors.ink,
         onPressed: _busy ? null : () => _perform(
-          () => ref.read(backupServiceProvider).shareBackup(), strings.shareError)),
+          () => ref.read(backupServiceProvider).shareBackup(), strings.shareError))),
       const SizedBox(height: 12),
-      DiaryButton(label: strings.restoreBackup, color: Colors.white,
+      HelpSpotlight(enabled: widget.helpTopic == HelpTopic.restore,
+        title: strings.restoreBackup, body: strings.helpRestoreBody,
+        child: DiaryButton(label: strings.restoreBackup, color: Colors.white,
         foreground: DiaryColors.ink, edge: DiaryColors.ink,
-        onPressed: _busy ? null : _restore),
+        onPressed: _busy ? null : _restore)),
       if (_busy) Padding(padding: const EdgeInsets.only(top: 12),
         child: Semantics(label: strings.saving, liveRegion: true,
           child: const Center(child: CircularProgressIndicator()))),
@@ -144,7 +163,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       const SizedBox(height: 12),
       Text(strings.privacy, textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium),
-    ]);
+    ])));
   }
 }
 class _SettingsRow extends StatelessWidget {

@@ -19,8 +19,9 @@ import '../month/month_repository.dart' show activeVendorsProvider;
 bool _homeTutorialShown = false;
 
 class TodayScreen extends ConsumerStatefulWidget {
-  const TodayScreen({super.key, required this.onOpenVendor, this.navigationKey});
+  const TodayScreen({super.key, required this.onOpenVendor, this.navigationKey, this.tutorialStep});
   final GlobalKey? navigationKey;
+  final int? tutorialStep;
   final ValueChanged<int> onOpenVendor;
   @override
   ConsumerState<TodayScreen> createState() => _TodayScreenState();
@@ -30,6 +31,7 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
   late DateTime _day;
   Timer? _midnight;
   bool _busy = false;
+  bool _replayShown = false;
   final _scrollController = ScrollController();
   final _addKey = GlobalKey();
   final _cardKey = GlobalKey();
@@ -67,19 +69,21 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
 
   void _startTutorial(bool hasDeliveries) {
     final settings = ref.watch(settingsProvider).asData?.value;
-    if (settings == null || settings['tutorialSeen_home'] == 'true') return;
-    if (_homeTutorialShown || widget.navigationKey == null) return;
-    _homeTutorialShown = true;
+    final replay = widget.tutorialStep != null;
+    if (replay && _replayShown) return;
+    if (!replay && (settings == null || settings['tutorialSeen_home'] == 'true')) return;
+    if ((!replay && _homeTutorialShown) || widget.navigationKey == null) return;
+    if (replay) { _replayShown = true; } else { _homeTutorialShown = true; }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || ModalRoute.of(context)?.isCurrent != true) {
-        _homeTutorialShown = false;
+        if (replay) { _replayShown = false; } else { _homeTutorialShown = false; }
         return;
       }
       final repository = ref.read(settingsRepositoryProvider);
       final strings = AppLocalizations.of(context)!;
       await showGeneralDialog<void>(context: context, barrierDismissible: false,
         barrierColor: Colors.transparent,
-        pageBuilder: (context, _, _) => DiaryTutorial(steps: [
+        pageBuilder: (context, _, _) => DiaryTutorial(initialStep: hasDeliveries ? (widget.tutorialStep ?? 0) : 0, steps: [
           DiaryTutorialStep(target: _addKey, title: strings.tutorialAddTitle,
             body: strings.tutorialAddBody,
             onReveal: () => _revealTutorialTarget(bottom: true)),
@@ -92,6 +96,7 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
           DiaryTutorialStep(target: widget.navigationKey!, title: strings.tutorialTabsTitle,
             body: strings.tutorialTabsBody),
         ]));
+      if (replay) return;
       try {
         await repository.markTutorialSeen('home');
       } catch (error) {

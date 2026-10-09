@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../app/theme/diary_theme.dart';
 import '../../app/theme/diary_motion.dart';
 import '../../core/widgets/diary_tutorial.dart';
+import '../help/help_spotlight.dart';
 import '../settings/settings_repository.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/widgets/diary_button.dart';
@@ -23,8 +24,9 @@ bool _monthTutorialShown = false;
 
 class MonthScreen extends ConsumerWidget {
   const MonthScreen({super.key, required this.selectedVendorId,
-    required this.onSelectVendor, required this.onBack});
+    required this.onSelectVendor, required this.onBack, this.tutorialStep});
   final int? selectedVendorId;
+  final int? tutorialStep;
   final ValueChanged<int> onSelectVendor;
   final VoidCallback onBack;
   @override
@@ -46,14 +48,15 @@ class MonthScreen extends ConsumerWidget {
           const SizedBox(height: 24),
           Text(strings.noVendorsCalendar, style: Theme.of(context).textTheme.bodyLarge),
           const SizedBox(height: 16),
-          DiaryButton(label: strings.addFirst, onPressed: () => Navigator.of(context)
-            .push<bool>(MaterialPageRoute(builder: (_) => const VendorTypeScreen()))),
+          HelpSpotlight(enabled: tutorialStep != null, title: strings.tutorialAddTitle,
+            body: strings.tutorialAddBody, child: DiaryButton(label: strings.addFirst, onPressed: () => Navigator.of(context)
+            .push<bool>(MaterialPageRoute(builder: (_) => const VendorTypeScreen())))),
           ]);
         }
         final vendor = rows.firstWhere((row) => row.id == selectedVendorId,
           orElse: () => rows.first);
         return _VendorCalendar(key: ValueKey(vendor.id), vendor: vendor,
-          vendors: rows, onSelectVendor: onSelectVendor, onBack: onBack);
+          vendors: rows, onSelectVendor: onSelectVendor, onBack: onBack, tutorialStep: tutorialStep);
       },
     );
   }
@@ -61,8 +64,9 @@ class MonthScreen extends ConsumerWidget {
 
 class _VendorCalendar extends ConsumerStatefulWidget {
   const _VendorCalendar({super.key, required this.vendor, required this.vendors,
-    required this.onSelectVendor, required this.onBack});
+    required this.onSelectVendor, required this.onBack, this.tutorialStep});
   final Vendor vendor;
+  final int? tutorialStep;
   final List<Vendor> vendors;
   final ValueChanged<int> onSelectVendor;
   final VoidCallback onBack;
@@ -75,6 +79,7 @@ class _VendorCalendarState extends ConsumerState<_VendorCalendar>
   late DateTime _today;
   Timer? _midnight;
   bool _saving = false;
+  bool _replayShown = false;
   final _scrollController = ScrollController();
   final _vendorKey = GlobalKey();
   final _monthKey = GlobalKey();
@@ -115,19 +120,21 @@ class _VendorCalendarState extends ConsumerState<_VendorCalendar>
 
   void _startTutorial() {
     final settings = ref.watch(settingsProvider).asData?.value;
-    if (settings == null || settings['tutorialSeen_month'] == 'true') return;
-    if (_monthTutorialShown) return;
-    _monthTutorialShown = true;
+    final replay = widget.tutorialStep != null;
+    if (replay && _replayShown) return;
+    if (!replay && (settings == null || settings['tutorialSeen_month'] == 'true')) return;
+    if (!replay && _monthTutorialShown) return;
+    if (replay) { _replayShown = true; } else { _monthTutorialShown = true; }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || ModalRoute.of(context)?.isCurrent != true) {
-        _monthTutorialShown = false;
+        if (replay) { _replayShown = false; } else { _monthTutorialShown = false; }
         return;
       }
       final repository = ref.read(settingsRepositoryProvider);
       final strings = AppLocalizations.of(context)!;
       await showGeneralDialog<void>(context: context, barrierDismissible: false,
         barrierColor: Colors.transparent,
-        pageBuilder: (_, _, _) => DiaryTutorial(steps: [
+        pageBuilder: (_, _, _) => DiaryTutorial(initialStep: widget.tutorialStep ?? 0, steps: [
           DiaryTutorialStep(target: _vendorKey, title: strings.tutorialVendorTitle,
             body: strings.tutorialVendorBody, onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _monthKey, title: strings.tutorialMonthTitle,
@@ -137,6 +144,7 @@ class _VendorCalendarState extends ConsumerState<_VendorCalendar>
           DiaryTutorialStep(target: _totalKey, title: strings.tutorialTotalTitle,
             body: strings.tutorialTotalBody, onReveal: () => _revealTutorialTarget(bottom: true)),
         ]));
+      if (replay) return;
       try {
         await repository.markTutorialSeen('month');
       } catch (error) {

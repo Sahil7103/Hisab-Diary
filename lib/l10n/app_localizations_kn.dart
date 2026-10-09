@@ -782,4 +782,35 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get hidePassword => 'ಪಾಸ್‌ವರ್ಡ್ ಮರೆಮಾಡಿ';
+
+  @override
+  String get helpAssistant => 'ಸಹಾಯ ಮಾರ್ಗದರ್ಶಿ';
+
+  @override
+  String get helpIntro =>
+      'ಡೈರಿ ಬಳಕೆಯ ಬಗ್ಗೆ ಕೇಳಿ ಅಥವಾ ಕೆಳಗೆ ಕೆಲಸ ಆಯ್ಕೆ ಮಾಡಿ. ಸಂಬಂಧಿತ ಪರದೆಯಲ್ಲಿ ಮಾರ್ಗದರ್ಶನ ತೋರಿಸುತ್ತೇವೆ.';
+
+  @override
+  String get helpQuestion => 'ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?';
+
+  @override
+  String get helpShowMe => 'ನನಗೆ ತೋರಿಸಿ';
+
+  @override
+  String get helpNoMatch => 'ಮಾರ್ಗದರ್ಶನಕ್ಕಾಗಿ ಕೆಳಗೆ ಕೆಲಸ ಆಯ್ಕೆ ಮಾಡಿ.';
+
+  @override
+  String get helpChoices => 'ಯಾವ ಕೆಲಸದಲ್ಲಿ ಸಹಾಯ ಬೇಕು?';
+
+  @override
+  String get helpReminderBody =>
+      'ರಿಮೈಂಡರ್ ಆನ್ ಮಾಡಿ, ಸೂಚನೆಗೆ ಅನುಮತಿ ನೀಡಿ ಮತ್ತು ಸಮಯ ಆಯ್ಕೆ ಮಾಡಿ.';
+
+  @override
+  String get helpBackupBody =>
+      'ಡೈರಿ ಬ್ಯಾಕಪ್ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ಫೈಲ್ ಸುರಕ್ಷಿತವಾಗಿ ಇಡಿ.';
+
+  @override
+  String get helpRestoreBody =>
+      'ಬ್ಯಾಕಪ್ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ. ದೃಢೀಕರಣ ಗಮನದಿಂದ ಓದಿ: ಈ ಸಾಧನದ ಡೈರಿ ಬದಲಾಗುತ್ತದೆ.';
 }

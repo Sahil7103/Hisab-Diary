@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../app/theme/diary_theme.dart';
 import '../../app/theme/diary_motion.dart';
 import '../../core/widgets/diary_tutorial.dart';
+import '../help/help_spotlight.dart';
 import '../settings/settings_repository.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/widgets/diary_button.dart';
@@ -22,8 +23,9 @@ import 'bill_repository.dart';
 bool _billTutorialShown = false;
 
 class BillScreen extends ConsumerStatefulWidget {
-  const BillScreen({super.key, required this.selectedVendorId, required this.onSelectVendor});
+  const BillScreen({super.key, required this.selectedVendorId, required this.onSelectVendor, this.tutorialStep});
   final int? selectedVendorId;
+  final int? tutorialStep;
   final ValueChanged<int> onSelectVendor;
   @override
   ConsumerState<BillScreen> createState() => _BillScreenState();
@@ -33,6 +35,7 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
   late DateTime _today;
   Timer? _midnight;
   bool _busy = false;
+  bool _replayShown = false;
   final _scrollController = ScrollController();
   final _vendorKey = GlobalKey();
   final _monthKey = GlobalKey();
@@ -74,19 +77,21 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
 
   void _startTutorial() {
     final settings = ref.watch(settingsProvider).asData?.value;
-    if (settings == null || settings['tutorialSeen_bill'] == 'true') return;
-    if (_billTutorialShown) return;
-    _billTutorialShown = true;
+    final replay = widget.tutorialStep != null;
+    if (replay && _replayShown) return;
+    if (!replay && (settings == null || settings['tutorialSeen_bill'] == 'true')) return;
+    if (!replay && _billTutorialShown) return;
+    if (replay) { _replayShown = true; } else { _billTutorialShown = true; }
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!mounted || ModalRoute.of(context)?.isCurrent != true) {
-        _billTutorialShown = false;
+        if (replay) { _replayShown = false; } else { _billTutorialShown = false; }
         return;
       }
       final repository = ref.read(settingsRepositoryProvider);
       final strings = AppLocalizations.of(context)!;
       await showGeneralDialog<void>(context: context, barrierDismissible: false,
         barrierColor: Colors.transparent,
-        pageBuilder: (_, _, _) => DiaryTutorial(steps: [
+        pageBuilder: (_, _, _) => DiaryTutorial(initialStep: widget.tutorialStep ?? 0, steps: [
           DiaryTutorialStep(target: _vendorKey, title: strings.tutorialVendorTitle,
             body: strings.tutorialVendorBody, onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _monthKey, title: strings.tutorialMonthTitle,
@@ -98,6 +103,7 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
           DiaryTutorialStep(target: _paidKey, title: strings.tutorialPaidTitle,
             body: strings.tutorialPaidBody, onReveal: () => _revealTutorialTarget(bottom: true)),
         ]));
+      if (replay) return;
       try {
         await repository.markTutorialSeen('bill');
       } catch (error) {
@@ -141,8 +147,9 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
           const SizedBox(height: 24),
           Text(strings.noVendorsBill, style: Theme.of(context).textTheme.bodyLarge),
           const SizedBox(height: 16),
-          DiaryButton(label: strings.addFirst, onPressed: () => Navigator.of(context).push<bool>(
-            MaterialPageRoute(builder: (_) => const VendorTypeScreen()))),
+          HelpSpotlight(enabled: widget.tutorialStep != null, title: strings.tutorialAddTitle,
+            body: strings.tutorialAddBody, child: DiaryButton(label: strings.addFirst, onPressed: () => Navigator.of(context).push<bool>(
+            MaterialPageRoute(builder: (_) => const VendorTypeScreen())))),
           ]);
         }
         final vendor = rows.firstWhere((row) => row.id == widget.selectedVendorId,

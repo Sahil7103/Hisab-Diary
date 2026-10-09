@@ -10,6 +10,7 @@ import '../bill/bill_screen.dart';
 import '../month/month_screen.dart';
 import '../settings/settings_screen.dart';
 import '../today/today_screen.dart';
+import '../help/help_topic.dart';
 
 class DiaryShell extends StatefulWidget {
   const DiaryShell({super.key, this.storageLoading = false,
@@ -37,12 +38,18 @@ class _DiaryShellState extends State<DiaryShell> {
   }
   final _navigationKey = GlobalKey();
   int _selected = 0;
+  HelpTopic? _helpTopic;
+  int _helpRequest = 0;
+  void _openHelp(HelpTopic topic) {
+    setState(() { _helpTopic = topic; _helpRequest++; _selected = topic.tabIndex; });
+    AppTelemetry.screen(const ['today', 'month', 'bill', 'settings'][_selected]);
+  }
   int? _selectedVendorId;
   static const _icons = [Icons.today_outlined, Icons.calendar_month_outlined,
     Icons.receipt_long_outlined, Icons.settings_outlined];
   void _selectTab(int index) {
     if (_selected == index) return;
-    setState(() => _selected = index);
+    setState(() { _selected = index; _helpTopic = null; });
     AppTelemetry.screen(const ['today', 'month', 'bill', 'settings'][index]);
   }
   void _selectVendor(int id) => setState(() => _selectedVendorId = id);
@@ -65,15 +72,20 @@ class _DiaryShellState extends State<DiaryShell> {
       ]);
     } else {
       body = switch (_selected) {
-        0 => TodayScreen(navigationKey: _navigationKey, onOpenVendor: (id) => setState(() {
+        0 => TodayScreen(key: ValueKey(_helpRequest),
+          tutorialStep: _helpTopic?.tabIndex == 0 ? _helpTopic!.tutorialStep : null, navigationKey: _navigationKey, onOpenVendor: (id) => setState(() {
           _selectedVendorId = id;
+          _helpTopic = null;
           _selected = 1;
           AppTelemetry.screen('month');
         })),
-        1 => MonthScreen(selectedVendorId: _selectedVendorId,
+        1 => MonthScreen(key: ValueKey(_helpRequest),
+          tutorialStep: _helpTopic?.tabIndex == 1 ? _helpTopic!.tutorialStep : null, selectedVendorId: _selectedVendorId,
           onSelectVendor: _selectVendor, onBack: () => _selectTab(0)),
-        2 => BillScreen(selectedVendorId: _selectedVendorId, onSelectVendor: _selectVendor),
-        _ => const SettingsScreen(),
+        2 => BillScreen(key: ValueKey(_helpRequest),
+          tutorialStep: _helpTopic?.tabIndex == 2 ? _helpTopic!.tutorialStep : null, selectedVendorId: _selectedVendorId, onSelectVendor: _selectVendor),
+        _ => SettingsScreen(key: ValueKey(_helpRequest),
+          helpTopic: _helpTopic, onHelpRequested: _openHelp),
       };
     }
     return NotebookBackground(child: Scaffold(

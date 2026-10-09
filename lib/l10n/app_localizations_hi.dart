@@ -781,4 +781,35 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get hidePassword => 'पासवर्ड छिपाएँ';
+
+  @override
+  String get helpAssistant => 'मदद सहायक';
+
+  @override
+  String get helpIntro =>
+      'डायरी इस्तेमाल करने का सवाल पूछें या नीचे काम चुनें। हम सही स्क्रीन पर मार्गदर्शन दिखाएँगे।';
+
+  @override
+  String get helpQuestion => 'आप क्या करना चाहते हैं?';
+
+  @override
+  String get helpShowMe => 'मुझे दिखाएँ';
+
+  @override
+  String get helpNoMatch => 'मार्गदर्शन के लिए नीचे कोई काम चुनें।';
+
+  @override
+  String get helpChoices => 'किस काम में मदद चाहिए?';
+
+  @override
+  String get helpReminderBody =>
+      'रिमाइंडर चालू करें, सूचना की अनुमति दें और समय चुनें।';
+
+  @override
+  String get helpBackupBody =>
+      'डायरी की बैकअप फ़ाइल बनाने के लिए यहाँ टैप करें। फ़ाइल सुरक्षित जगह रखें।';
+
+  @override
+  String get helpRestoreBody =>
+      'बैकअप फ़ाइल चुनने के लिए यहाँ टैप करें। पुष्टि ध्यान से पढ़ें: इससे इस डिवाइस की डायरी बदल जाएगी।';
 }
