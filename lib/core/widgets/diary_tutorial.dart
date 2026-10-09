@@ -14,9 +14,11 @@ class DiaryTutorialStep {
 }
 
 class DiaryTutorial extends StatefulWidget {
-  const DiaryTutorial({super.key, required this.steps, this.initialStep = 0}) : assert(steps.length > 0);
+  const DiaryTutorial({super.key, required this.steps, this.initialStep = 0, this.completionLabel, this.showProgress = true}) : assert(steps.length > 0);
   final List<DiaryTutorialStep> steps;
   final int initialStep;
+  final String? completionLabel;
+  final bool showProgress;
   @override
   State<DiaryTutorial> createState() => _DiaryTutorialState();
 }
@@ -89,16 +91,18 @@ class _DiaryTutorialState extends State<DiaryTutorial> with WidgetsBindingObserv
                 padding: const EdgeInsets.all(18), child: Column(
                   mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('${_step + 1} / ${widget.steps.length}',
-                      style: Theme.of(context).textTheme.bodyMedium),
-                    const SizedBox(height: 8),
+                    if (widget.showProgress) ...[
+                      Text('${_step + 1} / ${widget.steps.length}',
+                        style: Theme.of(context).textTheme.bodyMedium),
+                      const SizedBox(height: 8),
+                    ],
                     Semantics(header: true, liveRegion: true,
                       child: Text(step.title, style: Theme.of(context).textTheme.titleLarge)),
                     const SizedBox(height: 8),
                     Text(step.body, style: Theme.of(context).textTheme.bodyMedium),
                     const SizedBox(height: 18),
                     DiaryButton(label: _step == widget.steps.length - 1
-                      ? strings.tutorialDone : strings.tutorialNext,
+                      ? (widget.completionLabel ?? strings.tutorialDone) : strings.tutorialNext,
                       onPressed: _moving ? null : _next),
                     TextButton(onPressed: () => Navigator.of(context).pop(),
                       child: Text(strings.tutorialSkip)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hisab_diary/app/diary_navigation.dart';
+import 'package:hisab_diary/core/widgets/diary_tutorial.dart';
 import 'package:hisab_diary/features/help/help_assistant_overlay.dart';
 import 'package:hisab_diary/features/help/help_topic.dart';
 import 'package:hisab_diary/features/help/pencil_mascot.dart';
@@ -49,13 +50,17 @@ void main() {
     observer.dispose();
   });
   testWidgets('greeting completes and persists before the first tour, once only', (tester) async {
+    final observer = HelpRouteObserver();
     final repository = _GreetingRepository();
     bool tourReady = false;
     late BuildContext pageContext;
     await tester.pumpWidget(MaterialApp(
+      navigatorKey: diaryNavigatorKey, navigatorObservers: [observer],
       locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      builder: (_, child) => HelpAssistantOverlay(enabled: true,
+        observer: observer, child: child!),
       home: Builder(builder: (context) {
         pageContext = context;
         return Scaffold(body: TextButton(onPressed: () async {
@@ -64,23 +69,33 @@ void main() {
         }, child: const Text('Start tour')));
       }),
     ));
+    await tester.pump();
     await tester.tap(find.text('Start tour'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
+    await tester.pump();
     expect(tourReady, isFalse);
     expect(repository.saves, 0);
+    expect(find.byType(DiaryTutorial), findsOneWidget);
+    expect(find.byType(AlertDialog), findsNothing);
+    expect(tester.widget<DiaryTutorial>(find.byType(DiaryTutorial)).showProgress, isFalse);
     expect(find.text(lookupAppLocalizations(const Locale('en')).assistantHello), findsOneWidget);
     expect(tester.widget<PencilMascot>(find.byType(PencilMascot)).waving, isTrue);
+    expect(tester.widget<Semantics>(find.byKey(const ValueKey('floatingHelpAssistant')))
+      .properties.enabled, isFalse);
     await tester.tap(find.text(lookupAppLocalizations(const Locale('en')).continueLabel));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
     expect(tourReady, isTrue);
     expect(repository.saves, 1);
+    expect(tester.widget<PencilMascot>(find.byType(PencilMascot)).waving, isFalse);
     await greetAssistantOnce(pageContext, repository, alreadyIntroduced: false);
     await tester.pump();
     expect(repository.saves, 1);
-    expect(find.byType(AlertDialog), findsNothing);
+    expect(find.byType(DiaryTutorial), findsNothing);
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    observer.dispose();
   });
 
 }

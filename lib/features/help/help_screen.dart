@@ -56,6 +56,9 @@ class _HelpScreenState extends State<HelpScreen> {
           child: DiaryButton(label: topic.label(s), color: Colors.white,
             foreground: DiaryColors.ink, edge: DiaryColors.ink,
             onPressed: () => Navigator.of(context).pop(topic))),
+        const SizedBox(height: 8),
+        Text('Pencil artwork by Unicorn Icons · unicornicons.com', textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodySmall),
       ],
     ))));
   }
