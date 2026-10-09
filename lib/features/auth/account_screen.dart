@@ -49,6 +49,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(success)));
       }
     } catch (error) {
+      logAuthFailure(error);
       if (!mounted) return;
       final strings = AppLocalizations.of(context)!;
       final message = switch (authErrorCategory(error)) {

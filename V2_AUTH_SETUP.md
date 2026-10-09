@@ -25,6 +25,22 @@ The currently checked-in `android/app/google-services.json` has an empty
 References: [Firebase Google sign-in](https://firebase.google.com/docs/auth/flutter/federated-auth),
 [Android Google sign-in configuration](https://pub.dev/packages/google_sign_in_android).
 
+## If both login methods show a setup error
+
+- Confirm Authentication > Sign-in method has Email/Password and Google enabled
+  in **hisab-diary-fc5ec**, the project used by this app's configuration.
+- For email login, create an account first; a Google/Gmail password is not an
+  email/password account password for this app.
+- Run a full rebuild after installing Auth plugins or replacing Android Firebase
+  configuration. Hot reload or hot restart cannot update the native SDK/config.
+- In a debug build, retry login and find `Authentication failed: <code>` in the
+  terminal. Only the SDK error code is printed, never email/password/token data.
+  `operation-not-allowed` or `configuration-not-found` requires console setup;
+  Google client/provider configuration errors require the OAuth/fingerprint steps above.
+- The current Firebase CLI session received HTTP 403 (permission denied) when
+  retrieving a replacement configuration.
+  Download it from Project settings after completing the Google setup.
+
 ## Manual checks
 
 - Continue offline/back returns to the diary without requiring authentication.

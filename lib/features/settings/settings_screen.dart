@@ -91,7 +91,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final languageLabel = languageNativeNames[language] ?? languageNativeNames['hi']!;
     final scale = double.tryParse(values['textScale'] ?? '') ?? 1.0;
     final automatic = values['countUnmarkedAsCame'] != 'false';
-    return SingleChildScrollView(child: Padding(padding: const EdgeInsets.fromLTRB(18, 6, 18, 16), child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+    final children = <Widget>[
       DiaryScreenHeader(title: strings.settings),
       if (widget.onHelpRequested != null) _SettingsRow(label: strings.helpAssistant,
         trailing: const Icon(Icons.help_outline_rounded, color: DiaryColors.pen),
@@ -163,7 +163,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       const SizedBox(height: 12),
       Text(strings.privacy, textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyMedium),
-    ])));
+    ];
+    const padding = EdgeInsets.fromLTRB(18, 6, 18, 16);
+    // Explicit guides need their offscreen target mounted for ensureVisible.
+    if (widget.helpTopic != null) {
+      return SingleChildScrollView(child: Padding(padding: padding,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children)));
+    }
+    return ListView(padding: padding, children: children);
   }
 }
 class _SettingsRow extends StatelessWidget {

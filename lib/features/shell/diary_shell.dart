@@ -96,7 +96,7 @@ class _DiaryShellState extends State<DiaryShell> {
         curve: Curves.easeOutCubic,
         builder: (context, value, child) => Opacity(opacity: value,
           child: Transform.translate(offset: Offset(0, 8 * (1 - value)), child: child)),
-        child: body)),
+        child: RepaintBoundary(child: body))),
       bottomNavigationBar: DecoratedBox(key: _navigationKey,
         decoration: const BoxDecoration(color: Colors.white,
           border: Border(top: BorderSide(color: DiaryColors.ink, width: 2))),

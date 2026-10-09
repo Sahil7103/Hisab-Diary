@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../core/services/app_telemetry.dart';
@@ -26,7 +27,13 @@ class AuthService {
     _auth.sendPasswordResetEmail(email: email.trim());
 
   Future<void> signInWithGoogle() async {
-    await (_googleInitialization ??= _google.initialize());
+    try {
+      await (_googleInitialization ??= _google.initialize());
+    } catch (error) {
+      // A failed initialization must not poison subsequent login attempts.
+      _googleInitialization = null;
+      rethrow;
+    }
     try {
       final account = await _google.authenticate();
       final token = account.authentication.idToken;
@@ -75,4 +82,11 @@ String authErrorCategory(Object error) {
     'operation-not-allowed' || 'configuration-not-found' => 'unavailable',
     _ => 'retry',
   };
+}
+
+void logAuthFailure(Object error) {
+  if (!kDebugMode) return;
+  final code = error is FirebaseAuthException ? error.code
+    : error is GoogleSignInException ? error.code.name : error.runtimeType.toString();
+  debugPrint('Authentication failed: $code');
 }
