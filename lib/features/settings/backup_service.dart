@@ -15,28 +15,37 @@ import '../pro/vendor_limits.dart';
 const maxBackupBytes = 10 * 1024 * 1024;
 const backupSettingKeys = ['language', 'textScale', 'countUnmarkedAsCame',
   'reminderOn', 'reminderTime'];
+bool isBackupSetting(String key) => backupSettingKeys.contains(key) ||
+  key.startsWith('v3Budget:') || key.startsWith('v3Reminder:') || key.startsWith('v3PurchasesOnly:');
 final backupServiceProvider = Provider<BackupService>((ref) =>
   BackupService(ref.watch(databaseProvider)));
 
 class BackupTooLargeException implements Exception {}
 
 class DiaryBackup {
-  DiaryBackup._(this.vendors, this.entries, this.monthRates, this.payments, this.settings);
+  DiaryBackup._(this.vendors, this.entries, this.monthRates, this.payments, this.settings,
+    this.dailyDetails, this.rateChanges, this.vendorPauses, this.purchases, this.ledgerPayments);
   final List<Vendor> vendors;
   final List<Entry> entries;
   final List<MonthRate> monthRates;
   final List<Payment> payments;
   final Map<String, String> settings;
+  final List<DailyDetail> dailyDetails;
+  final List<RateChange> rateChanges;
+  final List<VendorPause> vendorPauses;
+  final List<Purchase> purchases;
+  final List<LedgerPayment> ledgerPayments;
 
   factory DiaryBackup.decode(Uint8List bytes) {
     if (bytes.length > maxBackupBytes) throw BackupTooLargeException();
     final root = jsonDecode(utf8.decode(bytes));
     if (root is! Map<String, dynamic> || root['app'] != 'hisab_diary' ||
-        root['version'] != 1) {
+        ![1, 2].contains(root['version'])) {
       throw const FormatException('Unsupported backup');
     }
     List<Map<String, dynamic>> rows(String key) {
-      final values = root[key];
+      final values = root[key] ?? (root['version'] == 1 &&
+        ['dailyDetails','rateChanges','vendorPauses','purchases','ledgerPayments'].contains(key) ? [] : null);
       if (values is! List || values.any((row) => row is! Map<String, dynamic>)) {
         throw const FormatException('Invalid backup rows');
       }
@@ -129,16 +138,118 @@ class DiaryBackup {
       payments.add(Payment(vendorId: reference(row, value), month: value,
         paidAt: date(row, 'paidAt')));
     }
+    int money(Map<String,dynamic> row, String key, {bool positive = false}) {
+      final value = row[key];
+      if (value is! int || value < (positive ? 1 : 0) || value > maxExactPaise) {
+        throw const FormatException('Invalid money');
+      }
+      return value;
+    }
+    void vendorDay(int vendorId,String value) {
+      if (!vendorIds.contains(vendorId) || value.compareTo(vendors.firstWhere((row) => row.id == vendorId).createdAt) < 0 ||
+        DateTime.parse(value).year > 2100) throw const FormatException('Invalid vendor date');
+    }
+    keys.clear();
+    final details = <DailyDetail>[];
+    for(final row in rows('dailyDetails')) {
+      final day = date(row,'date');
+      final vendorId = reference(row,day);
+      vendorDay(vendorId,day);
+      final quantity = row['quantity'] == null ? null : number(row,'quantity',positive:true);
+      if (quantity != null && !validBillAmounts(quantity, vendors.firstWhere((row)=>row.id==vendorId).rate)) {
+        throw const FormatException('Invalid quantity');
+      }
+      details.add(DailyDetail(vendorId:vendorId,date:day,quantity:quantity,note:text(row,'note')));
+    }
+    keys.clear();
+    final changes = <RateChange>[];
+    for(final row in rows('rateChanges')) {
+      final day = date(row,'effectiveDate');
+      final vendorId = reference(row,day);
+      vendorDay(vendorId,day);
+      final quantity = number(row,'quantity',positive:true);
+      final rate = number(row,'rate');
+      if(!validBillAmounts(quantity,rate)) throw const FormatException('Invalid rate');
+      changes.add(RateChange(vendorId:vendorId,effectiveDate:day,quantity:quantity,rate:rate));
+    }
+    keys.clear();
+    final pauses = <VendorPause>[];
+    for(final row in rows('vendorPauses')) {
+      final recordId = id(row,'id');
+      final vendorId = id(row,'vendorId');
+      final start = date(row,'startDate');
+      final end = date(row,'endDate');
+      vendorDay(vendorId,start);vendorDay(vendorId,end);
+      if(!keys.add('$recordId') || start.compareTo(end)>0) throw const FormatException('Invalid pause');
+      pauses.add(VendorPause(id:recordId,vendorId:vendorId,startDate:start,endDate:end,note:text(row,'note')));
+    }
+    keys.clear();
+    final purchases = <Purchase>[];
+    for(final row in rows('purchases')) {
+      final recordId = id(row,'id');
+      final vendorId = id(row,'vendorId');
+      final day = date(row,'date');vendorDay(vendorId,day);
+      final name = text(row,'name');
+      final quantity = number(row,'quantity',positive:true);
+      final price = money(row,'unitPricePaise');
+      if(!keys.add('$recordId') || name.trim().isEmpty || name.length>100 ||
+        !validBillAmounts(quantity,price/100) || quantity*price>maxExactPaise) {
+        throw const FormatException('Invalid purchase');
+      }
+      purchases.add(Purchase(id:recordId,vendorId:vendorId,date:day,name:name,quantity:quantity,unitPricePaise:price));
+    }
+    keys.clear();
+    final ledger = <LedgerPayment>[];
+    for(final row in rows('ledgerPayments')) {
+      final recordId = id(row,'id');
+      final vendorId = id(row,'vendorId');
+      final day = date(row,'date');vendorDay(vendorId,day);
+      final value = month(row);
+      final kind = text(row,'kind');
+      if(!keys.add('$recordId') || !['payment','advance'].contains(kind) ||
+        value.compareTo(vendors.firstWhere((row)=>row.id==vendorId).createdAt.substring(0,7))<0) {
+        throw const FormatException('Invalid payment');
+      }
+      ledger.add(LedgerPayment(id:recordId,vendorId:vendorId,date:day,month:value,
+        amountPaise:money(row,'amountPaise',positive:true),kind:kind,note:text(row,'note')));
+    }
     final rawSettings = root['settings'];
     if (rawSettings is! Map<String, dynamic>) {
       throw const FormatException('Invalid settings');
     }
     final settings = <String, String>{};
     for (final entry in rawSettings.entries) {
-      if (!backupSettingKeys.contains(entry.key) || entry.value is! String) {
+      if (!isBackupSetting(entry.key) || entry.value is! String) {
         throw const FormatException('Invalid setting');
       }
-      settings[entry.key] = entry.value as String;
+      final value = entry.value as String;
+      if(entry.key.startsWith('v3')) {
+        if(entry.key.startsWith('v3Budget:')) {
+          final parts=entry.key.split(':');
+          if(parts.length!=3 || !RegExp(r'^\d{4}-(?:0[1-9]|1[0-2])$').hasMatch(parts[1]) ||
+            (parts[2]!='all' && !VendorType.values.any((type)=>type.name==parts[2])) ||
+            int.tryParse(value)==null || int.parse(value)<=0 || int.parse(value)>maxExactPaise) {
+            throw const FormatException('Invalid budget');
+          }
+        } else {
+          final vendorId=int.tryParse(entry.key.split(':').last);
+          if(!vendorIds.contains(vendorId)) throw const FormatException('Missing setting vendor');
+          if(entry.key.startsWith('v3PurchasesOnly:') && !['true','false'].contains(value)) {
+            throw const FormatException('Invalid purchase mode');
+          }
+          if(entry.key.startsWith('v3Reminder:')) {
+            final config=jsonDecode(value);
+            final clock=RegExp(r'^(?:[01]\d|2[0-3]):[0-5]\d$');
+            if(config is! Map || config['deliveryOn'] is! bool || config['paymentOn'] is! bool ||
+              config['paymentDay'] is! int || config['paymentDay']<1 || config['paymentDay']>28 ||
+              config['deliveryTime'] is! String || !clock.hasMatch(config['deliveryTime']) ||
+              config['paymentTime'] is! String || !clock.hasMatch(config['paymentTime'])) {
+              throw const FormatException('Invalid reminder');
+            }
+          }
+        }
+      }
+      settings[entry.key] = value;
     }
     if (settings.containsKey('language') &&
         !supportedLanguageCodes.contains(settings['language']) ||
@@ -154,7 +265,9 @@ class DiaryBackup {
     }
     settings.putIfAbsent('language', () => 'hi');
     return DiaryBackup._(List.unmodifiable(vendors), List.unmodifiable(entries),
-      List.unmodifiable(rates), List.unmodifiable(payments), Map.unmodifiable(settings));
+      List.unmodifiable(rates), List.unmodifiable(payments), Map.unmodifiable(settings),
+      List.unmodifiable(details),List.unmodifiable(changes),List.unmodifiable(pauses),
+      List.unmodifiable(purchases),List.unmodifiable(ledger));
   }
 }
 
@@ -169,13 +282,18 @@ class BackupService {
     final payments = await database.select(database.payments).get();
     final settings = await database.select(database.settings).get();
     final bytes = Uint8List.fromList(utf8.encode(jsonEncode({
-      'app': 'hisab_diary', 'version': 1,
+      'app': 'hisab_diary', 'version': 2,
       'vendors': [for (final vendor in vendors) vendor.toJson()],
       'entries': [for (final entry in entries) entry.toJson()],
       'monthRates': [for (final rate in rates) rate.toJson()],
       'payments': [for (final payment in payments) payment.toJson()],
+      'dailyDetails': (await database.select(database.dailyDetails).get()).map((row)=>row.toJson()).toList(),
+      'rateChanges': (await database.select(database.rateChanges).get()).map((row)=>row.toJson()).toList(),
+      'vendorPauses': (await database.select(database.vendorPauses).get()).map((row)=>row.toJson()).toList(),
+      'purchases': (await database.select(database.purchases).get()).map((row)=>row.toJson()).toList(),
+      'ledgerPayments': (await database.select(database.ledgerPayments).get()).map((row)=>row.toJson()).toList(),
       'settings': {for (final setting in settings)
-        if (backupSettingKeys.contains(setting.key)) setting.key: setting.value},
+        if (isBackupSetting(setting.key)) setting.key: setting.value},
     })));
     if (bytes.length > maxBackupBytes) throw BackupTooLargeException();
     return bytes;
@@ -206,12 +324,18 @@ class BackupService {
     await database.delete(database.payments).go();
     await database.delete(database.vendors).go();
     await (database.delete(database.settings)
-      ..where((row) => row.key.isIn(backupSettingKeys))).go();
+      ..where((row) => row.key.isIn(backupSettingKeys) | row.key.like('v3Budget:%') |
+        row.key.like('v3Reminder:%') | row.key.like('v3PurchasesOnly:%'))).go();
     await database.batch((batch) {
       batch.insertAll(database.vendors, [for (final row in backup.vendors) row.toCompanion(true)]);
       batch.insertAll(database.entries, [for (final row in backup.entries) row.toCompanion(true)]);
       batch.insertAll(database.monthRates, [for (final row in backup.monthRates) row.toCompanion(true)]);
       batch.insertAll(database.payments, [for (final row in backup.payments) row.toCompanion(true)]);
+      batch.insertAll(database.dailyDetails, [for(final row in backup.dailyDetails) row.toCompanion(true)]);
+      batch.insertAll(database.rateChanges, [for(final row in backup.rateChanges) row.toCompanion(true)]);
+      batch.insertAll(database.vendorPauses, [for(final row in backup.vendorPauses) row.toCompanion(true)]);
+      batch.insertAll(database.purchases, [for(final row in backup.purchases) row.toCompanion(true)]);
+      batch.insertAll(database.ledgerPayments, [for(final row in backup.ledgerPayments) row.toCompanion(true)]);
       batch.insertAll(database.settings, [for (final entry in backup.settings.entries)
         SettingsCompanion.insert(key: entry.key, value: entry.value)]);
     });

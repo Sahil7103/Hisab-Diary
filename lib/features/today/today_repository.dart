@@ -30,31 +30,42 @@ class TodayRepository {
   final DiaryUsageAnalytics analytics;
   final AppDatabase database;
 
-  Stream<List<TodayVendor>> watchDay(DateTime day) {
-    final vendors = database.vendors;
-    final entries = database.entries;
-    final query = database.select(vendors).join([
-      leftOuterJoin(entries, entries.vendorId.equalsExp(vendors.id) &
-          entries.date.equals(diaryDate(day))),
-    ])..where(vendors.archived.equals(false));
-    query.orderBy([OrderingTerm.asc(vendors.id)]);
-    return query.watch().map((rows) => [
-      for (final row in rows)
-        if (scheduledOn(row.readTable(vendors), day))
-          TodayVendor(row.readTable(vendors),
-            switch (row.readTableOrNull(entries)?.status) {
-              'came' => Attendance.came,
-              'notCame' => Attendance.notCame,
-              _ => null,
-            }),
-    ]);
+  Future<List<TodayVendor>> loadDay(DateTime day) => database.transaction(() async {
+    final date = diaryDate(day);
+    final vendors = await (database.select(database.vendors)..where((row) => row.archived.equals(false))
+      ..orderBy([(row) => OrderingTerm.asc(row.id)])).get();
+    final entries = await (database.select(database.entries)..where((row) => row.date.equals(date))).get();
+    final statuses = {for (final entry in entries) entry.vendorId: entry.status};
+    final pauses = await (database.select(database.vendorPauses)..where((row) =>
+      row.startDate.isSmallerOrEqualValue(date) & row.endDate.isBiggerOrEqualValue(date))).get();
+    final paused = pauses.map((row) => row.vendorId).toSet();
+    final settings = await database.select(database.settings).get();
+    final purchaseOnly = {for (final row in settings)
+      if (row.key.startsWith('v3PurchasesOnly:') && row.value == 'true')
+        int.tryParse(row.key.split(':').last)};
+    return [for (final vendor in vendors)
+      if (scheduledOn(vendor, day) && !paused.contains(vendor.id) && !purchaseOnly.contains(vendor.id))
+        TodayVendor(vendor, switch(statuses[vendor.id]) {
+          'came' => Attendance.came, 'notCame' => Attendance.notCame, _ => null})];
+  });
+  Stream<List<TodayVendor>> watchDay(DateTime day) => database.customSelect('SELECT 1',
+    readsFrom: {database.vendors, database.entries, database.vendorPauses, database.settings})
+    .watch().asyncMap((_) => loadDay(day));
+  Future<bool> _canMark(int vendorId, DateTime day) async {
+    if (diaryDate(day).compareTo(diaryDate(DateTime.now())) > 0) return false;
+    return (await loadDay(day)).any((row) => row.vendor.id == vendorId);
   }
+  Future<void> mark(int vendorId, DateTime day, Attendance status) => database.transaction(() async {
+    if (!await _canMark(vendorId, day)) return;
+    await database.into(database.entries).insertOnConflictUpdate(EntriesCompanion.insert(
+      vendorId: vendorId, date: diaryDate(day), status: status.name));
+  });
 
   Future<void> toggle(int vendorId, DateTime day, Attendance status) async {
     final marked = await database.transaction(() async {
       final vendor = await (database.select(database.vendors)
         ..where((row) => row.id.equals(vendorId))).getSingle();
-      if (!scheduledOn(vendor, day)) {
+      if (!scheduledOn(vendor, day) || !await _canMark(vendorId, day)) {
         return false;
       }
       final date = diaryDate(day);
@@ -86,9 +97,10 @@ class TodayRepository {
         ..where((row) => row.date.equals(diaryDate(day)))).get();
       final markedIds = existing.map((entry) => entry.vendorId).toSet();
       var count = 0;
-      final vendors = await (database.select(database.vendors)
-        ..where((row) => row.archived.equals(false))).get();
-      for (final vendor in vendors.where((vendor) => scheduledOn(vendor, day))) {
+      if (diaryDate(day).compareTo(diaryDate(DateTime.now())) > 0) return 0;
+      final todayVendors = await loadDay(day);
+      for (final todayVendor in todayVendors) {
+        final vendor = todayVendor.vendor;
         if (markedIds.contains(vendor.id)) {
           continue;
         }

@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/v3_strings.dart';
 import '../month/month_bill.dart';
 import '../vendors/vendor_type.dart';
 import 'all_vendors_bill.dart';
@@ -54,10 +55,23 @@ String billShareMessage(MonthBill bill, AppLocalizations strings) {
     strings.notCameCount(numbers.format(bill.notCameDays)),
     if (bill.automaticDays > 0) strings.autoCounted(numbers.format(bill.automaticDays)),
     '',
-    '${strings.shareDailyQuantity}: ${numbers.format(bill.quantity)} $unit',
-    '${strings.unitRate(unit)}: $rate',
-    '${strings.shareCalculation}:',
-    '${numbers.format(bill.cameDays)} \u00d7 ${numbers.format(bill.quantity)} $unit \u00d7 $rate',
+    if (!bill.hasVariableCharges) ...[
+      '${strings.shareDailyQuantity}: ${numbers.format(bill.quantity)} $unit',
+      '${strings.unitRate(unit)}: $rate',
+      '${strings.shareCalculation}:',
+      '${numbers.format(bill.cameDays)} \u00d7 ${numbers.format(bill.quantity)} $unit \u00d7 $rate',
+    ] else ...[
+      v3String(strings.localeName, 'deliveryDetails'),
+      for (final day in bill.deliveries)
+        '${day.date}: ${numbers.format(day.quantity)} $unit \u00d7 '
+        '${_totalLabel((day.rate * 100).round(), strings.localeName)} = '
+        '${_totalLabel(day.totalPaise, strings.localeName)}'
+        '${day.note.isEmpty ? '' : ' (${day.note.replaceAll(RegExp(r"[\r\n]+"), " ")})'}',
+      if (bill.purchases.isNotEmpty) v3String(strings.localeName,'purchases'),
+      for (final row in bill.purchases)
+        '${row.date}: ${row.name.replaceAll(RegExp(r"[\r\n]+"), " ")} \u00d7 ${numbers.format(row.quantity)} = '
+        '${_totalLabel((row.quantity * row.unitPricePaise).round(),strings.localeName)}',
+    ],
     '',
     '*${strings.shareTotalAmount}: ${billTotalLabel(bill, strings.localeName)}*',
     '',

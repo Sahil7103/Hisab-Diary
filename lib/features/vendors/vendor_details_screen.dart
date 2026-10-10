@@ -11,6 +11,8 @@ import 'vendor_repository.dart';
 import 'vendor_type.dart';
 import '../pro/vendor_limits.dart';
 import '../pro/pro_screen.dart';
+import '../ledger/ledger_screen.dart';
+import '../../l10n/v3_strings.dart';
 
 class VendorDetailsScreen extends ConsumerStatefulWidget {
   const VendorDetailsScreen({super.key, required this.type, this.vendor});
@@ -234,6 +236,14 @@ class _VendorDetailsScreenState extends ConsumerState<VendorDetailsScreen> {
             child: Semantics(liveRegion: true, child: Text(strings.chooseWeekday,
               style: Theme.of(context).textTheme.bodyMedium!
                 .copyWith(color: DiaryColors.absentEdge)))),
+        ],
+        if (widget.vendor != null) ...[
+          const SizedBox(height: 18),
+          DiaryButton(label: v3Text(context, 'ledgerOpen'),
+            onPressed: _saving ? null : () => Navigator.of(context).push<void>(
+              MaterialPageRoute(builder: (_) => LedgerScreen(
+                vendorId: widget.vendor!.id, month: DateTime.now()))),
+            color: Colors.white, foreground: DiaryColors.ink, edge: DiaryColors.ink),
         ],
         const SizedBox(height: 18),
         DiaryButton(label: _saving ? strings.saving : '${strings.saveVendor} ✔',

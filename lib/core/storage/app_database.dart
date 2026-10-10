@@ -52,14 +52,75 @@ class Settings extends Table {
   @override
   Set<Column> get primaryKey => {key};
 }
-@DriftDatabase(tables: [Vendors, Entries, MonthRates, Payments, Settings])
+class DailyDetails extends Table {
+  IntColumn get vendorId => integer().references(Vendors, #id, onDelete: KeyAction.cascade)();
+  TextColumn get date => text()();
+  RealColumn get quantity => real().nullable()();
+  TextColumn get note => text().withDefault(const Constant(''))();
+  @override
+  Set<Column> get primaryKey => {vendorId, date};
+  @override
+  List<String> get customConstraints => ['CHECK (quantity IS NULL OR quantity > 0)'];
+}
+class RateChanges extends Table {
+  IntColumn get vendorId => integer().references(Vendors, #id, onDelete: KeyAction.cascade)();
+  TextColumn get effectiveDate => text()();
+  RealColumn get quantity => real()();
+  RealColumn get rate => real()();
+  @override
+  Set<Column> get primaryKey => {vendorId, effectiveDate};
+  @override
+  List<String> get customConstraints => ['CHECK (quantity > 0)', 'CHECK (rate >= 0)'];
+}
+class VendorPauses extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get vendorId => integer().references(Vendors, #id, onDelete: KeyAction.cascade)();
+  TextColumn get startDate => text()();
+  TextColumn get endDate => text()();
+  TextColumn get note => text().withDefault(const Constant(''))();
+  @override
+  List<String> get customConstraints => ['CHECK (start_date <= end_date)'];
+}
+class Purchases extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get vendorId => integer().references(Vendors, #id, onDelete: KeyAction.cascade)();
+  TextColumn get date => text()();
+  TextColumn get name => text()();
+  RealColumn get quantity => real()();
+  IntColumn get unitPricePaise => integer()();
+  @override
+  List<String> get customConstraints => ['CHECK (quantity > 0)', 'CHECK (unit_price_paise >= 0)'];
+}
+class LedgerPayments extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get vendorId => integer().references(Vendors, #id, onDelete: KeyAction.cascade)();
+  TextColumn get month => text()();
+  TextColumn get date => text()();
+  IntColumn get amountPaise => integer()();
+  TextColumn get kind => text()();
+  TextColumn get note => text().withDefault(const Constant(''))();
+  @override
+  List<String> get customConstraints => ['CHECK (amount_paise > 0)', "CHECK (kind IN ('payment', 'advance'))"];
+}
+
+@DriftDatabase(tables: [Vendors, Entries, MonthRates, Payments, Settings,
+  DailyDetails, RateChanges, VendorPauses, Purchases, LedgerPayments])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(driftDatabase(name: 'hisab_diary'));
+  AppDatabase({String name = 'hisab_diary'}) : super(driftDatabase(name: name, native: const DriftNativeOptions(shareAcrossIsolates: true)));
   AppDatabase.forTesting(super.executor);
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
   @override
   MigrationStrategy get migration => MigrationStrategy(
+    onUpgrade: (migrator, from, to) async {
+      if (from < 2) {
+        await migrator.createTable(dailyDetails);
+        await migrator.createTable(rateChanges);
+        await migrator.createTable(vendorPauses);
+        await migrator.createTable(purchases);
+        await migrator.createTable(ledgerPayments);
+      }
+    },
     beforeOpen: (_) async => customStatement('PRAGMA foreign_keys = ON'),
   );
   Stream<Map<String, String>> watchSettings() => select(settings).watch().map(

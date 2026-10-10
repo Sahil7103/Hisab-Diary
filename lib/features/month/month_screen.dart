@@ -13,12 +13,13 @@ import '../../core/storage/app_database.dart';
 import '../../core/widgets/diary_button.dart';
 import '../../core/widgets/diary_screen_header.dart';
 import '../../l10n/app_localizations.dart';
-import '../vendors/vendor_type.dart';
 import '../vendors/vendor_selector.dart';
 import '../vendors/vendor_type_screen.dart';
 import 'month_bill.dart';
 import 'calendar_day.dart';
 import 'month_repository.dart';
+import '../ledger/ledger_screen.dart';
+import '../../l10n/v3_strings.dart';
 
 // Prevent duplicate dialogs while the persisted setting is being saved.
 bool _monthTutorialShown = false;
@@ -271,14 +272,17 @@ class _VendorCalendarState extends ConsumerState<_VendorCalendar>
             child: Column(mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               Text(strings.runningTotal, style: Theme.of(context).textTheme.bodyMedium),
-              Text('${numbers.format(summary.cameDays * summary.quantity)} '
-                '${vendorUnitLabel(strings, summary.vendor.unit)} × ₹${numbers.format(summary.rate)}',
-                textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
               Text(NumberFormat.currency(locale: strings.localeName,
                 symbol: '₹', decimalDigits: summary.totalPaise % 100 == 0 ? 0 : 2)
                   .format(summary.total),
                 textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineSmall),
             ]))),
+      const SizedBox(height: 12),
+      DiaryButton(label: v3Text(context, 'ledgerOpen'),
+        onPressed: _saving ? null : () => Navigator.of(context).push<void>(
+          MaterialPageRoute(builder: (_) => LedgerScreen(
+            vendorId: widget.vendor.id, month: _month))),
+        color: Colors.white, foreground: DiaryColors.ink, edge: DiaryColors.ink),
     ]);
   }
 }

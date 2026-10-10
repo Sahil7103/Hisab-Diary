@@ -18,6 +18,9 @@ import '../../core/storage/app_database.dart';
 import '../../l10n/app_localizations.dart';
 import '../today/today_repository.dart';
 import 'reminder_time.dart';
+import 'package:home_widget/home_widget.dart';
+import '../households/household_controller.dart';
+import '../device/app_lock_controller.dart';
 
 const _dailyId = 610;
 const _testId = 611;
@@ -25,7 +28,8 @@ const _allCameAction = 'all_came';
 const _reminderChannel = MethodChannel('hisab_diary/reminders');
 
 final reminderServiceProvider = Provider<ReminderService>((ref) {
-  final service = ReminderService(ref.watch(databaseProvider));
+  final service = ReminderService(ref.watch(databaseProvider),
+    dbName: ref.watch(householdControllerProvider).selected.databaseName);
   ref.onDispose(service.dispose);
   return service;
 });
@@ -37,7 +41,11 @@ void reminderBackgroundAction(NotificationResponse response) async {
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
   if (response.actionId != _allCameAction) return;
-  final database = AppDatabase();
+  if (await _notificationPrivate()) return;
+  final name = await HomeWidget.getWidgetData<String>('active_diary_db') ?? 'hisab_diary';
+  if (!_validDiaryName(name)) return;
+  if (response.payload != null && response.payload != name) return;
+  final database = AppDatabase(name: name);
   try {
     try {
       await Firebase.initializeApp();
@@ -64,8 +72,10 @@ void reminderBackgroundAction(NotificationResponse response) async {
 Future<void> rescheduleAfterTimezoneChange() async {
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
-  final database = AppDatabase();
-  final service = ReminderService(database);
+  final name = await HomeWidget.getWidgetData<String>('active_diary_db') ?? 'hisab_diary';
+  if (!_validDiaryName(name)) return;
+  final database = AppDatabase(name: name);
+  final service = ReminderService(database, dbName: name);
   try {
     final rows = await database.select(database.settings).get();
     await service.sync({for (final row in rows) row.key: row.value});
@@ -79,12 +89,13 @@ Future<void> rescheduleAfterTimezoneChange() async {
 }
 
 class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
-  ReminderService(this.database);
+  ReminderService(this.database, {this.dbName = 'hisab_diary'});
+  final String dbName;
   final AppDatabase database;
   final _notifications = FlutterLocalNotificationsPlugin();
   StreamSubscription<Map<String, String>>? _settingsSubscription;
   Future<void>? _initialization;
-  Future<void> _work = Future<void>.value();
+  static Future<void> _work = Future<void>.value();
   Map<String, String> _settings = const {};
   String? _signature;
   bool _disposed = false;
@@ -93,6 +104,9 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
   bool get supported => defaultTargetPlatform == TargetPlatform.android;
   AndroidFlutterLocalNotificationsPlugin? get _android => _notifications
     .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+
+  Future<void> prepareNotifications() => _initialize();
+  void refresh() => _queueSync(_settings, force: true);
 
   Future<void> _initialize() async {
     try {
@@ -116,7 +130,8 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   Future<void> _foregroundAction(NotificationResponse response) async {
-    if (response.actionId == _allCameAction) {
+    if (response.actionId == _allCameAction && !await _notificationPrivate() &&
+        (response.payload == null || response.payload == dbName) && !_disposed) {
       try {
         await TodayRepository(database).markAllCame(DateTime.now(),
           source: DeliverySource.reminder);
@@ -166,12 +181,12 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
     AppLocalizations.delegate.load(Locale(
       supportedLanguageCodes.contains(values['language']) ? values['language']! : 'hi'));
 
-  NotificationDetails _details(AppLocalizations strings, {required int expiresAfter}) =>
+  NotificationDetails _details(AppLocalizations strings, {required int expiresAfter, bool private = false}) =>
     NotificationDetails(android: AndroidNotificationDetails(
       'daily_diary', strings.eveningReminder, importance: Importance.high,
       priority: Priority.high, icon: 'ic_notification', timeoutAfter: expiresAfter,
       actions: [
-        AndroidNotificationAction(_allCameAction, strings.reminderAllCame,
+        if (!private) AndroidNotificationAction(_allCameAction, strings.reminderAllCame,
           cancelNotification: true),
         AndroidNotificationAction('view_today', strings.reminderView,
           showsUserInterface: true, cancelNotification: true),
@@ -182,6 +197,7 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
   Future<void> sync(Map<String, String> values) async {
     if (!supported || _disposed) return;
     await _initialize();
+    if (_disposed) return;
     if (values['reminderOn'] != 'true') {
       await _notifications.cancel(id: _dailyId);
       await _notifications.cancel(id: _testId);
@@ -200,10 +216,12 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
     final clock = reminderClock(values['reminderTime']);
     final strings = await _strings(values);
     approximate = await _android?.canScheduleExactNotifications() != true;
+    final private = await _notificationPrivate();
+    if (_disposed) return;
     await _notifications.zonedSchedule(id: _dailyId, title: strings.appName,
-      body: strings.reminderQuestion,
+      body: strings.reminderQuestion, payload: dbName,
       scheduledDate: nextReminder(tz.TZDateTime.now(tz.local), clock.hour, clock.minute),
-      notificationDetails: _details(strings,
+      notificationDetails: _details(strings, private: private,
         expiresAfter: ((24 * 60) - clock.hour * 60 - clock.minute) * 60000),
       androidScheduleMode: approximate ? AndroidScheduleMode.inexactAllowWhileIdle
         : AndroidScheduleMode.exactAllowWhileIdle,
@@ -262,9 +280,10 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
     }
     await _initialize();
     final strings = await _strings(_settings);
-    await _notifications.show(id: _testId, title: strings.appName,
+    final private = await _notificationPrivate();
+    await _notifications.show(id: _testId, title: strings.appName, payload: dbName,
       body: strings.reminderQuestion,
-      notificationDetails: _details(strings, expiresAfter: 5 * 60000));
+      notificationDetails: _details(strings, private: private, expiresAfter: 5 * 60000));
   }
 
   Future<void> openBatterySettings() => _reminderChannel.invokeMethod<void>('batterySettings');
@@ -276,4 +295,12 @@ class ReminderService extends ChangeNotifier with WidgetsBindingObserver {
     unawaited(_settingsSubscription?.cancel());
     super.dispose();
   }
+}
+
+bool _validDiaryName(String name) => RegExp(r'^hisab_diary(?:_household_[a-z0-9]+)?$').hasMatch(name);
+Future<bool> _notificationPrivate() async {
+  if (!supportsDeviceFeatures) return false;
+  try {
+    return await HomeWidget.getWidgetData<bool>(appLockEnabledKey, defaultValue: true) ?? true;
+  } catch (_) { return true; }
 }

@@ -30,7 +30,8 @@ class MonthRepository {
     final first = DateTime(month.year, month.month);
     return database.customSelect(
       'SELECT 1', readsFrom: {database.vendors, database.entries,
-        database.monthRates, database.settings},
+        database.monthRates, database.settings, database.dailyDetails,
+        database.rateChanges, database.vendorPauses, database.purchases},
     ).watch().asyncMap((_) => loadMonth(vendorId, first, today));
   }
 
@@ -48,7 +49,14 @@ class MonthRepository {
       ..orderBy([(row) => OrderingTerm.desc(row.month)])..limit(1)).getSingleOrNull();
     final setting = await (database.select(database.settings)
       ..where((row) => row.key.equals('countUnmarkedAsCame'))).getSingleOrNull();
-    return calculateMonthBill(vendor: vendor, month: first, now: today,
+    final details = await (database.select(database.dailyDetails)..where((row) => row.vendorId.equals(vendorId))).get();
+    final rates = await (database.select(database.rateChanges)..where((row) => row.vendorId.equals(vendorId))).get();
+    final pauses = await (database.select(database.vendorPauses)..where((row) => row.vendorId.equals(vendorId))).get();
+    final purchases = await (database.select(database.purchases)..where((row) => row.vendorId.equals(vendorId) &
+      row.date.isBiggerOrEqualValue(diaryDate(first)) & row.date.isSmallerThanValue(diaryDate(next)))).get();
+    final mode = await (database.select(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId'))).getSingleOrNull();
+    return calculateMonthBill(dailyDetails: details, rateChanges: rates, pauses: pauses,
+      purchases: purchases, itemizedOnly: mode?.value == 'true', vendor: vendor, month: first, now: today,
       monthRate: rate, countUnmarkedAsCame: setting?.value != 'false',
       entries: {for (final entry in entries) entry.date:
         entry.status == 'came' ? Attendance.came : Attendance.notCame});
@@ -60,14 +68,18 @@ class MonthRepository {
       final today = diaryDate(DateTime.now());
       final vendor = await (database.select(database.vendors)
         ..where((row) => row.id.equals(vendorId))).getSingle();
-      if (vendor.archived || date.compareTo(today) > 0) {
+      if (vendor.archived || date.compareTo(today) > 0 || date.compareTo(vendor.createdAt) < 0) {
         return null;
       }
+      final mode = await (database.select(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId'))).getSingleOrNull();
+      if (mode?.value == 'true') return null;
+      final pauses = await (database.select(database.vendorPauses)..where((row) => row.vendorId.equals(vendorId) &
+        row.startDate.isSmallerOrEqualValue(date) & row.endDate.isBiggerOrEqualValue(date))).get();
       final entry = await (database.select(database.entries)..where((row) =>
         row.vendorId.equals(vendorId) & row.date.equals(date))).getSingleOrNull();
       final setting = await (database.select(database.settings)
         ..where((row) => row.key.equals('countUnmarkedAsCame'))).getSingleOrNull();
-      final automaticallyCame = entry == null && setting?.value != 'false' &&
+      final automaticallyCame = entry == null && pauses.isEmpty && setting?.value != 'false' &&
         date.compareTo(today) < 0 && date.compareTo(vendor.createdAt) >= 0 &&
         (vendor.scheduleDays & (1 << (day.weekday - 1))) != 0;
       final came = entry?.status == 'came' || automaticallyCame;

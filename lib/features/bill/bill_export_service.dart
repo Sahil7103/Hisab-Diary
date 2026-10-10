@@ -7,6 +7,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../../app/theme/diary_theme.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/v3_strings.dart';
 import '../month/month_bill.dart';
 import '../vendors/vendor_type.dart';
 import 'all_vendors_bill.dart';
@@ -44,10 +45,23 @@ class BillExportService {
           _csvText(vendorTypeLabel(strings, row.vendor.type)),
           _csvText(vendorUnitLabel(strings, row.vendor.unit)),
           '${row.cameDays}', '${row.notCameDays}', '${row.automaticDays}',
-          _decimal(row.quantity), _decimal(row.rate), _money(row.totalPaise)],
+          row.hasVariableCharges ? '' : _decimal(row.quantity),
+          row.hasVariableCharges ? '' : _decimal(row.rate), _money(row.totalPaise)],
       [diaryMonth(bill.month), _csvText(strings.monthlyTotal), '', '', '', '', '', '', '',
         _money(bill.totalPaise)],
     ];
+    rows.addAll([
+      [],
+      ['record_type','vendor_name','date','item','quantity','unit_rate_inr','amount_inr','note'],
+      for(final row in bill.bills) ...[
+        for(final day in row.deliveries)
+          [day.automatic ? 'automatic_delivery' : 'delivery',_csvText(row.vendor.name),day.date,'',
+            _decimal(day.quantity),_decimal(day.rate),_money(day.totalPaise),_csvText(day.note)],
+        for(final item in row.purchases)
+          ['purchase',_csvText(row.vendor.name),item.date,_csvText(item.name),_decimal(item.quantity),
+            _money(item.unitPricePaise),_money((item.quantity*item.unitPricePaise).round()),''],
+      ],
+    ]);
     return Uint8List.fromList(utf8.encode('\uFEFF${rows.map((row) => row.join(',')).join('\r\n')}\r\n'));
   }
 
@@ -134,13 +148,31 @@ class BillExportService {
         pw.SizedBox(height: 5),
         counts,
         pw.SizedBox(height: 3),
-        calculation,
+        if (!row.hasVariableCharges) calculation,
         pw.Container(height: 1, color: _color(DiaryColors.rule),
           margin: const pw.EdgeInsets.only(top: 12, bottom: 14)),
       ]);
+      if (row.hasVariableCharges) {
+        final lines = [
+          v3String(strings.localeName,'deliveryDetails'),
+          for(final day in row.deliveries)
+            '${day.date}: ${numbers.format(day.quantity)} $unit x ${_money((day.rate*100).round())} = ${_money(day.totalPaise)}'
+            '${day.note.isEmpty ? '' : ' | ${day.note}'}',
+          if(row.purchases.isNotEmpty) v3String(strings.localeName,'purchases'),
+          for(final item in row.purchases)
+            '${item.date} | ${item.name}: ${numbers.format(item.quantity)} x ${_money(item.unitPricePaise)} = '
+            '${_money((item.quantity*item.unitPricePaise).round())}',
+        ];
+        for(final line in lines) {
+          content.addAll(await renderer.parts(line,pageWidth,size:9,color:DiaryColors.muted));
+          content.add(pw.SizedBox(height:3));
+        }
+        content.add(pw.SizedBox(height:10));
+      }
     }
     document.addPage(pw.MultiPage(pageFormat: PdfPageFormat.a4,
-      margin: const pw.EdgeInsets.all(40), maxPages: bill.bills.length * 2 + 20,
+      margin: const pw.EdgeInsets.all(40), maxPages: bill.bills.fold<int>(20,(pages,row)=>pages + 2 +
+        (row.deliveries.length + row.purchases.length) ~/ 20),
       footer: (context) => pw.Padding(padding: const pw.EdgeInsets.only(top: 14),
         child: pw.Row(mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [footer, pw.Text('${context.pageNumber} / ${context.pagesCount}',

@@ -10,6 +10,7 @@ import '../../core/widgets/diary_screen_header.dart';
 import '../../l10n/app_localizations.dart';
 import 'today_repository.dart';
 import 'vendor_card.dart';
+import '../ledger/ledger_screen.dart';
 import '../../core/widgets/diary_tutorial.dart';
 import '../settings/settings_repository.dart';
 import '../help/help_assistant_overlay.dart';
@@ -215,6 +216,9 @@ class _TodayScreenState extends ConsumerState<TodayScreen>
               key: record == vendors.first ? _cardKey : null, record: record, busy: _busy,
               onOpen: () => widget.onOpenVendor(record.vendor.id),
               onEdit: () => _editVendor(record.vendor),
+              onLedger: () => Navigator.of(context).push<void>(MaterialPageRoute(
+                builder: (_) => LedgerScreen(vendorId: record.vendor.id,
+                  month: DateTime(_day.year, _day.month), selectedDate: _day))),
               onDelete: () => _deleteVendor(record.vendor),
               onMark: (status) => _mark(() => repository.toggle(record.vendor.id, _day, status))),
             DiaryButton(key: _addKey, label: strings.addNew, onPressed: addVendor,

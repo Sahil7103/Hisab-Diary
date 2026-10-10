@@ -39,7 +39,8 @@ class BillRepository {
   Stream<AllVendorsBill> watchAllBills(DateTime month, DateTime today) {
     return database.customSelect(
       'SELECT 1', readsFrom: {database.vendors, database.entries,
-        database.monthRates, database.settings},
+        database.monthRates, database.settings, database.dailyDetails,
+        database.rateChanges, database.vendorPauses, database.purchases},
     ).watch().asyncMap((_) => loadAllBills(month, today));
   }
 

@@ -18,6 +18,12 @@ import '../reminders/reminder_settings.dart';
 import '../pro/pro_screen.dart';
 import '../pro/vendor_limits.dart';
 import '../vendors/manage_vendors_screen.dart';
+import '../planning/spending_screen.dart';
+import '../households/household_screen.dart';
+import '../households/household_controller.dart';
+import '../device/app_lock_settings.dart';
+import '../device/app_lock_controller.dart';
+import '../../l10n/v3_strings.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key, this.helpTopic, this.onHelpRequested});
@@ -93,6 +99,18 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final automatic = values['countUnmarkedAsCame'] != 'false';
     final children = <Widget>[
       DiaryScreenHeader(title: strings.settings),
+      _SettingsRow(label: v3Text(context,'householdsTitle'),
+        trailing: Text(ref.watch(householdControllerProvider).selected.name),
+        onTap: _busy ? null : () => Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => const HouseholdScreen()))),
+      _SettingsRow(label: v3Text(context,'spendingTitle'),
+        trailing: const Icon(Icons.bar_chart_rounded,color:DiaryColors.pen),
+        onTap: _busy ? null : () => Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => const SpendingScreen()))),
+      if (supportsDeviceFeatures) const AppLockSettings(),
+      if (supportsDeviceFeatures) Padding(padding:const EdgeInsets.symmetric(vertical:12),
+        child:Text('${v3Text(context,'widgetSettingsTitle')}\n${v3Text(context,'widgetSettingsInfo')}',
+          style:Theme.of(context).textTheme.bodyMedium)),
       if (widget.onHelpRequested != null) _SettingsRow(label: strings.helpAssistant,
         trailing: const Icon(Icons.help_outline_rounded, color: DiaryColors.pen),
         onTap: _busy ? null : _openAssistant),
@@ -140,6 +158,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         onChanged: _busy ? null : (value) => _perform(
           () => repository.setCountUnmarked(value), strings.saveError)),
       const SizedBox(height: 18),
+      Text(v3Text(context,'householdBackupInfo'),style:Theme.of(context).textTheme.bodyMedium),
+      const SizedBox(height: 8),
       HelpSpotlight(enabled: widget.helpTopic == HelpTopic.backup,
         title: strings.shareBackup, body: strings.helpBackupBody,
         child: DiaryButton(label: strings.shareBackup, color: Colors.white,

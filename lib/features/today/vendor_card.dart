@@ -5,19 +5,21 @@ import '../../app/theme/diary_theme.dart';
 import '../../app/theme/diary_motion.dart';
 import '../../core/widgets/diary_button.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/v3_strings.dart';
 import 'today_repository.dart';
 import '../vendors/vendor_type.dart';
 import '../vendors/vendor_icon.dart';
 
 class VendorCard extends StatelessWidget {
   const VendorCard({super.key, required this.record, required this.busy,
-    required this.onMark, required this.onOpen, required this.onEdit, required this.onDelete});
+    required this.onMark, required this.onOpen, required this.onEdit, required this.onDelete, this.onLedger});
   final TodayVendor record;
   final bool busy;
   final ValueChanged<Attendance> onMark;
   final VoidCallback onOpen;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final VoidCallback? onLedger;
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +83,17 @@ class VendorCard extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14),
                 side: const BorderSide(color: DiaryColors.ink, width: 2)),
               icon: const Icon(Icons.more_vert_rounded, color: DiaryColors.ink),
-              onSelected: (action) { if (action == 0) { onEdit(); } else { onDelete(); } },
+              onSelected: (action) {
+                if (action == 0) { onEdit(); }
+                else if (action == 1) { onDelete(); }
+                else { onLedger?.call(); }
+              },
               itemBuilder: (_) => [
+                if (onLedger != null) PopupMenuItem(value: 2, child: Row(children: [
+                  const Icon(Icons.menu_book_outlined, size: 20, color: DiaryColors.pen),
+                  const SizedBox(width: 10), Expanded(child: Text(v3Text(context, 'ledgerOpen'),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: DiaryColors.ink))),
+                ])),
                 PopupMenuItem(value: 0, child: Row(children: [
                   const Icon(Icons.edit_outlined, size: 20, color: DiaryColors.ink),
                   const SizedBox(width: 10), Expanded(child: Text(strings.editVendor,

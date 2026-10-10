@@ -35,6 +35,7 @@ class SpendingComparisonRepository {
       required DateTime month, required DateTime today}) {
     return database.customSelect('SELECT 1', readsFrom: {
       database.vendors, database.entries, database.monthRates, database.settings,
+      database.dailyDetails, database.rateChanges, database.vendorPauses, database.purchases,
     }).watch().asyncMap((_) => load(vendorId: vendorId, month: month, today: today));
   }
 

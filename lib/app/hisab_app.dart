@@ -9,6 +9,9 @@ import 'diary_navigation.dart';
 import '../features/splash/splash_screen.dart';
 import 'theme/diary_theme.dart';
 import '../features/help/help_assistant_overlay.dart';
+import '../features/households/household_controller.dart';
+import '../features/device/app_lock_gate.dart';
+import '../features/device/app_lock_controller.dart';
 
 class HisabApp extends ConsumerStatefulWidget {
   const HisabApp({super.key});
@@ -22,6 +25,7 @@ class _HisabAppState extends ConsumerState<HisabApp> {
   void dispose() { _helpObserver.dispose(); super.dispose(); }
   @override
   Widget build(BuildContext context) {
+    final households = ref.watch(householdControllerProvider);
     final settings = ref.watch(settingsProvider);
     final values = settings.asData?.value ?? const <String, String>{};
     final requestedLanguage = values['language'] ?? 'hi';
@@ -40,18 +44,24 @@ class _HisabAppState extends ConsumerState<HisabApp> {
       theme: diaryTheme(language),
       builder: (context, child) {
         final media = MediaQuery.of(context);
-        return MediaQuery(data: media.copyWith(textScaler:
+        final content = MediaQuery(data: media.copyWith(textScaler:
           _DiaryTextScaler(media.textScaler, scale)), child: HelpAssistantOverlay(
             enabled: _introFinished && settings.hasValue && !settings.hasError && values.containsKey('language'),
             observer: _helpObserver, child: child!));
+        return supportsDeviceFeatures ? AppLockGate(child: content) : content;
       },
-      home: !settings.hasError && (!_introFinished || (settings.isLoading && !settings.hasValue))
+      home: households.loading || households.error
+          ? Scaffold(body:Center(child:households.error
+            ? TextButton(onPressed:()=>ref.read(householdControllerProvider.notifier).load(),
+              child:Text(AppLocalizations.of(context)?.retry ?? 'Retry'))
+            : const CircularProgressIndicator()))
+          : !settings.hasError && (!_introFinished || (settings.isLoading && !settings.hasValue))
           ? SplashScreen(onComplete: () {
               if (mounted) setState(() => _introFinished = true);
             })
           : settings.hasValue && !settings.hasError && !values.containsKey('language')
           ? const LanguageScreen()
-          : DiaryShell(storageLoading: settings.isLoading,
+          : DiaryShell(key: ValueKey(households.selectedId), storageLoading: settings.isLoading,
         storageError: settings.hasError,
         onRetry: () => ref.invalidate(settingsProvider)),
     );

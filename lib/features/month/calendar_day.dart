@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../app/theme/diary_theme.dart';
 import '../../l10n/app_localizations.dart';
 import 'month_bill.dart';
+import '../../l10n/v3_strings.dart';
 
 class CalendarDay extends StatelessWidget {
   const CalendarDay({super.key, required this.number, required this.dateLabel,
@@ -25,6 +26,7 @@ class CalendarDay extends StatelessWidget {
       DayAttendance.automatic => strings.autoCame,
       DayAttendance.unmarked => strings.unmarked,
       DayAttendance.disabled => strings.dayUnavailable,
+      DayAttendance.paused => v3Text(context, 'pauseDeliveries'),
     };
     return Semantics(button: true, label: [dateLabel, if (isToday) strings.today, label].join(', '),
       enabled: onPressed != null, onTap: onPressed, excludeSemantics: true,

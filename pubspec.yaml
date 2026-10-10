@@ -32,6 +32,8 @@ dependencies:
   in_app_review: ^2.0.12
   firebase_auth: ^6.7.0
   google_sign_in: ^7.2.0
+  home_widget: ^0.10.0
+  local_auth: ^3.0.2
 
 dev_dependencies:
   flutter_test:

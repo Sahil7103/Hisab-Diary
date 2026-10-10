@@ -9,16 +9,18 @@ import '../../core/widgets/diary_tutorial.dart';
 import '../help/help_spotlight.dart';
 import '../help/help_assistant_overlay.dart';
 import '../settings/settings_repository.dart';
-import '../../core/storage/app_database.dart';
 import '../../core/widgets/diary_button.dart';
 import '../../core/widgets/diary_screen_header.dart';
 import '../../l10n/app_localizations.dart';
 import '../month/month_repository.dart';
-import '../vendors/vendor_type.dart';
 import '../vendors/vendor_selector.dart';
 import '../vendors/vendor_type_screen.dart';
 import 'bill_message.dart';
 import 'bill_repository.dart';
+import '../ledger/diary_ledger_repository.dart';
+import '../ledger/ledger_screen.dart';
+import '../ledger/ledger_widgets.dart';
+import '../../l10n/v3_strings.dart';
 import 'all_vendors_bill.dart';
 import 'bill_export_service.dart';
 import 'bill_share_actions.dart';
@@ -122,8 +124,8 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
             onReveal: () => _revealTutorialTarget(bottom: false)),
           DiaryTutorialStep(target: _shareKey, title: strings.tutorialShareTitle,
             body: strings.tutorialShareBody, onReveal: () => _revealTutorialTarget(target: _shareKey)),
-          if (!_allVendors) DiaryTutorialStep(target: _paidKey, title: strings.tutorialPaidTitle,
-            body: strings.tutorialPaidBody, onReveal: () => _revealTutorialTarget(bottom: true)),
+          if (!_allVendors) DiaryTutorialStep(target: _paidKey, title: v3Text(context, 'payments'),
+            body: v3Text(context, 'paymentsInfo'), onReveal: () => _revealTutorialTarget(bottom: true)),
         ]));
       if (replay) return;
       try {
@@ -221,61 +223,59 @@ class _BillScreenState extends ConsumerState<BillScreen> with WidgetsBindingObse
   List<Widget> _vendorBillContent(BuildContext context, Vendor vendor) {
     final strings = AppLocalizations.of(context)!;
     final request = (vendorId: vendor.id, month: _month, today: _today);
+    final ledgerRequest = (vendorId: vendor.id, month: _month);
     final bill = ref.watch(monthBillProvider(request));
-    final paid = ref.watch(paidMonthProvider((vendorId: vendor.id, month: _month)));
+    final ledger = ref.watch(ledgerDetailsProvider(ledgerRequest));
     final numbers = NumberFormat.decimalPattern(strings.localeName);
-    if (bill.hasValue && !bill.hasError && paid.hasValue && !paid.hasError) _startTutorial();
+    if (bill.hasValue && !bill.hasError && ledger.hasValue && !ledger.hasError) _startTutorial();
     return bill.when(
-        loading: () => [Center(child: Semantics(label: strings.loading,
-          child: const CircularProgressIndicator()))],
-        error: (_, _) => [
-          Text(strings.storageError, style: Theme.of(context).textTheme.bodyLarge),
-          DiaryButton(label: strings.retry, onPressed: () => ref.invalidate(monthBillProvider(request))),
-        ],
-        data: (summary) {
-          final total = billTotalLabel(summary, strings.localeName);
-          final message = billShareMessage(summary, strings);
-          final repository = ref.read(billRepositoryProvider);
-          return [
-            Card(key: _totalKey, margin: const EdgeInsets.only(bottom: 8), child: Padding(
-              padding: const EdgeInsets.all(14), child: Column(children: [
-                Text(paid.asData?.value == true ? strings.paid : strings.totalDue,
-                  style: Theme.of(context).textTheme.bodyMedium),
-                Text(total, textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displaySmall),
-                const SizedBox(height: 12),
-                _BillRow(label: strings.came, value: strings.dayCount(numbers.format(summary.cameDays))),
-            _BillRow(label: strings.notCame, value: strings.dayCount(numbers.format(summary.notCameDays))),
-            if (summary.automaticDays > 0) _BillRow(
-              label: strings.autoCame, value: strings.dayCount(numbers.format(summary.automaticDays))),
-                const SizedBox(height: 12),
-            Text( '${numbers.format(summary.cameDays * summary.quantity)} '
-              '${vendorUnitLabel(strings, vendor.unit)} × ₹${numbers.format(summary.rate)}',
-                  textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
-              ]))),
-            const SizedBox(height: 8),
-            ..._comparisonContent(context, vendorId: vendor.id),
-            BillShareActions(textShareKey: _shareKey, busy: _busy,
-              onShareText: () => _perform(() => repository.shareMessage(message), strings.shareError),
-              onShareExport: (format) => _shareExport(
-                AllVendorsBill(month: summary.month, bills: [summary]), format)),
-            const SizedBox(height: 12),
-            if (paid.hasError) ...[
+      loading: () => [Center(child: Semantics(label: strings.loading,
+        child: const CircularProgressIndicator()))],
+      error: (_, _) => [
+        Text(strings.storageError, style: Theme.of(context).textTheme.bodyLarge),
+        DiaryButton(label: strings.retry, onPressed: () => ref.invalidate(monthBillProvider(request))),
+      ],
+      data: (summary) {
+        final total = billTotalLabel(summary, strings.localeName);
+        final message = billShareMessage(summary, strings);
+        final repository = ref.read(billRepositoryProvider);
+        return [
+          Card(key: _totalKey, margin: const EdgeInsets.only(bottom: 8), child: Padding(
+            padding: const EdgeInsets.all(14), child: Column(children: [
+              Text(v3Text(context, 'monthTotal'), style: Theme.of(context).textTheme.bodyMedium),
+              Text(total, textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displaySmall),
+              const SizedBox(height: 12),
+              _BillRow(label: strings.came, value: strings.dayCount(numbers.format(summary.cameDays))),
+              _BillRow(label: strings.notCame, value: strings.dayCount(numbers.format(summary.notCameDays))),
+              if (summary.automaticDays > 0) _BillRow(label: strings.autoCame,
+                value: strings.dayCount(numbers.format(summary.automaticDays))),
+            ]))),
+          const SizedBox(height: 8),
+          ..._comparisonContent(context, vendorId: vendor.id),
+          BillShareActions(textShareKey: _shareKey, busy: _busy,
+            onShareText: () => _perform(() => repository.shareMessage(message), strings.shareError),
+            onShareExport: (format) => _shareExport(
+              AllVendorsBill(month: summary.month, bills: [summary]), format)),
+          const SizedBox(height: 12),
+          ...ledger.when(
+            loading: () => [const LinearProgressIndicator()],
+            error: (_, _) => [
               Text(strings.storageError, style: Theme.of(context).textTheme.bodyMedium),
-              DiaryButton(label: strings.retry, onPressed: () => ref.invalidate(
-                paidMonthProvider((vendorId: vendor.id, month: _month)))),
-            ] else DiaryButton(key: _paidKey, label: paid.asData?.value == true
-                  ? '${strings.paid} ✔' : '${strings.markPaid} ✔',
-              color: paid.asData?.value == true ? DiaryColors.cameTint : Colors.white,
-              foreground: paid.asData?.value == true ? DiaryColors.cameEdge : DiaryColors.ink,
-              edge: DiaryColors.ink, selected: paid.asData?.value == true,
-              onPressed: _busy || paid.isLoading || paid.asData?.value == true ? null
-                : () => _perform(() => repository.markPaid(vendor.id, _month), strings.saveError)),
-          ];
-        },
+              DiaryButton(label: strings.retry,
+                onPressed: () => ref.invalidate(ledgerDetailsProvider(ledgerRequest))),
+            ],
+            data: (details) => [LedgerBalanceCard(balance: details.balance)],
+          ),
+          const SizedBox(height: 12),
+          DiaryButton(key: _paidKey, label: v3Text(context, 'ledgerOpen'),
+            color: Colors.white, foreground: DiaryColors.ink, edge: DiaryColors.ink,
+            onPressed: _busy ? null : () => Navigator.of(context).push<void>(
+              MaterialPageRoute(builder: (_) => LedgerScreen(vendorId: vendor.id, month: _month)))),
+        ];
+      },
     );
   }
-
   List<Widget> _allBillsContent(BuildContext context) {
     final strings = AppLocalizations.of(context)!;
     final request = (month: _month, today: _today);

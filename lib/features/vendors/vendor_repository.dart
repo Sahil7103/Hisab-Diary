@@ -73,9 +73,9 @@ class VendorRepository {
 
   Future<void> _writeRate(int vendorId, {required double quantity,
     required double rate}) async {
-    final month = diaryDate(DateTime.now()).substring(0, 7);
-    await database.into(database.monthRates).insertOnConflictUpdate(
-      MonthRatesCompanion.insert(vendorId: vendorId, month: month, rate: rate, qty: quantity));
+    final date = diaryDate(DateTime.now());
+    await database.into(database.rateChanges).insertOnConflictUpdate(
+      RateChangesCompanion.insert(vendorId: vendorId, effectiveDate: date, rate: rate, quantity: quantity));
     await (database.update(database.vendors)..where((row) => row.id.equals(vendorId)))
       .write(VendorsCompanion(rate: Value(rate), defaultQty: Value(quantity)));
   }
@@ -85,6 +85,8 @@ class VendorRepository {
       await (database.delete(database.entries)..where((row) => row.vendorId.equals(vendorId))).go();
       await (database.delete(database.payments)..where((row) => row.vendorId.equals(vendorId))).go();
       await (database.delete(database.monthRates)..where((row) => row.vendorId.equals(vendorId))).go();
+      await (database.delete(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId') |
+        row.key.equals('v3Reminder:$vendorId'))).go();
       await (database.delete(database.vendors)..where((row) => row.id.equals(vendorId))).go();
     }));
 

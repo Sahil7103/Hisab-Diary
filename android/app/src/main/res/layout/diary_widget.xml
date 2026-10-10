@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="12dp"
+    android:background="@drawable/diary_widget_background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_title" android:layout_width="0dp"
+            android:layout_weight="1" android:layout_height="wrap_content"
+            android:text="Hisab Diary" android:textColor="#1B2233" android:textSize="17sp"
+            android:textStyle="bold" android:maxLines="1" android:ellipsize="end" />
+        <ImageButton android:id="@+id/widget_refresh" android:layout_width="40dp"
+            android:layout_height="40dp" android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_popup_sync" android:contentDescription="Refresh" />
+    </LinearLayout>
+    <TextView android:id="@+id/widget_date" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textColor="#55607A" android:textSize="12sp" />
+    <TextView android:id="@+id/widget_message" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" android:gravity="center"
+        android:text="Open your diary" android:textColor="#55607A" android:textSize="14sp" />
+    <LinearLayout android:id="@+id/widget_vendors" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical" />
+    <TextView android:id="@+id/widget_more" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:textColor="#1C3FA0" android:textSize="12sp"
+        android:paddingTop="4dp" android:visibility="gone" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="end">
+        <Button android:id="@+id/widget_all_came" android:layout_width="0dp"
+            android:layout_weight="1" android:layout_height="42dp" android:text="All came"
+            android:textAllCaps="false" android:textSize="12sp" android:textColor="#1E8A4C"
+            android:visibility="gone" />
+        <Button android:id="@+id/widget_open" android:layout_width="0dp"
+            android:layout_weight="1" android:layout_height="42dp" android:text="Open diary"
+            android:textAllCaps="false" android:textSize="12sp" android:textColor="#1C3FA0" />
+    </LinearLayout>
+</LinearLayout>
