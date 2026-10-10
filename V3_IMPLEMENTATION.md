@@ -31,6 +31,8 @@ V3 lives on branch `v3`. V1 (`main`) and V2 (`v2`) remain separate.
 
 ## Verification completed
 
+35 focused tests passed across the final verification runs. Targeted Dart analysis reported no issues. `flutter build apk --debug --no-pub` succeeded; the APK is at `build/app/outputs/flutter-apk/app-debug.apk` in the V3 checkout.
+
 Focused checks cover dated rates, daily quantities, purchase-mode history, pauses, payment carry-forward, duplicate settlement, old/new backup restore, schema migration, household isolation, widget action validation, authentication failures, export reconciliation, budget parsing and reminder times. App execution and physical-device QA are left to the developer.
 
 ## Before production release
