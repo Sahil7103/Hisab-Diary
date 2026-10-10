@@ -38,30 +38,33 @@ class BillExportService {
     // Stable headers and decimal numbers allow imports regardless of app language.
     final rows = <List<String>>[
       ['billing_month', 'vendor_name', 'service', 'unit', 'came_days',
-        'not_came_days', 'automatic_days', 'daily_quantity', 'unit_rate_inr', 'total_inr'],
-      for (final row in bill.bills)
-        [diaryMonth(bill.month), _csvText(row.vendor.name.trim().isEmpty
-          ? vendorTypeLabel(strings, row.vendor.type) : row.vendor.name),
-          _csvText(vendorTypeLabel(strings, row.vendor.type)),
-          _csvText(vendorUnitLabel(strings, row.vendor.unit)),
-          '${row.cameDays}', '${row.notCameDays}', '${row.automaticDays}',
-          row.hasVariableCharges ? '' : _decimal(row.quantity),
-          row.hasVariableCharges ? '' : _decimal(row.rate), _money(row.totalPaise)],
-      [diaryMonth(bill.month), _csvText(strings.monthlyTotal), '', '', '', '', '', '', '',
-        _money(bill.totalPaise)],
+        'not_came_days', 'automatic_days', 'daily_quantity', 'unit_rate_inr', 'total_inr',
+        'record_type','date','item','record_quantity','note'],
     ];
-    rows.addAll([
-      [],
-      ['record_type','vendor_name','date','item','quantity','unit_rate_inr','amount_inr','note'],
-      for(final row in bill.bills) ...[
-        for(final day in row.deliveries)
-          [day.automatic ? 'automatic_delivery' : 'delivery',_csvText(row.vendor.name),day.date,'',
-            _decimal(day.quantity),_decimal(day.rate),_money(day.totalPaise),_csvText(day.note)],
-        for(final item in row.purchases)
-          ['purchase',_csvText(row.vendor.name),item.date,_csvText(item.name),_decimal(item.quantity),
-            _money(item.unitPricePaise),_money((item.quantity*item.unitPricePaise).round()),''],
-      ],
-    ]);
+    for (final row in bill.bills) {
+      final name = _csvText(row.vendor.name.trim().isEmpty
+        ? vendorTypeLabel(strings,row.vendor.type) : row.vendor.name);
+      final service = _csvText(vendorTypeLabel(strings,row.vendor.type));
+      final unit = _csvText(vendorUnitLabel(strings,row.vendor.unit));
+      rows.add([diaryMonth(bill.month),name,service,unit,'${row.cameDays}',
+        '${row.notCameDays}','${row.automaticDays}',
+        row.hasVariableCharges ? '' : _decimal(row.quantity),
+        row.hasVariableCharges ? '' : _decimal(row.rate),_money(row.totalPaise),
+        'vendor_total','','','','']);
+      for(final day in row.deliveries) {
+        rows.add([diaryMonth(bill.month),name,service,unit,'','','','',
+          _decimal(day.rate),_money(day.totalPaise),
+          day.automatic ? 'automatic_delivery' : 'delivery',day.date,'',
+          _decimal(day.quantity),_csvText(day.note)]);
+      }
+      for(final item in row.purchases) {
+        rows.add([diaryMonth(bill.month),name,service,unit,'','','','',
+          _money(item.unitPricePaise),_money((item.quantity*item.unitPricePaise).round()),
+          'purchase',item.date,_csvText(item.name),_decimal(item.quantity),'']);
+      }
+    }
+    rows.add([diaryMonth(bill.month),_csvText(strings.monthlyTotal),'','','','','','','',
+      _money(bill.totalPaise),'monthly_total','','','','']);
     return Uint8List.fromList(utf8.encode('\uFEFF${rows.map((row) => row.join(',')).join('\r\n')}\r\n'));
   }
 

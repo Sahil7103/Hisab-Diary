@@ -36,7 +36,7 @@ MonthBill calculateMonthBill({required Vendor vendor, required DateTime month,
   required bool countUnmarkedAsCame, MonthRate? monthRate,
   List<DailyDetail> dailyDetails = const [], List<RateChange> rateChanges = const [],
   List<VendorPause> pauses = const [], List<Purchase> purchases = const [],
-  bool itemizedOnly = false}) {
+  bool itemizedOnly = false, Map<String,bool> purchaseModes = const {}}) {
   final first = DateTime(month.year, month.month);
   final today = DateTime(now.year, now.month, now.day);
   final days = <int, DayAttendance>{};
@@ -51,7 +51,15 @@ MonthBill calculateMonthBill({required Vendor vendor, required DateTime month,
   for (int number = 1; number <= daysInMonth(first); number++) {
     final day = DateTime(first.year, first.month, number);
     final date = diaryDate(day);
-    if (day.isAfter(today) || date.compareTo(vendor.createdAt) < 0 || itemizedOnly) {
+    var purchasesOnly = itemizedOnly;
+    if(purchaseModes.isNotEmpty) {
+      purchasesOnly=false;
+      for(final key in purchaseModes.keys.toList()..sort()) {
+        if(key.compareTo(date)>0) break;
+        purchasesOnly=purchaseModes[key]!;
+      }
+    }
+    if (day.isAfter(today) || purchasesOnly) {
       days[number] = DayAttendance.disabled;
       continue;
     }
@@ -86,9 +94,11 @@ MonthBill calculateMonthBill({required Vendor vendor, required DateTime month,
         }
       }
       quantity = details[date]?.quantity ?? quantity;
-      deliveries.add(DeliveryCharge(date: date, quantity: quantity, rate: rate,
-        note: details[date]?.note ?? '', automatic: days[number] == DayAttendance.automatic));
+      final previousTotal = deliveryTotal.round();
       deliveryTotal += quantity * rate * 100;
+      deliveries.add(DeliveryCharge(date: date, quantity: quantity, rate: rate,
+        calculatedTotalPaise: deliveryTotal.round() - previousTotal,
+        note: details[date]?.note ?? '', automatic: days[number] == DayAttendance.automatic));
     }
   }
   final validPurchases = purchases.where((row) => row.date.compareTo(diaryDate(first)) >= 0 &&
@@ -106,11 +116,12 @@ MonthBill calculateMonthBill({required Vendor vendor, required DateTime month,
 
 class DeliveryCharge {
   const DeliveryCharge({required this.date, required this.quantity, required this.rate,
-    this.note = '', this.automatic = false});
+    this.note = '', this.automatic = false, this.calculatedTotalPaise});
   final String date;
   final double quantity;
   final double rate;
   final String note;
   final bool automatic;
-  int get totalPaise => (quantity * rate * 100).round();
+  final int? calculatedTotalPaise;
+  int get totalPaise => calculatedTotalPaise ?? (quantity * rate * 100).round();
 }

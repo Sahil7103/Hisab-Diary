@@ -215,7 +215,8 @@ class _LedgerScreenState extends ConsumerState<LedgerScreen> {
               style: Theme.of(context).textTheme.bodyMedium),
             value: details.itemizedOnly,
             onChanged: _busy ? null : (value) => _perform(
-              () => repo.setPurchasesOnly(vendor.id, value))),
+              () => repo.setPurchasesOnly(vendor.id, value,
+                effectiveDate: _month.isBefore(created) ? created : _month))),
           if (details.purchases.isEmpty) empty('noPurchases'),
           for (final purchase in details.purchases) LedgerRecordTile(
             title: purchase.name,
@@ -327,13 +328,15 @@ class _LedgerEditorState extends ConsumerState<_LedgerEditor> {
     final initial = selected.isBefore(first) ? first : selected.isAfter(last) ? last : selected;
     final chosen = await showDatePicker(context: context, initialDate: initial,
       firstDate: first, lastDate: last);
-    if (mounted && chosen != null) setState(() {
+    if (mounted && chosen != null) {
+      setState(() {
       if (end) { _end = chosen; } else { _date = chosen; }
       _rangeError = false;
       if (widget.kind == _LedgerEdit.daily) {
         _loadDaily();
       }
-    });
+      });
+    }
   }
 
   String? _number(String? value, {bool optional = false, bool zero = false}) {

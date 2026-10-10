@@ -43,10 +43,10 @@ void main() {
     expect(file.bytes.take(3), [0xef, 0xbb, 0xbf]);
     final csv = utf8.decode(file.bytes);
     expect(csv, startsWith('billing_month,vendor_name,service,unit,came_days,'
-      'not_came_days,automatic_days,daily_quantity,unit_rate_inr,total_inr\r\n'));
-    expect(csv, contains('2020-01,"Ramu, ""Milk""\nDelivery","Milk","litre",3,2,1,0.5,62.5,93.75\r\n'));
-    expect(csv, contains('2020-01,"\' =HYPERLINK(""unsafe"")","Milk","litre",1,2,1,0.5,0.03,0.02\r\n'));
-    expect(csv, endsWith('2020-01,"Monthly total",,,,,,,,93.77\r\n'));
+      'not_came_days,automatic_days,daily_quantity,unit_rate_inr,total_inr,record_type,date,item,record_quantity,note\r\n'));
+    expect(csv, contains('2020-01,"Ramu, ""Milk""\nDelivery","Milk","litre",3,2,1,0.5,62.5,93.75,vendor_total,,,,\r\n'));
+    expect(csv, contains('2020-01,"\' =HYPERLINK(""unsafe"")","Milk","litre",1,2,1,0.5,0.03,0.02,vendor_total,,,,\r\n'));
+    expect(csv, endsWith('2020-01,"Monthly total",,,,,,,,93.77,monthly_total,,,,\r\n'));
     expect(bill.totalPaise, 9377);
   });
 

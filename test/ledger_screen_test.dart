@@ -52,22 +52,27 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.scrollUntilVisible(find.text('Edit delivery'), 200,
       scrollable: find.byType(Scrollable).first);
+    await tester.ensureVisible(find.text('Edit delivery'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Edit delivery'));
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextFormField).first, '-1');
     await tester.scrollUntilVisible(find.text('Save'), 160,
       scrollable: find.byType(Scrollable).last);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Save'));
     await tester.pumpAndSettle();
     expect(find.text('Enter a valid number greater than zero.'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.scrollUntilVisible(find.text('Cancel'), 160,
       scrollable: find.byType(Scrollable).last);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Cancel'));
     await tester.pumpAndSettle();
     for (final label in ['Add rate', 'Add pause', 'Add purchase', 'Add payment']) {
       await tester.scrollUntilVisible(find.text(label), 180,
         scrollable: find.byType(Scrollable).first);
+      await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
     }
     expect(find.byType(LedgerRecordTile), findsWidgets);

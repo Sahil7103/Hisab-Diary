@@ -41,9 +41,12 @@ class _AppLockGateState extends State<AppLockGate> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     final foreground = state == AppLifecycleState.resumed;
-    // The biometric dialog briefly makes the activity inactive.
-    if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden ||
-        (!_lock.busy && state == AppLifecycleState.inactive)) _lock.lock();
+    // System credentials can pause this activity. The plugin cancels authentication
+    // on genuine backgrounding; keep the diary hidden while that request completes.
+    if (!_lock.busy && (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.hidden || state == AppLifecycleState.inactive)) {
+      _lock.lock();
+    }
     if (mounted) setState(() => _foreground = foreground);
     if (foreground && !_lock.busy) unawaited(_prepare());
   }

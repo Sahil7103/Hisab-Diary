@@ -4,7 +4,6 @@ import 'dart:ui' show DartPluginRegistrant;
 import 'package:flutter/material.dart';
 import 'package:home_widget/home_widget.dart';
 import '../../core/storage/app_database.dart';
-import '../../core/utils/date_keys.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/v3_strings.dart';
 import '../today/today_repository.dart';
@@ -19,7 +18,11 @@ final _diaryNamePattern = RegExp(r'^hisab_diary(?:_household_[a-z0-9]+)?$');
 
 Future<void> initializeDeviceFeatures() async {
   if (!supportsDeviceFeatures) return;
-  await HomeWidget.registerInteractivityCallback(diaryWidgetBackgroundCallback);
+  try {
+    await HomeWidget.registerInteractivityCallback(diaryWidgetBackgroundCallback);
+  } catch (error) {
+    debugPrint('Diary widget initialization failed (${error.runtimeType}).');
+  }
   await AppLockController.instance.initialize();
 }
 
@@ -33,14 +36,14 @@ bool validDiaryWidgetAction(Uri? action, Map<String, dynamic>? snapshot, {
       action.queryParameters['dbName'] != dbName ||
       action.queryParameters['householdId'] != householdId ||
       action.queryParameters['householdName'] != householdName ||
-      action.queryParameters['date'] != diaryDate(now)) return false;
+      action.queryParameters['date'] != diaryDate(now)) { return false; }
   final kind = action.queryParameters['action'];
   if (kind == 'refresh') return true;
   if (!['came', 'absent', 'allCame'].contains(kind) || snapshot == null ||
       snapshot['dbName'] != dbName || snapshot['householdId'] != householdId ||
       snapshot['householdName'] != householdName || snapshot['date'] != diaryDate(now) ||
       snapshot['token'] is! String || (snapshot['token'] as String).isEmpty ||
-      snapshot['token'] != action.queryParameters['token']) return false;
+      snapshot['token'] != action.queryParameters['token']) { return false; }
   if (kind == 'allCame') return true;
   final id = int.tryParse(action.queryParameters['vendorId'] ?? '');
   final rows = snapshot['vendors'];
@@ -83,6 +86,12 @@ Future<void> diaryWidgetBackgroundCallback(Uri? action) async {
     final repository = TodayRepository(database);
     final vendors = await repository.loadDay(day);
     if (!await _actionStillValid(action)) return;
+    final catalog = AppDatabase(name:'hisab_diary_device');
+    try {
+      final selection = await (catalog.select(catalog.settings)..where((row) =>
+        row.key.equals('selectedHousehold'))).getSingleOrNull();
+      if ((selection?.value ?? 'home') != householdId) return;
+    } finally { await catalog.close(); }
     final kind = action.queryParameters['action'];
     if (kind == 'allCame') {
       await repository.markAllCame(day);
@@ -94,7 +103,7 @@ Future<void> diaryWidgetBackgroundCallback(Uri? action) async {
     }
     if (await HomeWidget.getWidgetData<String>(activeDiaryDbKey) != dbName ||
         await HomeWidget.getWidgetData<String>(activeHouseholdIdKey) != householdId ||
-        await HomeWidget.getWidgetData<String>(activeHouseholdNameKey) != householdName) return;
+        await HomeWidget.getWidgetData<String>(activeHouseholdNameKey) != householdName) { return; }
     await _writeSnapshot(database, dbName: dbName, householdId: householdId,
       householdName: householdName);
   } catch (error) {
@@ -139,7 +148,7 @@ Future<void> _writeSnapshot(AppDatabase database, {required String dbName,
   if (isCurrent != null && !isCurrent()) return;
   if (await HomeWidget.getWidgetData<String>(activeDiaryDbKey) != dbName ||
       await HomeWidget.getWidgetData<String>(activeHouseholdIdKey) != householdId ||
-      await HomeWidget.getWidgetData<String>(activeHouseholdNameKey) != householdName) return;
+      await HomeWidget.getWidgetData<String>(activeHouseholdNameKey) != householdName) { return; }
   if (isCurrent != null && !isCurrent()) return;
   if (await HomeWidget.saveWidgetData<String>(diaryWidgetSnapshotKey, snapshot) != true) {
     throw StateError('Widget snapshot could not be saved');

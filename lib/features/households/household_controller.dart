@@ -19,14 +19,20 @@ class HouseholdState {
   final bool error;
   Household get selected => households.firstWhere((row) => row.id == selectedId);
 }
+final householdDatabaseFactoryProvider = Provider<AppDatabase Function(String)>((ref) =>
+  (name) => AppDatabase(name:name));
+final householdCatalogDatabaseProvider = Provider<AppDatabase>((ref) {
+  final db = ref.watch(householdDatabaseFactoryProvider)('hisab_diary_device');
+  ref.onDispose(() => unawaited(db.close()));
+  return db;
+});
 final householdControllerProvider = NotifierProvider<HouseholdController, HouseholdState>(HouseholdController.new);
 class HouseholdController extends Notifier<HouseholdState> {
   late AppDatabase _catalog;
   Future<void> _work = Future.value();
   @override
   HouseholdState build() {
-    _catalog = AppDatabase(name: 'hisab_diary_device');
-    ref.onDispose(() => unawaited(_catalog.close()));
+    _catalog = ref.watch(householdCatalogDatabaseProvider);
     unawaited(load());
     return const HouseholdState();
   }
@@ -47,7 +53,7 @@ class HouseholdController extends Notifier<HouseholdState> {
           final id = row['id'] as String;
           final name = row['name'] as String;
           if (!RegExp(r'^[a-z0-9]{1,40}$').hasMatch(id) || !ids.add(id) ||
-              name.trim().isEmpty || name.length > 50) throw const FormatException('Invalid household');
+              name.trim().isEmpty || name.length > 50) { throw const FormatException('Invalid household'); }
           households.add(Household(id,name));
         }
       } else {
@@ -90,10 +96,10 @@ class HouseholdController extends Notifier<HouseholdState> {
     final random = Random.secure();
     final id = '${DateTime.now().microsecondsSinceEpoch.toRadixString(36)}${random.nextInt(0x7fffffff).toRadixString(36)}';
     final household = Household(id,value);
-    final db = AppDatabase(name: household.databaseName);
+    final db = ref.read(householdDatabaseFactoryProvider)(household.databaseName);
     try {
       await db.batch((batch) => batch.insertAll(db.settings, [for (final entry in preferences.entries)
-        if (entry.key == 'language' || entry.key == 'textScale' || entry.key.startsWith('tutorial'))
+        if (entry.key == 'language' || entry.key == 'textScale' || entry.key.startsWith('tutorial') || entry.key == 'assistantIntroSeen')
           SettingsCompanion.insert(key: entry.key,value:entry.value)]));
     } finally { await db.close(); }
     final households = [...state.households, household];

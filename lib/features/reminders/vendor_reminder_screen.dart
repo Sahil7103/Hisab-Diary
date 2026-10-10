@@ -77,6 +77,8 @@ class _VendorReminderScreenState extends ConsumerState<VendorReminderScreen> {
           const SizedBox(height: 16),
           Text(v3Text(context, 'deliveryReminderInfo'), style: text.bodyMedium),
           const SizedBox(height: 8),
+          Text(v3Text(context, 'reminderWindow'), style: text.bodyMedium),
+          const SizedBox(height: 8),
           Text(v3Text(context, 'paymentReminderInfo'), style: text.bodyMedium),
           const SizedBox(height: 8),
           Text(v3Text(context, 'reminderApproximateV3'), style: text.bodyMedium),

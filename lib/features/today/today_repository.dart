@@ -4,6 +4,7 @@ import '../../app/app_providers.dart';
 import '../../core/storage/app_database.dart';
 import '../../core/services/diary_usage_analytics.dart';
 import '../../core/utils/date_keys.dart';
+import '../ledger/delivery_mode.dart';
 export '../../core/utils/date_keys.dart' show diaryDate;
 
 enum Attendance { came, notCame }
@@ -40,11 +41,9 @@ class TodayRepository {
       row.startDate.isSmallerOrEqualValue(date) & row.endDate.isBiggerOrEqualValue(date))).get();
     final paused = pauses.map((row) => row.vendorId).toSet();
     final settings = await database.select(database.settings).get();
-    final purchaseOnly = {for (final row in settings)
-      if (row.key.startsWith('v3PurchasesOnly:') && row.value == 'true')
-        int.tryParse(row.key.split(':').last)};
+    final values={for(final row in settings) row.key:row.value};
     return [for (final vendor in vendors)
-      if (scheduledOn(vendor, day) && !paused.contains(vendor.id) && !purchaseOnly.contains(vendor.id))
+      if (scheduledOn(vendor, day) && !paused.contains(vendor.id) && !purchasesOnlyOn(values,vendor.id,date))
         TodayVendor(vendor, switch(statuses[vendor.id]) {
           'came' => Attendance.came, 'notCame' => Attendance.notCame, _ => null})];
   });

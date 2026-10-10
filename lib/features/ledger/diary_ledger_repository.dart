@@ -1,4 +1,6 @@
 import 'dart:math' as math;
+import 'dart:convert';
+import 'delivery_mode.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/app_providers.dart';
@@ -68,6 +70,10 @@ class DiaryLedgerRepository {
         throw ArgumentError('Invalid quantity');
       }
       final value = _note(note);
+      if (quantity != null) {
+        await database.into(database.entries).insertOnConflictUpdate(
+          EntriesCompanion.insert(vendorId:vendorId,date:date,status:'came'));
+      }
       if (quantity == null && value.isEmpty) {
         await (database.delete(database.dailyDetails)..where((row) =>
           row.vendorId.equals(vendorId) & row.date.equals(date))).go();
@@ -118,10 +124,19 @@ class DiaryLedgerRepository {
   });
   Future<void> deletePurchase(int id) => (database.delete(database.purchases)
     ..where((row) => row.id.equals(id))).go();
-  Future<void> setPurchasesOnly(int vendorId, bool value) => database.transaction(() async {
-    await _vendor(vendorId);
-    await database.saveSetting('v3PurchasesOnly:$vendorId', value.toString());
-  });
+  Future<void> setPurchasesOnly(int vendorId, bool value, {DateTime? effectiveDate}) =>
+    database.transaction(() async {
+      final vendor=await _vendor(vendorId);
+      final day=await _day(vendorId,effectiveDate ?? DateTime.now());
+      final settings={for(final row in await database.select(database.settings).get()) row.key:row.value};
+      final modes=decodePurchaseModes(settings['v3PurchaseModes:$vendorId']);
+      if(modes.isEmpty && settings['v3PurchasesOnly:$vendorId']=='true') modes[vendor.createdAt]=true;
+      modes[day]=value;
+      settings['v3PurchaseModes:$vendorId']=jsonEncode(modes);
+      await database.saveSetting('v3PurchaseModes:$vendorId',jsonEncode(modes));
+      await database.saveSetting('v3PurchasesOnly:$vendorId',
+        purchasesOnlyOn(settings,vendorId,diaryDate(DateTime.now())).toString());
+    });
   Future<void> addPayment(int vendorId, DateTime month, DateTime date,
       {required int amountPaise, bool advance = false, String note = ''}) => database.transaction(() async {
     final day = await _day(vendorId, date);
@@ -173,9 +188,8 @@ class DiaryLedgerRepository {
       database.purchases, database.ledgerPayments}).watch().asyncMap((_) => database.transaction(() async {
         final key = diaryMonth(month);
         final vendor = await _vendor(vendorId);
-        final mode = await (database.select(database.settings)..where((row) =>
-          row.key.equals('v3PurchasesOnly:$vendorId'))).getSingleOrNull();
-        return LedgerDetails(vendor: vendor, itemizedOnly: mode?.value == 'true',
+        final modes={for(final row in await database.select(database.settings).get()) row.key:row.value};
+        return LedgerDetails(vendor: vendor, itemizedOnly: purchasesOnlyOn(modes,vendorId,diaryDate(month)),
           balance: await balanceForMonth(vendorId, month),
           dailyDetails: await (database.select(database.dailyDetails)..where((row) =>
             row.vendorId.equals(vendorId) & row.date.like('$key-%'))).get(),

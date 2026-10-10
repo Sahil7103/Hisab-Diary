@@ -86,7 +86,7 @@ class VendorRepository {
       await (database.delete(database.payments)..where((row) => row.vendorId.equals(vendorId))).go();
       await (database.delete(database.monthRates)..where((row) => row.vendorId.equals(vendorId))).go();
       await (database.delete(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId') |
-        row.key.equals('v3Reminder:$vendorId'))).go();
+        row.key.equals('v3Reminder:$vendorId') | row.key.equals('v3PurchaseModes:$vendorId'))).go();
       await (database.delete(database.vendors)..where((row) => row.id.equals(vendorId))).go();
     }));
 

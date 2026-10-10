@@ -5,6 +5,7 @@ String v3String(String language, String key) =>
   (language == 'hi' ? _hindi[key] : null) ?? _english[key] ?? key;
 
 const _english = {
+  "reminderWindow": "Delivery reminders cover the next 31 days and refresh whenever you open or update the diary.",
   "widgetError": "Could not update the widget. Open the diary to retry.",
   "ledgerTitle": "Vendor ledger",
   "ledgerOpen": "Deliveries, purchases & payments",
@@ -22,7 +23,7 @@ const _english = {
   "pauseNote": "Pause note",
   "purchases": "Itemized purchases",
   "purchasesOnly": "Count purchases only",
-  "purchasesOnlyInfo": "Bills use recorded purchases. Automatic daily delivery charges are disabled. Existing delivery records are retained.",
+  "purchasesOnlyInfo": "From the selected month onward, bills use purchases and skip daily delivery charges. Earlier months keep their delivery charges.",
   "purchaseName": "Item name",
   "purchaseQuantity": "Quantity",
   "addPurchase": "Add purchase",
@@ -57,7 +58,7 @@ const _english = {
   "save": "Save",
   "cancel": "Cancel",
   "chooseDate": "Choose date",
-  "defaultQuantityInfo": "Leave blank to use the quantity effective on that date.",
+  "defaultQuantityInfo": "Leave blank to use the daily quantity. Entering a quantity also marks that date as delivered.",
   "spendingTitle": "Budgets & spending",
   "activeSpendingOnly": "Spending includes active vendors. Archived vendors are excluded.",
   "currentMonthPartial": "This month shows spending so far; earlier months are complete.",

@@ -5,7 +5,7 @@ import '../features/households/household_controller.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final household = ref.watch(householdControllerProvider.select((state) => state.selectedId));
-  final database = AppDatabase(name: household == 'home' ? 'hisab_diary' : 'hisab_diary_household_$household');
+  final database = ref.watch(householdDatabaseFactoryProvider)(household == 'home' ? 'hisab_diary' : 'hisab_diary_household_$household');
   ref.onDispose(() => unawaited(database.close()));
   return database;
 });

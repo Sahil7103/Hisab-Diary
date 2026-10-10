@@ -6,6 +6,7 @@ import '../../core/services/diary_usage_analytics.dart';
 import '../../core/utils/date_keys.dart';
 import '../today/today_repository.dart' show Attendance;
 import 'month_bill.dart';
+import '../ledger/delivery_mode.dart';
 
 final activeVendorsProvider = StreamProvider<List<Vendor>>((ref) {
   final db = ref.watch(databaseProvider);
@@ -55,7 +56,8 @@ class MonthRepository {
     final purchases = await (database.select(database.purchases)..where((row) => row.vendorId.equals(vendorId) &
       row.date.isBiggerOrEqualValue(diaryDate(first)) & row.date.isSmallerThanValue(diaryDate(next)))).get();
     final mode = await (database.select(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId'))).getSingleOrNull();
-    return calculateMonthBill(dailyDetails: details, rateChanges: rates, pauses: pauses,
+    final modes = await (database.select(database.settings)..where((row) => row.key.equals('v3PurchaseModes:$vendorId'))).getSingleOrNull();
+    return calculateMonthBill(purchaseModes: decodePurchaseModes(modes?.value), dailyDetails: details, rateChanges: rates, pauses: pauses,
       purchases: purchases, itemizedOnly: mode?.value == 'true', vendor: vendor, month: first, now: today,
       monthRate: rate, countUnmarkedAsCame: setting?.value != 'false',
       entries: {for (final entry in entries) entry.date:
@@ -71,8 +73,8 @@ class MonthRepository {
       if (vendor.archived || date.compareTo(today) > 0 || date.compareTo(vendor.createdAt) < 0) {
         return null;
       }
-      final mode = await (database.select(database.settings)..where((row) => row.key.equals('v3PurchasesOnly:$vendorId'))).getSingleOrNull();
-      if (mode?.value == 'true') return null;
+      final modes = await database.select(database.settings).get();
+      if (purchasesOnlyOn({for (final row in modes) row.key: row.value}, vendorId, date)) return null;
       final pauses = await (database.select(database.vendorPauses)..where((row) => row.vendorId.equals(vendorId) &
         row.startDate.isSmallerOrEqualValue(date) & row.endDate.isBiggerOrEqualValue(date))).get();
       final entry = await (database.select(database.entries)..where((row) =>

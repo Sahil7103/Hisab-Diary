@@ -53,7 +53,7 @@ void main() {
     final bytes = await service.exportBytes();
     final original = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
     final mutations = <void Function(Map<String, dynamic>)>[
-      (root) => root['version'] = 2,
+      (root) => root['version'] = 99,
       (root) => root['app'] = 'another_app',
       (root) => root['entries'][0]['vendorId'] = 999,
       (root) => root['entries'][0]['status'] = 'invalid',

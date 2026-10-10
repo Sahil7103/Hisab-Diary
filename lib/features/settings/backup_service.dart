@@ -1,6 +1,5 @@
 import '../../core/constants/app_languages.dart';
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:drift/drift.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,12 +10,14 @@ import '../../core/utils/date_keys.dart';
 import '../../core/utils/billing_amounts.dart';
 import '../vendors/vendor_type.dart';
 import '../pro/vendor_limits.dart';
+import '../ledger/delivery_mode.dart';
 
 const maxBackupBytes = 10 * 1024 * 1024;
 const backupSettingKeys = ['language', 'textScale', 'countUnmarkedAsCame',
   'reminderOn', 'reminderTime'];
 bool isBackupSetting(String key) => backupSettingKeys.contains(key) ||
-  key.startsWith('v3Budget:') || key.startsWith('v3Reminder:') || key.startsWith('v3PurchasesOnly:');
+  key.startsWith('v3Budget:') || key.startsWith('v3Reminder:') ||
+  key.startsWith('v3PurchasesOnly:') || key.startsWith('v3PurchaseModes:');
 final backupServiceProvider = Provider<BackupService>((ref) =>
   BackupService(ref.watch(databaseProvider)));
 
@@ -147,7 +148,9 @@ class DiaryBackup {
     }
     void vendorDay(int vendorId,String value) {
       if (!vendorIds.contains(vendorId) || value.compareTo(vendors.firstWhere((row) => row.id == vendorId).createdAt) < 0 ||
-        DateTime.parse(value).year > 2100) throw const FormatException('Invalid vendor date');
+        DateTime.parse(value).year > 2100) {
+        throw const FormatException('Invalid vendor date');
+      }
     }
     keys.clear();
     final details = <DailyDetail>[];
@@ -234,6 +237,9 @@ class DiaryBackup {
         } else {
           final vendorId=int.tryParse(entry.key.split(':').last);
           if(!vendorIds.contains(vendorId)) throw const FormatException('Missing setting vendor');
+          if(entry.key.startsWith('v3PurchaseModes:')) {
+            for(final day in decodePurchaseModes(value).keys) { vendorDay(vendorId!,day); }
+          }
           if(entry.key.startsWith('v3PurchasesOnly:') && !['true','false'].contains(value)) {
             throw const FormatException('Invalid purchase mode');
           }
@@ -325,7 +331,7 @@ class BackupService {
     await database.delete(database.vendors).go();
     await (database.delete(database.settings)
       ..where((row) => row.key.isIn(backupSettingKeys) | row.key.like('v3Budget:%') |
-        row.key.like('v3Reminder:%') | row.key.like('v3PurchasesOnly:%'))).go();
+        row.key.like('v3Reminder:%') | row.key.like('v3PurchasesOnly:%') | row.key.like('v3PurchaseModes:%'))).go();
     await database.batch((batch) {
       batch.insertAll(database.vendors, [for (final row in backup.vendors) row.toCompanion(true)]);
       batch.insertAll(database.entries, [for (final row in backup.entries) row.toCompanion(true)]);

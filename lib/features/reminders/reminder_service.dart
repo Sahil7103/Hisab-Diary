@@ -21,6 +21,7 @@ import 'reminder_time.dart';
 import 'package:home_widget/home_widget.dart';
 import '../households/household_controller.dart';
 import '../device/app_lock_controller.dart';
+import 'vendor_reminder_service.dart';
 
 const _dailyId = 610;
 const _testId = 611;
@@ -76,12 +77,16 @@ Future<void> rescheduleAfterTimezoneChange() async {
   if (!_validDiaryName(name)) return;
   final database = AppDatabase(name: name);
   final service = ReminderService(database, dbName: name);
+  final vendorService = VendorReminderService(database,
+    initializeNotifications: service.prepareNotifications, cancelOnDispose: false);
   try {
     final rows = await database.select(database.settings).get();
     await service.sync({for (final row in rows) row.key: row.value});
+    await vendorService.refresh();
   } catch (_) {
     debugPrint('Hisab Diary could not reschedule its reminder.');
   } finally {
+    vendorService.dispose();
     service.dispose();
     await database.close();
     await _reminderChannel.invokeMethod<void>('finished');
